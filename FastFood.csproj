@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
+    <Folder Include="Interfaces\Suppliers\" />
+    <Folder Include="Interfaces\Orders\" />
   </ItemGroup>
 
 </Project>
