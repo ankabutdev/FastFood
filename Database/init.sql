@@ -3,21 +3,35 @@ create table categories
 	id bigint generated always as identity primary key,
 	name varchar(50) not null,
 	description text,
+	image_path text not null,
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
---------------------------
+
+create table companies
+(
+	id bigint generated always as identity primary key,
+	name varchar(50) not null,
+	description text,
+	image_path text not null,
+	phone_number varchar(13),
+	created_at timestamp without time zone default now(),
+	updated_at timestamp without time zone default now()
+);
+
 create table products
 (
 	id bigint generated always as identity primary key,
 	name varchar(50) not null,
 	description text,
+	image_path text not null,
 	unit_price double PRECISION not null,
 	category_id bigint references categories (id),
+	company_id bigint references companies (id),
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
-----------------------------------
+
 create table discounts
 (
 	id bigint generated always as identity primary key,
@@ -26,7 +40,7 @@ create table discounts
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
----------------------------------
+
 create table product_discounts
 (
 	id bigint generated always as identity primary key,
@@ -39,7 +53,7 @@ create table product_discounts
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
----------------------------------
+
 create table suppliers
 (
 	id bigint generated always as identity primary key,
@@ -49,7 +63,7 @@ create table suppliers
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
------------------------------
+
 create table product_suppliers
 (
 	id bigint generated always as identity primary key,
@@ -61,7 +75,7 @@ create table product_suppliers
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
-------------------------
+
 create table users
 (
 	id bigint generated always as identity primary key,
@@ -69,13 +83,20 @@ create table users
 	last_name varchar(50) not null,
 	phone_number varchar(13) not null,
 	phone_number_confirmed bool default false,
+	passport_seria_number varchar(9),
+	is_male bool not null,
+	birth_date date,
+	country text,
+	region text,
 	password_hash text not null,
 	salt text not null,
+	image_path text not null,
+	last_activity timestamp without time zone default now(),
 	identity_role text not null,
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
--------------------------------------
+
 create table product_comments
 (
 	id bigint generated always as identity primary key,
@@ -86,7 +107,7 @@ create table product_comments
 	is_edited bool default false,
 	updated_at timestamp without time zone default now()
 );
------------------------------
+
 create table deliveries
 (
 	id bigint generated always as identity primary key,
@@ -94,12 +115,18 @@ create table deliveries
 	last_name varchar(50) not null,
 	phone_number varchar(13) not null,
 	phone_number_confirmed bool default false,
+	passport_seria_number varchar(9),
+	is_male bool not null,
+	birth_date date,
+	country text,
+	region text,
 	password_hash text not null,
 	salt text not null,
+	image_path text not null,
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
-----------------------------
+
 create table orders
 (
 	id bigint generated always as identity primary key,
@@ -118,7 +145,7 @@ create table orders
 	created_at timestamp without time zone default now(),
 	updated_at timestamp without time zone default now()
 );
------------------------------
+
 create table order_details
 (
 	id bigint generated always as identity primary key,

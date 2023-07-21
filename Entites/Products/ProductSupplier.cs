@@ -6,9 +6,9 @@ public class ProductSupplier : Auditable
 
     public long SupplierId { get; set; }
 
-    public long Quantity { get; set; }
+    public int Quantity { get; set; }
 
-    public long UnitPrice { get; set; }
+    public double UnitPrice { get; set; }
 
     public string Description { get; set; } = string.Empty;
 }
