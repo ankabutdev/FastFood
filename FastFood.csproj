@@ -11,7 +11,7 @@
     <Folder Include="Assets\Icons\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Logos\" />
-    <Folder Include="Interfaces\Suppliers\" />
+    <Folder Include="Interfaces\Users\" />
     <Folder Include="Pages\" />
     <Folder Include="Windows\" />
   </ItemGroup>
