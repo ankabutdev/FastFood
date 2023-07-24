@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastFood.Pages.AlItems;
+using FastFood.Pages.Foods;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FastFood
 {
@@ -32,7 +22,7 @@ namespace FastFood
 
         private void btnMaximize_Click(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState == WindowState.Maximized)
+            if (this.WindowState == WindowState.Maximized)
                 this.WindowState = WindowState.Normal;
             else this.WindowState = WindowState.Maximized;
         }
@@ -47,14 +37,26 @@ namespace FastFood
             this.DragMove();
         }
 
-        private void rb_AllItems(object sender, RoutedEventArgs e)
+        private void rbColdDrinks_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void rb_Food(object sender, RoutedEventArgs e)
+        private void rbHotDrinks_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void rb_Food_Click(object sender, RoutedEventArgs e)
+        {
+            FoodPage foodPage = new FoodPage();
+            PageNavigator.Content = foodPage;
+        }
+
+        private void rb_AllItems_Click(object sender, RoutedEventArgs e)
+        {
+            AllItemsPage allItemsPage = new AllItemsPage();
+            PageNavigator.Content = allItemsPage;
         }
     }
 }
