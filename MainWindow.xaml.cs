@@ -24,5 +24,37 @@ namespace FastFood
         {
             InitializeComponent();
         }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+            else this.WindowState = WindowState.Maximized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void brDragable_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void rb_AllItems(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rb_Food(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

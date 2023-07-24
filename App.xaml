@@ -4,6 +4,23 @@
              xmlns:local="clr-namespace:FastFood"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-      
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--begin::Themes-->
+                <ResourceDictionary Source="Themes/LightTheme.xaml" />
+                <!--end::Themes-->
+
+                <!--begin::Icons-->
+                <ResourceDictionary Source="/Assets/Icons/Icons.xaml"/>
+                <!--end::Icons-->
+
+                <!--begin::Styles-->
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/DateTimePickerStyles.xaml"/>
+                <!--end::Styles-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
