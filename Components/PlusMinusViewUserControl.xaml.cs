@@ -1,5 +1,8 @@
-﻿using System;
+﻿using FastFood.Entites.Orders;
+using FastFood.Entites.Products;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +24,22 @@ namespace FastFood.Components
     public partial class PlusMinusViewUserControl : UserControl
     {
         long count = 1;
+
         public PlusMinusViewUserControl()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
 
         private void lblPlus_Click(object sender, RoutedEventArgs e)
         {
-            count++;
+            if(count > 1)
+            {
+                count++;
+            }
+            else
+            {
+                
+            }            
         }
 
         private void lblMinus_Click(object sender, RoutedEventArgs e)
