@@ -1,7 +1,9 @@
 ﻿using Dapper;
+using FastFood.Constants;
 using FastFood.Entites.Categories;
 using FastFood.Interfaces.Categories;
 using FastFood.Utils;
+using Npgsql;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace FastFood.Repositories.Categories;
 
 public class CategoryRepository : BaseRepository, ICategoryRepository
 {
+    
     public Task<long> CountAsync()
     {
         throw new System.NotImplementedException();
