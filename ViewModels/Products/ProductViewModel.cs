@@ -1,5 +1,8 @@
-﻿namespace FastFood.ViewModels.Products;
+﻿using FastFood.Entites;
 
-public class ProductViewModel
+namespace FastFood.ViewModels.Products;
+
+public class ProductViewModel : Auditable
 {
+    
 }
