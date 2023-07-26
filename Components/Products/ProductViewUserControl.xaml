@@ -8,36 +8,22 @@
              Height="260" Width="330"
              Margin="10 10">
     <Grid x:Name="grMain" Cursor="Hand" MouseDown="grMain_MouseDown">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Border Grid.Row="0" CornerRadius="10 10 0 0">
-            <Border.Background>
-                <ImageBrush x:Name="ImgB" Stretch="UniformToFill"/>
-            </Border.Background>
-        </Border>
-        <Border Grid.Row="1" 
-                Background="{DynamicResource PrimaryBackground}"
-                CornerRadius="0 0 10 10">
-            <StackPanel Margin="10 5">
-                <Label x:Name="lbName"
-                       FontSize="16"
-                       FontFamily="Jetbrains Mono"
-                       FontWeight="SemiBold"
-                       Foreground="{DynamicResource PrimaryTextColor}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" >
+            <Border Background="{DynamicResource PrimaryBackground}">
 
-                <!--<TextBlock x:Name="tbDescription"
-                           FontFamily="Jetbrains Mono"
-                           FontSize="14"
-                           Height="60"
-                           TextWrapping="Wrap"
-                           Foreground="{DynamicResource PrimaryTextColor}"></TextBlock>-->
-                
-                
-                
-                
-            </StackPanel>
-        </Border>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1" >
+            <Border Margin="0 0 0 120">
+                <Border.Background>
+                    <!--<ImageBrush x:Name="ImgB" Stretch="UniformToFill"/>-->
+                    <ImageBrush x:Name="image" ImageSource="\Assets\Images\photo_2023-07-22_10-17-33.jpg" Stretch="Fill"/>
+                </Border.Background>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

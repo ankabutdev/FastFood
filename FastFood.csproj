@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Logos\" />
     <Folder Include="Interfaces\Users\" />
     <Folder Include="Windows\" />

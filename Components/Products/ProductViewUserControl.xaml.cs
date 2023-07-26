@@ -29,5 +29,10 @@ namespace FastFood.Components.Products
         {
 
         }
+
+        private void Border_DpiChanged(object sender, DpiChangedEventArgs e)
+        {
+
+        }
     }
 }
