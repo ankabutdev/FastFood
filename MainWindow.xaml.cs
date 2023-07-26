@@ -58,5 +58,10 @@ namespace FastFood
             AllItemsPage allItemsPage = new AllItemsPage();
             PageNavigator.Content = allItemsPage;
         }
+
+        private void rbDisserts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -27,12 +27,16 @@
                        FontWeight="SemiBold"
                        Foreground="{DynamicResource PrimaryTextColor}"/>
 
-                <TextBlock x:Name="tbDescription"
+                <!--<TextBlock x:Name="tbDescription"
                            FontFamily="Jetbrains Mono"
                            FontSize="14"
                            Height="60"
                            TextWrapping="Wrap"
-                           Foreground="{DynamicResource PrimaryTextColor}"></TextBlock>
+                           Foreground="{DynamicResource PrimaryTextColor}"></TextBlock>-->
+                
+                
+                
+                
             </StackPanel>
         </Border>
     </Grid>

@@ -78,8 +78,14 @@
                                  Click="rbHotDrinks_Click"
                                  Tag="{DynamicResource hotdrink}"/>
 
-                    
-                    
+                    <RadioButton x:Name="rbDisserts" 
+                                 Style="{DynamicResource MenuButton}"
+                                 Content="Disserts" 
+                                 Click="rbDisserts_Click"
+                                 Tag="{DynamicResource dissert}"/>
+
+
+
                 </StackPanel>
             </Border>
             <Border Grid.Column="1"
