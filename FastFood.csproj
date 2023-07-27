@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Assets\Logos\" />
     <Folder Include="Interfaces\Users\" />
-    <Folder Include="Windows\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -84,8 +84,6 @@
                                  Click="rbDisserts_Click"
                                  Tag="{DynamicResource dissert}"/>
 
-
-
                 </StackPanel>
             </Border>
             <Border Grid.Column="1"
