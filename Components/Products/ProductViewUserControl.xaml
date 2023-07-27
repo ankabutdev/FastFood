@@ -4,26 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FastFood.Components.Products"
+             xmlns:components="clr-namespace:FastFood.Components"
              mc:Ignorable="d" 
-             Height="260" Width="330"
+             Height="150" Width="330"
              Margin="10 10">
     <Grid x:Name="grMain" Cursor="Hand" MouseDown="grMain_MouseDown">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.60*"/>
+            <ColumnDefinition Width="0.40*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" >
-            <Border Background="{DynamicResource PrimaryBackground}">
+        <StackPanel Grid.Column="0" Orientation="Vertical" Background="{DynamicResource PrimaryBackground}">
+            <Label x:Name="ProductName"
+                   Content=""
+                   FontSize="13"
+                   FontWeight="Medium"
+                   Margin="5"
+                   Background="{StaticResource PrimaryBackground}"/>
+            <Label/>
+            <!--<components:PlusMinusViewUserControl x:Name="cmpPlusMinus" VerticalAlignment="Center" Margin="5 0 0 0"/>-->
+            <Label Height="60"/>
+            <Label x:Name="lblProductPrice" Content="" Foreground="DarkGreen" FontSize="15"/>
+        </StackPanel>
 
-            </Border>
-        </Grid>
-        <Grid Grid.Column="1" >
-            <Border Margin="0 0 0 120">
-                <Border.Background>
-                    <!--<ImageBrush x:Name="ImgB" Stretch="UniformToFill"/>-->
-                    <ImageBrush x:Name="image" ImageSource="\Assets\Images\photo_2023-07-22_10-17-33.jpg" Stretch="Fill"/>
-                </Border.Background>
-            </Border>
-        </Grid>
+        <Border Grid.Column="1">
+            <Image Source="\Assets\Images\photo_2023-07-22_10-17-33.jpg" HorizontalAlignment="Center" Stretch="Fill"/>
+        </Border>
     </Grid>
 </UserControl>
