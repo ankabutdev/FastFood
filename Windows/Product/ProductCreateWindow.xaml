@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" >
-                    <Label Content="Image" Style="{DynamicResource TitleLabel}"/>
+                    <Label Content="Product Image" Style="{DynamicResource TitleLabel}"/>
                     <StackPanel Orientation="Horizontal">
                         <Border Background="{DynamicResource SecondaryBackground}">
                             <Border x:Name="ImgCourseImage"
@@ -60,11 +60,11 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Grid.Column="0"
                                 Margin="5 0 5 0">
-                        <Label Content="First Name" Style="{DynamicResource TitleLabel}"/>
+                        <Label Content="Product Name" Style="{DynamicResource TitleLabel}"/>
                         <Border CornerRadius="10" 
                         Background="{DynamicResource SecondaryBackground}"
                         Height="40">
-                            <TextBox x:Name="tbFirstName"
+                            <TextBox x:Name="tbProductName"
                             MaxLength="30"
                             Grid.Column="1"
                             VerticalAlignment="Center"
@@ -78,11 +78,11 @@
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="1"
                                 Margin="5,0,5,0">
-                        <Label Content="Last Name" Style="{DynamicResource TitleLabel}"/>
-                        <Border CornerRadius="10" 
+                        <Label Content="Product Quantity" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10"
                             Background="{DynamicResource SecondaryBackground}"
                             Height="40">
-                            <TextBox x:Name="tbLastName"
+                            <TextBox x:Name="tbProductQuantity"
                                 MaxLength="30"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
@@ -97,11 +97,11 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="0"
                                 Margin="5 0 5 0">
-                        <Label Content="Passport Seria Number" Style="{DynamicResource TitleLabel}"/>
+                        <Label Content="Discount" Style="{DynamicResource TitleLabel}"/>
                         <Border CornerRadius="10" 
                             Background="{DynamicResource SecondaryBackground}"
                             Height="40">
-                            <TextBox x:Name="tbPassportSeriaNumber"
+                            <TextBox x:Name="tbDiscount"
                                 MaxLength="30"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
@@ -116,11 +116,11 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1" 
                                 Margin="5 0 5 0">
-                        <Label Content="Degree" Style="{DynamicResource TitleLabel}"/>
-                        <Border CornerRadius="10" 
+                        <Label Content="Product Unit Price" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10"
                             Background="{DynamicResource SecondaryBackground}"
                             Height="40">
-                            <TextBox x:Name="tbDegree"
+                            <TextBox x:Name="tbProductUnitPrice"
                                 MaxLength="30"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
@@ -135,13 +135,9 @@
                 </Grid>
             </Grid>
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <Label Content="Course" Style="{DynamicResource TitleLabel}"/>
-                    <ComboBox x:Name="cmbCourses"
+                <StackPanel>
+                    <Label Content="Product Category (Type)" Style="{DynamicResource TitleLabel}"/>
+                    <ComboBox x:Name="cmbCategories"
                             DisplayMemberPath="Name"
                             SelectedValuePath="Id"
                             Style="{DynamicResource FormComboBox}">
@@ -158,24 +154,7 @@
                         </ComboBox.Resources>
                     </ComboBox>
                 </StackPanel>
-                <StackPanel Grid.Column="1" 
-                            Margin="10 0 0 0">
-                    <Label Content="Email" Style="{DynamicResource TitleLabel}"/>
-                    <Border CornerRadius="10" 
-                        Background="{DynamicResource SecondaryBackground}"
-                        Height="40">
-                        <TextBox x:Name="tbEmail"
-                            MaxLength="30"
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            FontSize="16"
-                            Margin="10 0 10 0"
-                            FontFamily="Jetbrains Mono"
-                            BorderThickness="0"
-                            Foreground="{DynamicResource PrimaryTextColor}"
-                            Background="{DynamicResource SecondaryBackground}"/>
-                    </Border>
-                </StackPanel>
+               
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -183,128 +162,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Margin="0 0 5 0">
-                    <Label Content="Phone Number" Style="{DynamicResource TitleLabel}"/>
-                    <Border CornerRadius="10" 
-                        Background="{DynamicResource SecondaryBackground}"
-                        Height="40"
-                        Width="240"
-                        HorizontalAlignment="Left">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" 
-                                   Content="+998"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Foreground="{DynamicResource PrimaryTextColor}"
-                                   FontSize="16"
-                                   FontFamily="Jetbrains Mono"/>
-                            <TextBox x:Name="tbPhone"
-                                MaxLength="9"
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontSize="16"
-                                Margin="0 0 10 0"
-                                FontFamily="Jetbrains Mono"
-                                BorderThickness="0"
-                                Foreground="{DynamicResource PrimaryTextColor}"
-                                Background="{DynamicResource SecondaryBackground}"/>
-                        </Grid>
-
-                    </Border>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Margin="5 0 5 0">
-                    <Label Content="Parents Phone Number" Style="{DynamicResource TitleLabel}"/>
-                    <Border CornerRadius="10" 
-                        Background="{DynamicResource SecondaryBackground}"
-                        Height="40"
-                        Width="240"
-                        HorizontalAlignment="Left">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" 
-                                   Content="+998"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Foreground="{DynamicResource PrimaryTextColor}"
-                                   FontSize="16"
-                                   FontFamily="Jetbrains Mono"/>
-                            <TextBox x:Name="tbParentsPhone"
-                                MaxLength="9"
-                                VerticalAlignment="Center"
-                                FontSize="16"
-                                Margin="58,0,12,0"
-                                FontFamily="Jetbrains Mono"
-                                BorderThickness="0"
-                                Foreground="{DynamicResource PrimaryTextColor}"
-                                Background="{DynamicResource SecondaryBackground}" Grid.ColumnSpan="2"/>
-                        </Grid>
-
-                    </Border>
-                </StackPanel>
-                <StackPanel Grid.Column="2" Margin="5 0 0 0">
-                    <Label Content="Gender" Style="{DynamicResource TitleLabel}"/>
-                    <Grid Width="200" HorizontalAlignment="Left">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <RadioButton Grid.Column="0" 
-                                     x:Name="rbIsMale"
-                                     Content="Male"
-                                     FontSize="16"
-                                     Cursor="Hand"
-                                     IsChecked="True"
-                                     VerticalAlignment="Center"
-                                     VerticalContentAlignment="Center"
-                                     Foreground="{DynamicResource PrimaryTextColor}"/>
-                        <RadioButton Grid.Column="1" 
-                                     Content="Female"
-                                     Cursor="Hand"
-                                     FontSize="16"
-                                     VerticalAlignment="Center"
-                                     VerticalContentAlignment="Center"
-                                     Foreground="{DynamicResource PrimaryTextColor}"/>
-                    </Grid>
-
-                </StackPanel>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" 
-                            Margin="0 0 5 0">
-                    <Label Content="Birth Date" Style="{DynamicResource TitleLabel}"/>
-                    <Border CornerRadius="10" 
-                        Background="{DynamicResource SecondaryBackground}"
-                        Height="40">
-                        <DatePicker x:Name="dtpBirthDate" Text="1/1/2000" Style="{DynamicResource FormDatePicker}"/>
-                    </Border>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Margin="5 0 0 0">
-                    <Label Content="Address" Style="{DynamicResource TitleLabel}"/>
-                    <Border CornerRadius="10" 
-                        Background="{DynamicResource SecondaryBackground}"
-                        Height="40">
-                        <TextBox x:Name="tbAddress"
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            FontSize="16"
-                            Margin="10 0 10 0"
-                            FontFamily="Jetbrains Mono"
-                            BorderThickness="0"
-                            Foreground="{DynamicResource PrimaryTextColor}"
-                            Background="{DynamicResource SecondaryBackground}"/>
-                    </Border>
-                </StackPanel>
             </Grid>
             <Label Content="Description" Style="{DynamicResource TitleLabel}"/>
             <Border CornerRadius="10" 
@@ -319,7 +182,7 @@
                          Background="{DynamicResource SecondaryBackground}"/>
             </Border>
             <Button x:Name="btnSave" 
-                    Click="btnSave_Click" 
+                    Click="btnSave_Click"
                     Margin="0 20 0 10" 
                     Height="50" 
                     Style="{DynamicResource SuccessButton}" Content="Save"/>

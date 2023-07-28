@@ -21,9 +21,25 @@ public class ProductRepository : BaseRepository, IProductRepository
         throw new System.NotImplementedException();
     }
 
-    public Task<int> CreateAsync(Product entity)
+    public async Task<int> CreateAsync(Product entity)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+
+            string query = "INSERT INTO public.products(name, description, image_path, unit_price, category_id, company_id, created_at, updated_at) " +
+                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CategoryId, @CompanyId, @CreatedAt, @UpdatedAt);";
+            var result = await _connection.ExecuteAsync(query, entity);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public Task<int> DeleteAsync(long id)

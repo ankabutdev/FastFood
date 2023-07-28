@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using FastFood.Components.Products;
+using FastFood.Entites.Products;
+using FastFood.Repositories.Products;
+using FastFood.Windows;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FastFood.Pages.AlItems
 {
@@ -20,9 +12,42 @@ namespace FastFood.Pages.AlItems
     /// </summary>
     public partial class AllItemsPage : Page
     {
+        private readonly ProductRepository _productRepository;
+
         public AllItemsPage()
         {
             InitializeComponent();
+            this._productRepository = new ProductRepository();
+        }
+
+        private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await RefreshAsync();
+        }
+
+        public async Task RefreshAsync()
+        {
+            wrpAllItems.Children.Clear();
+            var products = await _productRepository.GetAllAsync();
+
+            foreach (var product in products)
+            {
+                var productViewUserControl = new ProductViewUserControl();
+                productViewUserControl.SetData(new Product
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    ImagePath = product.Image,
+                });
+                wrpAllItems.Children.Add(productViewUserControl);
+            }
+        }
+
+        private async void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ProductCreateWindow productCreateWindow = new ProductCreateWindow();
+            productCreateWindow.ShowDialog();
+            await RefreshAsync();
         }
     }
 }

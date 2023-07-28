@@ -8,4 +8,6 @@ public class Category : Auditable
 
     public string ImagePath { get; set; } = string.Empty;
 
+    public string Type { get; set; } = string.Empty;
+
 }

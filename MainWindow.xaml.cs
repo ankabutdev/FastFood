@@ -1,5 +1,6 @@
 ﻿using FastFood.Pages.AlItems;
 using FastFood.Pages.Foods;
+using FastFood.Windows;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,6 +14,8 @@ namespace FastFood
         public MainWindow()
         {
             InitializeComponent();
+            // Is_Admin
+            //rbCreateProduct.Visibility = Visibility.Collapsed;
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -62,6 +65,12 @@ namespace FastFood
         private void rbDisserts_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void rbCreateProduct_Click(object sender, RoutedEventArgs e)
+        {
+            ProductCreateWindow productCreateWindow = new ProductCreateWindow();
+            productCreateWindow.ShowDialog();
         }
     }
 }

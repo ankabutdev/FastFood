@@ -20,7 +20,7 @@ public class CategoryRepository : BaseRepository, ICategoryRepository
     }
 
     public async Task<int> CreateAsync(Category entity)
-    {
+    {   
         try
         {
             await _connection.OpenAsync();
