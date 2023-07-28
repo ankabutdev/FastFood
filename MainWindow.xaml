@@ -83,16 +83,16 @@
                                  Content="Disserts" 
                                  Click="rbDisserts_Click"
                                  Tag="{DynamicResource dissert}"/>
-
-                    <Border IsEnabled="True" Height="100">
-                        <RadioButton x:Name="rbCreateProduct"
-                                     Style="{DynamicResource MenuButton}"
-                                     Content="Create Product" 
-                                     FontSize="15"
-                                     Click="rbCreateProduct_Click"
-                                     Tag="{DynamicResource hotdrink}"/>
-                    </Border>
                     
+                    <Label Height="50"/>
+                    
+                    <RadioButton x:Name="rbCreateProducts"
+                                 Style="{DynamicResource MenuButton}"
+                                 Content="Create Products" 
+                                 FontSize="15"
+                                 Click="rbCreateProduct_Click"
+                                 Tag="{DynamicResource create}"/>
+
 
                 </StackPanel>
             </Border>

@@ -15,7 +15,10 @@ namespace FastFood
         {
             InitializeComponent();
             // Is_Admin
-            //rbCreateProduct.Visibility = Visibility.Collapsed;
+
+            //rbCreateProducts.Visibility = Visibility.Collapsed;
+            //rbCreateProducts.Visibility = Visibility.Visible;
+
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)

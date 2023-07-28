@@ -48,7 +48,7 @@ namespace FastFood.Windows
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //var category = GetDateFromUI();
-            //category. = (short)await _categoryRepository.GetLatestGroupNumberByCourseAsync(category.CourseId);
+            //category.Id = (short)await _categoryRepository.GetLatestGroupNumberByCourseAsync(category.CourseId);
             //category.Number++;
             //var result = await _productRepository.CreateAsync(category);
             //if (result > 0)
@@ -57,11 +57,11 @@ namespace FastFood.Windows
             //    this.Close();
             //}
         }
-        //private Product GetDateFromUI()
+        //private Category GetDateFromUI()
         //{
-        //    Product category = new Product();
+        //    Category category = new Category();
         //    category.Id = (long)cmbCategories.SelectedValue;
-        //    category.Name = cmbCategories.SelectedValue;
+        //    category.Name = cmbCategories.SelectedValuePath;
         //    category.Description = new TextRange(rbDescription.Document.ContentStart, rbDescription.Document.ContentEnd).Text;
         //    category.CreatedAt = category.UpdatedAt = TimeHelper.GetDateTime();
         //    return category;
