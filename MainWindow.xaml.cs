@@ -46,36 +46,37 @@ public partial class MainWindow : Window
 
     private void rbColdDrinks_Click(object sender, RoutedEventArgs e)
     {
-
+        drResult.Visibility = Visibility.Visible;
     }
 
     private void rbHotDrinks_Click(object sender, RoutedEventArgs e)
     {
-
+        drResult.Visibility = Visibility.Visible;
     }
 
     private void rb_Food_Click(object sender, RoutedEventArgs e)
     {
+        drResult.Visibility = Visibility.Visible;
         FoodPage foodPage = new FoodPage();
         PageNavigator.Content = foodPage;
     }
 
     private void rb_AllItems_Click(object sender, RoutedEventArgs e)
     {
+        drResult.Visibility = Visibility.Visible;
         AllItemsPage allItemsPage = new AllItemsPage();
         PageNavigator.Content = allItemsPage;
     }
 
     private void rbDisserts_Click(object sender, RoutedEventArgs e)
     {
-
+        drResult.Visibility = Visibility.Visible;
     }
 
     private void rbCreateProduct_Click(object sender, RoutedEventArgs e)
     {
+        drResult.Visibility = Visibility.Collapsed;
         CreateProductPage createProductPage = new CreateProductPage();
         PageNavigator.Content = createProductPage;
-        //ProductCreateWindow productCreateWindow = new ProductCreateWindow();
-        //productCreateWindow.ShowDialog();
     }
 }

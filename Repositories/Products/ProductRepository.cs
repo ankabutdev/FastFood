@@ -3,7 +3,6 @@ using FastFood.Entites.Products;
 using FastFood.Interfaces.Products;
 using FastFood.Utils;
 using FastFood.ViewModels.Products;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -87,8 +86,22 @@ public class ProductRepository : BaseRepository, IProductRepository
         throw new System.NotImplementedException();
     }
 
-    internal Task<IList<Product>> GetAllByCategoryIdAsync(long categoryId)
+    public async Task<IList<Product>> GetAllByCategoryIdAsync(long categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string quary = $"SELECT * FROM Products WHERE CategoryId = {categoryId} order by id";
+            var result = (await _connection.QueryAsync<Product>(quary)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<Product>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 }

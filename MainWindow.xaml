@@ -111,7 +111,11 @@
                             x:Name="PageNavigator"
                             NavigationUIVisibility="Hidden"/>
 
-                    <Border Grid.Column="1">
+                    <Border x:Name="drResult" 
+                        Grid.Column="1">
+                        <DataGrid x:Name="drDataGrid">
+                            
+                        </DataGrid>
 
                     </Border>
                 </Grid>

@@ -57,15 +57,15 @@ namespace FastFood.Windows
             //    this.Close();
             //}
         }
-        //private Category GetDateFromUI()
-        //{
-        //    Category category = new Category();
-        //    category.Id = (long)cmbCategories.SelectedValue;
-        //    category.Name = cmbCategories.SelectedValuePath;
-        //    category.Description = new TextRange(rbDescription.Document.ContentStart, rbDescription.Document.ContentEnd).Text;
-        //    category.CreatedAt = category.UpdatedAt = TimeHelper.GetDateTime();
-        //    return category;
-        //}
+        private Product GetDateFromUI()
+        {
+            Product category = new Product();
+            category.Id = (long)cmbCategories.SelectedValue;
+            category.Name = cmbCategories.SelectedValuePath;
+            category.Description = new TextRange(rbDescription.Document.ContentStart, rbDescription.Document.ContentEnd).Text;
+            category.CreatedAt = category.UpdatedAt = TimeHelper.GetDateTime();
+            return category;
+        }
 
         private void btnImageSelector_Click(object sender, RoutedEventArgs e)
         {

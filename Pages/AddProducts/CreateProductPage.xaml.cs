@@ -1,7 +1,7 @@
-﻿using FastFood.Components.Products;
-using FastFood.Entites.Products;
+﻿using FastFood.Entites.Products;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
+using FastFood.Windows;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -28,7 +28,7 @@ namespace FastFood.Pages.AddProducts
 
         private async Task RefreshAsync(long categoryId)
         {
-            wrpTeachers.Children.Clear();
+            wrpCreateProduct.Children.Clear();
             IList<Product> products;
             if (categoryId == 0)
             {
@@ -43,7 +43,7 @@ namespace FastFood.Pages.AddProducts
             {
                 CreateProductPage viewcontrol = new CreateProductPage();
                 viewcontrol.SetData(product);
-                wrpTeachers.Children.Add(viewcontrol);
+                wrpCreateProduct.Children.Add(viewcontrol);
             }
         }
 
@@ -54,7 +54,8 @@ namespace FastFood.Pages.AddProducts
 
         private void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            ProductCreateWindow productCreateWindow = new ProductCreateWindow();
+            productCreateWindow.ShowDialog();
         }
 
         private async void Create_Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -75,6 +76,11 @@ namespace FastFood.Pages.AddProducts
             //}
 
             //await RefreshAsync(0);
+        }
+
+        private void btnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
         }
     }
 }

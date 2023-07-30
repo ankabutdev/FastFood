@@ -18,7 +18,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"
-                        HorizontalAlignment="Right"
+                        HorizontalAlignment="Left"
                         Orientation="Horizontal">
                 <Border CornerRadius="10" 
                         Background="{DynamicResource PrimaryBackground}"
@@ -44,10 +44,16 @@
                                  Background="{DynamicResource PrimaryBackground}"/>
                     </Grid>
                 </Border>
+                <Button x:Name="btnDelete"
+                        Click="btnDelete_Click"
+                        Style="{DynamicResource DeleteButton}"
+                        Content="Delete"/>
+
                 <Button x:Name="btnCreate"
                         Click="btnCreate_Click"
                         Style="{DynamicResource SuccessButton}"
                         Content="Create"/>
+                
             </StackPanel>
             <StackPanel Grid.Row="1"
                         VerticalAlignment="Center"
@@ -58,7 +64,7 @@
             </StackPanel>
             <ScrollViewer Margin="5 5 0 5"
                           Grid.Row="2">
-                <WrapPanel x:Name="wrpTeachers" >
+                <WrapPanel x:Name="wrpCreateProduct">
 
                 </WrapPanel>
             </ScrollViewer>
