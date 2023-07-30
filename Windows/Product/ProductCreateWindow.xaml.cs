@@ -1,23 +1,15 @@
-﻿using FastFood.Entites.Categories;
+﻿using FastFood.Constants;
 using FastFood.Entites.Products;
 using FastFood.Helpers;
+using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FastFood.Windows
 {
@@ -26,45 +18,50 @@ namespace FastFood.Windows
     /// </summary>
     public partial class ProductCreateWindow : Window
     {
-        private ProductRepository _productRepository;
+        private readonly ProductRepository _productRepository;
+        private readonly CategoryRepository _categoryRepository;
 
         public ProductCreateWindow()
         {
             InitializeComponent();
             this._productRepository = new ProductRepository();
+            this._categoryRepository = new CategoryRepository();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            //var product = await _productRepository.GetAllAsync();
-            //cmbCourses.ItemsSource = product;
-
-
-            //var category = await _categoryRepository.GetAllAsync()
-            //cmbCategories.ItemsSource = courses;
+            var category = await _categoryRepository.GetAllAsync();
+            cmbCategories.ItemsSource = category;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //var category = GetDateFromUI();
-            //category.Id = (short)await _categoryRepository.GetLatestGroupNumberByCourseAsync(category.CourseId);
-            //category.Number++;
-            //var result = await _productRepository.CreateAsync(category);
-            //if (result > 0)
-            //{
-            //    MessageBox.Show("Successfully");
-            //    this.Close();
-            //}
+            var product = GetDateFromUI();
+            var result = await _productRepository.CreateAsync(await product);
+            if (result > 0)
+            {
+                MessageBox.Show("Successfully");
+                this.Close();
+            }
         }
-        private Product GetDateFromUI()
+        private async Task<Product> GetDateFromUI()
         {
-            Product category = new Product();
-            category.Id = (long)cmbCategories.SelectedValue;
-            category.Name = cmbCategories.SelectedValuePath;
-            category.Description = new TextRange(rbDescription.Document.ContentStart, rbDescription.Document.ContentEnd).Text;
-            category.CreatedAt = category.UpdatedAt = TimeHelper.GetDateTime();
-            return category;
+            Product product = new Product();
+
+            product.Name = tbProductName.Text;
+            product.CategoryId = (long)cmbCategories.SelectedValue;
+
+            product.Description = new TextRange(rbDescription.Document.ContentStart,
+                rbDescription.Document.ContentEnd).Text;
+
+            string imagepath = ImgBImage.ImageSource.ToString();
+            if (!String.IsNullOrEmpty(imagepath))
+                product.ImagePath = await CopyImageAsync(imagepath,
+                    ContentConstant.IMAGE_CONTENTS_PATH);
+            product.CreatedAt = product.UpdatedAt =
+                    TimeHelper.GetDateTime();
+
+            return product;
         }
 
         private void btnImageSelector_Click(object sender, RoutedEventArgs e)

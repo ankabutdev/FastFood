@@ -27,8 +27,8 @@ public class ProductRepository : BaseRepository, IProductRepository
         {
             await _connection.OpenAsync();
 
-            string query = "INSERT INTO public.products(name, description, image_path, unit_price, category_id, company_id, created_at, updated_at) " +
-                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CategoryId, @CompanyId, @CreatedAt, @UpdatedAt);";
+            string query = "INSERT INTO public.products(name, description, image_path, unit_price, category_id, created_at, updated_at) " +
+                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CategoryId, @CreatedAt, @UpdatedAt);";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }

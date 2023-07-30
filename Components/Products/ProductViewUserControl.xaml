@@ -27,7 +27,7 @@
         </StackPanel>
 
         <Border Grid.Column="1">
-            <Image x:Name="cmpPlusMinus" Source="\Assets\Images\panda.jpg" HorizontalAlignment="Center" Stretch="Fill"/>
+            <Image x:Name="cmpImage" Source="\Assets\Images\panda.jpg" HorizontalAlignment="Center" Stretch="Fill"/>
         </Border>
     </Grid>
 </UserControl>

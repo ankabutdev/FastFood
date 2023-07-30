@@ -53,7 +53,12 @@
                         Click="btnCreate_Click"
                         Style="{DynamicResource SuccessButton}"
                         Content="Create"/>
-                
+
+                <Button x:Name="btnCategoryCreate"
+                        Click="btnCategoryCreate_Click"
+                        Style="{DynamicResource SuccessButton}"
+                        Content="Category Create"/>
+
             </StackPanel>
             <StackPanel Grid.Row="1"
                         VerticalAlignment="Center"
