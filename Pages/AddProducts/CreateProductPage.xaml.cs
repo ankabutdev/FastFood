@@ -1,7 +1,8 @@
 ﻿using FastFood.Components.Products;
-using FastFood.Entites.Products;
+using FastFood.Entites.Categories;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
+using FastFood.ViewModels.Products;
 using FastFood.Windows;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,27 +31,22 @@ namespace FastFood.Pages.AddProducts
         private async Task RefreshAsync(long categoryId)
         {
             wrpCreateProduct.Children.Clear();
-            IList<Product> products;
+            IList<ProductViewModel> products;
             if (categoryId == 0)
             {
-                products = (IList<Product>)await _productRepository.GetAllAsync();
+                products = await _productRepository.GetAllAsync();
             }
             else
             {
-                products = await _productRepository.GetAllByCategoryIdAsync(categoryId);
+                products = (IList<ProductViewModel>)await _productRepository.GetAllByCategoryIdAsync(categoryId);
             }
 
             foreach (var product in products)
             {
-                CreateProductPage viewcontrol = new CreateProductPage();
+                ProductViewUserControl viewcontrol = new ProductViewUserControl();
                 viewcontrol.SetData(product);
                 wrpCreateProduct.Children.Add(viewcontrol);
             }
-        }
-
-        private void SetData(Product product)
-        {
-
         }
 
         private void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -65,7 +61,7 @@ namespace FastFood.Pages.AddProducts
             var category = await _categoryRepository.GetAllAsync();
             // for all
             CategoryChipUserControl allforship = new CategoryChipUserControl();
-            allforship.SetData(new Entites.Categories.Category() { Id = 0, Name = "All" });
+            allforship.SetData(new Category() { Id = 0, Name = "All" });
             allforship.Refresh = RefreshAsync;
             stpCategoriesChips.Children.Add(allforship);
             foreach (var cat in category)

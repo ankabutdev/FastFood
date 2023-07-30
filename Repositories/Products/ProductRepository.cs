@@ -66,11 +66,6 @@ public class ProductRepository : BaseRepository, IProductRepository
         }
     }
 
-    public Task<IList<ProductViewModel>> GetAllAsync(PaginationParams @params)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public Task<ProductViewModel> GetByIdAsync(long id)
     {
         throw new System.NotImplementedException();
@@ -86,18 +81,18 @@ public class ProductRepository : BaseRepository, IProductRepository
         throw new System.NotImplementedException();
     }
 
-    public async Task<IList<Product>> GetAllByCategoryIdAsync(long categoryId)
+    public async Task<IList<ProductViewModel>> GetAllByCategoryIdAsync(long categoryId)
     {
         try
         {
             await _connection.OpenAsync();
             string quary = $"SELECT * FROM Products WHERE CategoryId = {categoryId} order by id";
             var result = (await _connection.QueryAsync<Product>(quary)).ToList();
-            return result;
+            return (IList<ProductViewModel>)result;
         }
         catch
         {
-            return new List<Product>();
+            return new List<ProductViewModel>();
         }
         finally
         {

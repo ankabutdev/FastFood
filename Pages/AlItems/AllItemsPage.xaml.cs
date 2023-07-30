@@ -1,5 +1,4 @@
 ﻿using FastFood.Components.Products;
-using FastFood.Entites.Products;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
 using System.Threading.Tasks;
@@ -33,14 +32,11 @@ namespace FastFood.Pages.AlItems
             foreach (var product in products)
             {
                 var productViewUserControl = new ProductViewUserControl();
-                productViewUserControl.SetData(new Product
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    ImagePath = product.Image,
-                });
+                productViewUserControl.SetData(product);
                 wrpAllItems.Children.Add(productViewUserControl);
             }
+
+            
         }
 
         private async void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)

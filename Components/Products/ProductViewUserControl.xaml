@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FastFood.Components.Products"
              xmlns:components="clr-namespace:FastFood.Components"
              mc:Ignorable="d" 
-             Height="150" Width="330"
+             Height="150" Width="300"
              Margin="10 10">
     <Grid x:Name="grMain" Cursor="Hand" MouseDown="grMain_MouseDown">
         <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
             <Label x:Name="lblProductPrice" Content="" Foreground="DarkGreen" FontSize="15"/>
         </StackPanel>
 
-        <Border Grid.Column="1">
+        <Border Grid.Column="1" Background="{StaticResource PrimaryBackground}">
             <Image x:Name="cmpImage" Source="\Assets\Images\panda.jpg" HorizontalAlignment="Center" Stretch="Fill"/>
         </Border>
     </Grid>

@@ -1,4 +1,5 @@
 ﻿using FastFood.Entites.Products;
+using FastFood.ViewModels.Products;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,14 @@ namespace FastFood.Components.Products
         }
 
         public void SetData(Product product)
+        {
+            Id = product.Id;
+            ProductName.Content = product.Name;
+            lblProductPrice.Content = product.UnitPrice;
+            cmpImage.Source = new BitmapImage(new Uri(product.ImagePath, UriKind.Relative));
+        }
+
+        public void SetData(ProductViewModel product)
         {
             Id = product.Id;
             ProductName.Content = product.Name;
