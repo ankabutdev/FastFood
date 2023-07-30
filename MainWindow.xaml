@@ -96,20 +96,25 @@
 
                 </StackPanel>
             </Border>
+
             <Border Grid.Column="1"
                     Background="{DynamicResource SecondaryBackground}"
                     CornerRadius="0 0 10 0">
-                                           
+
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
 
-                    <Frame x:Name="PageNavigator"
-                       NavigationUIVisibility="Hidden"/>
+                    <Frame  Grid.Column="0"
+                            x:Name="PageNavigator"
+                            NavigationUIVisibility="Hidden"/>
+
+                    <Border Grid.Column="1">
+
+                    </Border>
                 </Grid>
-        
             </Border>
         </Grid>
     </Grid>

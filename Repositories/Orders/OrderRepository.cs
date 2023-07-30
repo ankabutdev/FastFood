@@ -24,7 +24,7 @@ public class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
-    public Task<IList<OrderViewModel>> GetAllAsync(PaginationParams @params)
+    public Task<IList<OrderViewModel>> GetAllAsync()
     {
         throw new System.NotImplementedException();
     }

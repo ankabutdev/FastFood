@@ -3,6 +3,7 @@ using FastFood.Entites.Products;
 using FastFood.Interfaces.Products;
 using FastFood.Utils;
 using FastFood.ViewModels.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -84,5 +85,10 @@ public class ProductRepository : BaseRepository, IProductRepository
     public Task<int> UpdateAsync(long id, Product entity)
     {
         throw new System.NotImplementedException();
+    }
+
+    internal Task<IList<Product>> GetAllByCategoryIdAsync(long categoryId)
+    {
+        throw new NotImplementedException();
     }
 }

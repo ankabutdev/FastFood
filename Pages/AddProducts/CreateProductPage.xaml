@@ -5,14 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFood.Pages.AddProducts"
       mc:Ignorable="d" 
-      d:DesignHeight="450" 
+     d:DesignHeight="450" 
       d:DesignWidth="800"
-      Title="CreateProductPage">
+      Title="GroupsPage"
+      Loaded="Create_Page_Loaded">
 
     <Border Margin="10">
         <Grid Margin="0 5 0 5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"
@@ -42,15 +44,21 @@
                                  Background="{DynamicResource PrimaryBackground}"/>
                     </Grid>
                 </Border>
-                <!--<Button x:Name="btnCreate"
+                <Button x:Name="btnCreate"
                         Click="btnCreate_Click"
                         Style="{DynamicResource SuccessButton}"
-                        Content="Create"/>-->
+                        Content="Create"/>
             </StackPanel>
+            <StackPanel Grid.Row="1"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        x:Name="stpCategoriesChips"
+                        Margin="10 0 0 0">
 
+            </StackPanel>
             <ScrollViewer Margin="5 5 0 5"
-                          Grid.Row="1">
-                <WrapPanel x:Name="wrpAllItems" >
+                          Grid.Row="2">
+                <WrapPanel x:Name="wrpTeachers" >
 
                 </WrapPanel>
             </ScrollViewer>

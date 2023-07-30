@@ -1,9 +1,8 @@
 ﻿using Dapper;
-using FastFood.Constants;
 using FastFood.Entites.Categories;
 using FastFood.Interfaces.Categories;
 using FastFood.Utils;
-using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,14 +12,14 @@ namespace FastFood.Repositories.Categories;
 
 public class CategoryRepository : BaseRepository, ICategoryRepository
 {
-    
+
     public Task<long> CountAsync()
     {
         throw new System.NotImplementedException();
     }
 
     public async Task<int> CreateAsync(Category entity)
-    {   
+    {
         try
         {
             await _connection.OpenAsync();
@@ -58,13 +57,12 @@ public class CategoryRepository : BaseRepository, ICategoryRepository
         }
     }
 
-    public async Task<IList<Category>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<Category>> GetAllAsync()
     {
         try
         {
             await _connection.OpenAsync();
-            string query = $"SELECT * FROM categories order by id desc " +
-                $"offset {@params.SkipCount} limit {@params.PageSize}";
+            string query = $"SELECT * FROM categories order by id desc ";
             var result = (await _connection.QueryAsync<Category>(query)).ToList();
             return result;
         }
