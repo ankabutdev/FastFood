@@ -16,10 +16,11 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         // Is_Admin
+        AllItemsPage allItemsPage = new AllItemsPage();
+        PageNavigator.Content = allItemsPage;
 
         //rbCreateProducts.Visibility = Visibility.Collapsed;
         //rbCreateProducts.Visibility = Visibility.Visible;
-
     }
 
     private void btnMinimize_Click(object sender, RoutedEventArgs e)

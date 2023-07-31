@@ -50,6 +50,7 @@ namespace FastFood.Windows
 
             product.Name = tbProductName.Text;
             product.CategoryId = (long)cmbCategories.SelectedValue;
+            product.UnitPrice = Convert.ToDouble(tbProductUnitPrice.Text);
 
             product.Description = new TextRange(rbDescription.Document.ContentStart,
                 rbDescription.Document.ContentEnd).Text;
@@ -57,7 +58,8 @@ namespace FastFood.Windows
             string imagepath = ImgBImage.ImageSource.ToString();
             if (!String.IsNullOrEmpty(imagepath))
                 product.ImagePath = await CopyImageAsync(imagepath,
-                    ContentConstant.IMAGE_CONTENTS_PATH);
+                     ContentConstant.IMAGE_CONTENTS_PATH);
+
             product.CreatedAt = product.UpdatedAt =
                     TimeHelper.GetDateTime();
 

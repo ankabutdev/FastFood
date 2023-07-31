@@ -9,6 +9,7 @@ public class BaseRepository
 
     public BaseRepository()
     {
+        Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         this._connection = new NpgsqlConnection(DbConstant.DB_CONNECTION_STRING);
     }
 }

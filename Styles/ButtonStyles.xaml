@@ -110,6 +110,7 @@
                             </Grid.ColumnDefinitions>
                             <Border x:Name="Indicator" Grid.Column="0" 
                                     Visibility="Collapsed"
+                                    OverridesDefaultStyle="True"
                                     Height="30"
                                     CornerRadius="5"
                                     Background="{DynamicResource SecondaryBorderColor}"/>

@@ -47,18 +47,18 @@ public class ProductRepository : BaseRepository, IProductRepository
         throw new System.NotImplementedException();
     }
 
-    public async Task<IList<ProductViewModel>> GetAllAsync()
+    public async Task<IList<Product>> GetAllAsync()
     {
         try
         {
             await _connection.OpenAsync();
             string query = "SELECT * FROM products order by id desc";
-            var result = (await _connection.QueryAsync<ProductViewModel>(query)).ToList();
+            var result = (await _connection.QueryAsync<Product>(query)).ToList();
             return result;
         }
         catch
         {
-            return new List<ProductViewModel>();
+            return new List<Product>();
         }
         finally
         {

@@ -109,7 +109,9 @@
 
                     <Frame  Grid.Column="0"
                             x:Name="PageNavigator"
-                            NavigationUIVisibility="Hidden"/>
+                            NavigationUIVisibility="Hidden">
+                       
+                    </Frame>
 
                     <Border x:Name="drResult" 
                         Grid.Column="1">

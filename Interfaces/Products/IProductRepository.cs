@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace FastFood.Interfaces.Products;
 
 public interface IProductRepository : IRepository<Product, ProductViewModel>,
-    IGetAll<ProductViewModel>, ISearchable<ProductViewModel>
+    IGetAll<Product>, ISearchable<ProductViewModel>
 {
     public Task<int> CountAsync(long id);
 }

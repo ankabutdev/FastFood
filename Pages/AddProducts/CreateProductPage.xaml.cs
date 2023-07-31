@@ -1,5 +1,6 @@
 ﻿using FastFood.Components.Products;
 using FastFood.Entites.Categories;
+using FastFood.Entites.Products;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
 using FastFood.ViewModels.Products;
@@ -31,14 +32,14 @@ namespace FastFood.Pages.AddProducts
         private async Task RefreshAsync(long categoryId)
         {
             wrpCreateProduct.Children.Clear();
-            IList<ProductViewModel> products;
+            IList<Product> products;
             if (categoryId == 0)
             {
                 products = await _productRepository.GetAllAsync();
             }
             else
             {
-                products = (IList<ProductViewModel>)await _productRepository.GetAllByCategoryIdAsync(categoryId);
+                products = (IList<Product>)await _productRepository.GetAllByCategoryIdAsync(categoryId);
             }
 
             foreach (var product in products)
@@ -61,6 +62,7 @@ namespace FastFood.Pages.AddProducts
             var category = await _categoryRepository.GetAllAsync();
             // for all
             CategoryChipUserControl allforship = new CategoryChipUserControl();
+
             allforship.SetData(new Category() { Id = 0, Name = "All" });
             allforship.Refresh = RefreshAsync;
             stpCategoriesChips.Children.Add(allforship);
