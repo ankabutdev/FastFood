@@ -18,7 +18,6 @@ namespace FastFood.Pages.AddProducts
     {
         private CategoryRepository _categoryRepository;
         private ProductRepository _productRepository;
-        private object stpProductChips;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public CreateProductPage()
@@ -60,9 +59,9 @@ namespace FastFood.Pages.AddProducts
         {
             stpCategoriesChips.Children.Clear();
             var category = await _categoryRepository.GetAllAsync();
+
             // for all
             CategoryChipUserControl allforship = new CategoryChipUserControl();
-
             allforship.SetData(new Category() { Id = 0, Name = "All" });
             allforship.Refresh = RefreshAsync;
             stpCategoriesChips.Children.Add(allforship);
@@ -70,10 +69,10 @@ namespace FastFood.Pages.AddProducts
             {
                 CategoryChipUserControl categoryChipUserControl = new CategoryChipUserControl();
                 categoryChipUserControl.Refresh = RefreshAsync;
-                categoryChipUserControl.SetData((Entites.Categories.Category)cat);
+                categoryChipUserControl.SetData(cat);
                 stpCategoriesChips.Children.Add(categoryChipUserControl);
             }
-
+            
             await RefreshAsync(0);
         }
 

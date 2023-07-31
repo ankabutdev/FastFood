@@ -8,7 +8,8 @@
         Title="Create New Product" 
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Height="700" Width="900"
+        Height="700"
+        Width="900"
         Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="TitleLabel" TargetType="{x:Type Label}">
