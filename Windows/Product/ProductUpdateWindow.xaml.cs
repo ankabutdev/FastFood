@@ -41,10 +41,7 @@ public partial class ProductUpdateWindow : Window
         rbDescription.AppendText(product.Description);
         ImgBImage.ImageSource = new BitmapImage(new Uri(product.ImagePath, UriKind.Relative));
 
-        
         tbDiscount.Text = productDiscount.Percentage.ToString();
-
-
         cmbCategories.SelectedValue = product.CategoryId;
 
     }
