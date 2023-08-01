@@ -1,6 +1,6 @@
 ﻿using FastFood.Components.Products;
 using FastFood.Repositories.Products;
-using FastFood.Windows;
+using FastFood.Windows.Product;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -36,12 +36,12 @@ namespace FastFood.Pages.AlItems
                 wrpAllItems.Children.Add(productViewUserControl);
             }
 
-            
+
         }
 
         private async void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ProductCreateWindow productCreateWindow = new ProductCreateWindow();
+            ProductCreateWindoww productCreateWindow = new ProductCreateWindoww();
             productCreateWindow.ShowDialog();
             await RefreshAsync();
         }

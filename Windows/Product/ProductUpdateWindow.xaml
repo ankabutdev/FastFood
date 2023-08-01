@@ -1,0 +1,192 @@
+﻿<Window x:Class="FastFood.Windows.Product.ProductUpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastFood.Windows.Product"
+        mc:Ignorable="d"
+        Title="ProductUpdateWindow" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Height="700"
+        Width="900"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="TitleLabel" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="FontFamily" Value="Jetbrains Mono"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{DynamicResource PrimaryBackground}">
+        <StackPanel Orientation="Vertical"
+                    Margin="20 10">
+            <Grid Height="180">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" >
+                    <Label Content="Product Image" Style="{DynamicResource TitleLabel}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{DynamicResource SecondaryBackground}">
+                            <Border x:Name="ImgCourseImage"
+                                Height="135" Width="135"
+                                CornerRadius="10">
+                                <Border.Background>
+                                    <ImageBrush x:Name="ImgBImage" />
+                                </Border.Background>
+                            </Border>
+
+                        </Border>
+                        <Button x:Name="btnImageSelector" 
+                                VerticalAlignment="Bottom"
+                                Content="..."
+                                FontSize="20"
+                                Click="btnImageSelector_Click"
+                                Height="30" Width="30"
+                                Margin="10 0 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0"
+                                Margin="5 0 5 0">
+                        <Label Content="Product Name" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10" 
+                        Background="{DynamicResource SecondaryBackground}"
+                        Height="40">
+                            <TextBox x:Name="tbProductName"
+                            MaxLength="30"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            Margin="10 0 10 0"
+                            FontFamily="Jetbrains Mono"
+                            BorderThickness="0"
+                            Foreground="{DynamicResource PrimaryTextColor}"
+                            Background="{DynamicResource SecondaryBackground}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1"
+                                Margin="5,0,5,0">
+                        <Label Content="Product Quantity" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10"
+                            Background="{DynamicResource SecondaryBackground}"
+                            Height="40">
+                            <TextBox x:Name="tbProductQuantity"
+                                MaxLength="30"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Margin="10 0 10 0"
+                                FontFamily="Jetbrains Mono"
+                                BorderThickness="0"
+                                Foreground="{DynamicResource PrimaryTextColor}"
+                                Background="{DynamicResource SecondaryBackground}"/>
+                        </Border>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0"
+                                Margin="5 0 5 0">
+                        <Label Content="Discount" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10" 
+                            Background="{DynamicResource SecondaryBackground}"
+                            Height="40">
+                            <TextBox x:Name="tbDiscount"
+                                MaxLength="30"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Margin="10 0 10 0"
+                                FontFamily="Jetbrains Mono"
+                                BorderThickness="0"
+                                Foreground="{DynamicResource PrimaryTextColor}"
+                                Background="{DynamicResource SecondaryBackground}"/>
+                        </Border>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" 
+                                Margin="5 0 5 0">
+                        <Label Content="Product Unit Price" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10"
+                            Background="{DynamicResource SecondaryBackground}"
+                            Height="40">
+                            <TextBox x:Name="tbProductUnitPrice"
+                                MaxLength="30"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Margin="10 0 10 0"
+                                FontFamily="Jetbrains Mono"
+                                BorderThickness="0"
+                                Foreground="{DynamicResource PrimaryTextColor}"
+                                Background="{DynamicResource SecondaryBackground}"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid>
+                <StackPanel>
+                    <Label Content="Product Category (Type)" Style="{DynamicResource TitleLabel}"/>
+                    <ComboBox x:Name="cmbCategories"
+                            DisplayMemberPath="Name"
+                            SelectedValuePath="Id"
+                            Style="{DynamicResource FormComboBox}">
+                        <ComboBox.Resources>
+                            <!-- Colour of ComboBoxItem -->
+                            <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Yellow" />
+                            <!-- Mouse over colour of ComboBoxItem -->
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />
+
+                            <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="Blue" Offset="0.0"/>
+                                <GradientStop Color="Blue" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                </StackPanel>
+
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Content="Description" Style="{DynamicResource TitleLabel}"/>
+            <Border CornerRadius="10" 
+                    Background="{DynamicResource SecondaryBackground}"
+                    Height="100">
+                <RichTextBox x:Name="rbDescription"
+                         FontSize="16"
+                         Margin="10 10 10 10"
+                         FontFamily="Jetbrains Mono"
+                         BorderThickness="0"
+                         Foreground="{DynamicResource PrimaryTextColor}"
+                         Background="{DynamicResource SecondaryBackground}"/>
+            </Border>
+            <Button x:Name="btnSave" 
+                    Click="btnSave_Click"
+                    Margin="0 20 0 10" 
+                    Height="50" 
+                    Style="{DynamicResource SuccessButton}" Content="Save"/>
+        </StackPanel>
+    </Grid>
+</Window>

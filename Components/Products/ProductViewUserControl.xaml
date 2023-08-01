@@ -10,11 +10,11 @@
              Margin="10 10">
 
     <Border CornerRadius="20"
-            Background="{DynamicResource PrimaryBackground}">
+            Background="{DynamicResource PrimaryBackground}"
+            MouseDown="grMain_MouseDown">
 
         <Grid x:Name="grMain"
-          Cursor="Hand"
-          MouseDown="grMain_MouseDown">
+          Cursor="Hand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="143*"/>

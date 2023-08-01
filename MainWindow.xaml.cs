@@ -1,4 +1,6 @@
-﻿using FastFood.Pages.AddProducts;
+﻿using FastFood.Entites.Users;
+using FastFood.Enums;
+using FastFood.Pages.AddProducts;
 using FastFood.Pages.AlItems;
 using FastFood.Pages.ColdDrinks;
 using FastFood.Pages.Disserts;
@@ -14,16 +16,26 @@ namespace FastFood;
 /// </summary>
 public partial class MainWindow : Window
 {
+    public static User User { get; set; } = new User();
+
     public MainWindow()
     {
         InitializeComponent();
 
-        // Is_Admin
         AllItemsPage allItemsPage = new AllItemsPage();
         PageNavigator.Content = allItemsPage;
+        // Is_Admin
 
-        //rbCreateProducts.Visibility = Visibility.Collapsed;
-        //rbCreateProducts.Visibility = Visibility.Visible;
+        User.Role = IdentityRole.Admin;
+
+        if (User.Role is IdentityRole.Admin)
+        {
+            rbCreateProducts.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            rbCreateProducts.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void btnMinimize_Click(object sender, RoutedEventArgs e)

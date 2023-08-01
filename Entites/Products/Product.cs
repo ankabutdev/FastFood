@@ -13,7 +13,8 @@ public class Product : Auditable
 
     public double UnitPrice { get; set; }
 
+    public long Qunatity { get; set; }
+
     public long CategoryId { get; set; }
 
-    public long CompanyId { get; set; }
 }

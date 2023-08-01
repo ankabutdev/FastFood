@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastFood"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="MainWindow"
         WindowStyle="None"
         ResizeMode="NoResize"
         Height="650" Width="1000"
@@ -109,15 +109,13 @@
 
                     <Frame  Grid.Column="0"
                             x:Name="PageNavigator"
-                            NavigationUIVisibility="Hidden">
-                       
-                    </Frame>
+                            NavigationUIVisibility="Hidden"/>
 
                     <Border x:Name="drResult" 
                         Grid.Column="1">
-                        <DataGrid x:Name="drDataGrid">
-                            
-                        </DataGrid>
+                        <Frame  Margin="5 5 0 5" Grid.Column="0"
+                            x:Name="PageResultNavigator"
+                            NavigationUIVisibility="Hidden"/>
 
                     </Border>
                 </Grid>

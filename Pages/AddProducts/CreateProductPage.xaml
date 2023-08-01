@@ -22,7 +22,7 @@
                         Orientation="Horizontal">
                 <Border CornerRadius="10" 
                         Background="{DynamicResource PrimaryBackground}"
-                        Width="400">
+                        Width="300">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="43"/>
@@ -44,20 +44,10 @@
                                  Background="{DynamicResource PrimaryBackground}"/>
                     </Grid>
                 </Border>
-                <Button x:Name="btnDelete"
-                        Click="btnDelete_Click"
-                        Style="{DynamicResource DeleteButton}"
-                        Content="Delete"/>
-
                 <Button x:Name="btnCreate"
                         Click="btnCreate_Click"
                         Style="{DynamicResource SuccessButton}"
                         Content="Create"/>
-
-                <Button x:Name="btnCategoryCreate"
-                        Click="btnCategoryCreate_Click"
-                        Style="{DynamicResource SuccessButton}"
-                        Content="Category Create"/>
 
             </StackPanel>
             <StackPanel Grid.Row="1"

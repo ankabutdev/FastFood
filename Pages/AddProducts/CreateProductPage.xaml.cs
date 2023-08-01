@@ -5,6 +5,7 @@ using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
 using FastFood.ViewModels.Products;
 using FastFood.Windows;
+using FastFood.Windows.Product;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -51,7 +52,7 @@ namespace FastFood.Pages.AddProducts
 
         private void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ProductCreateWindow productCreateWindow = new ProductCreateWindow();
+            ProductCreateWindoww productCreateWindow = new ProductCreateWindoww();
             productCreateWindow.ShowDialog();
         }
 
@@ -60,7 +61,7 @@ namespace FastFood.Pages.AddProducts
             stpCategoriesChips.Children.Clear();
             var category = await _categoryRepository.GetAllAsync();
 
-            // for all
+            // for all  
             CategoryChipUserControl allforship = new CategoryChipUserControl();
             allforship.SetData(new Category() { Id = 0, Name = "All" });
             allforship.Refresh = RefreshAsync;
@@ -74,16 +75,6 @@ namespace FastFood.Pages.AddProducts
             }
             
             await RefreshAsync(0);
-        }
-
-        private void btnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCategoryCreate_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
         }
     }
 }

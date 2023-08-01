@@ -1,8 +1,6 @@
 ﻿using Dapper;
 using FastFood.Entites.Products;
 using FastFood.Interfaces.Products;
-using FastFood.Utils;
-using FastFood.ViewModels.Products;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,8 +25,8 @@ public class ProductRepository : BaseRepository, IProductRepository
         {
             await _connection.OpenAsync();
 
-            string query = "INSERT INTO public.products(name, description, image_path, unit_price, category_id, created_at, updated_at) " +
-                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CategoryId, @CreatedAt, @UpdatedAt);";
+            string query = "INSERT INTO products(name, description, image_path, unit_price, created_at, qunatity) " +
+                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CreatedAt, @Qunatity);";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }
@@ -42,9 +40,23 @@ public class ProductRepository : BaseRepository, IProductRepository
         }
     }
 
-    public Task<int> DeleteAsync(long id)
+    public async Task<int> DeleteAsync(long id)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"DELETE FROM products WHERE id={id}";
+            var result = await _connection.ExecuteAsync(query, id);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<IList<Product>> GetAllAsync()
@@ -66,33 +78,67 @@ public class ProductRepository : BaseRepository, IProductRepository
         }
     }
 
-    public Task<ProductViewModel> GetByIdAsync(long id)
+    public async Task<Product> GetByIdAsync(long id)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM products WHERE id=@Id";
+
+            var result = await _connection.QueryFirstOrDefaultAsync<Product>(query, new { Id = id });
+            return result;
+        }
+        catch
+        {
+            return new Product();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
+
+    public Task<(int ItemCount, IList<Product>)> SearchAsync(string search)
     {
         throw new System.NotImplementedException();
     }
 
-    public Task<(int ItemCount, IList<ProductViewModel>)> SearchAsync(string search)
+    public async Task<int> UpdateAsync(long id, Product entity)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "UPDATE products SET name=@Name, description=@Description , " +
+                "image_path=@ImagePath, unit_price=@UnitPrice, " +
+                $" updated_at=@UpdatedAt, qunatity=@Qunatity WHERE id = {id} ;";
+
+
+            var result = await _connection.ExecuteAsync(query, entity);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
-    public Task<int> UpdateAsync(long id, Product entity)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public async Task<IList<ProductViewModel>> GetAllByCategoryIdAsync(long categoryId)
+    public async Task<IList<Product>> GetAllByCategoryIdAsync(long categoryId)
     {
         try
         {
             await _connection.OpenAsync();
             string quary = $"SELECT * FROM Products WHERE CategoryId = {categoryId} order by id";
             var result = (await _connection.QueryAsync<Product>(quary)).ToList();
-            return (IList<ProductViewModel>)result;
+            return (IList<Product>)result;
         }
         catch
         {
-            return new List<ProductViewModel>();
+            return new List<Product>();
         }
         finally
         {
