@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:FastFood.Pages.Foods"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="FoodPage">
+      Title="FoodPage"
+      Loaded="Page_Loaded">
 
     <Grid>
         <Border Margin="10">
@@ -38,6 +39,7 @@
                                  Margin="5 0 5 0"
                                  FontFamily="Jetbrains Mono"
                                  BorderThickness="0"
+                                     Keyboard.KeyUp="tbSearch_KeyUp"
                                  Foreground="{DynamicResource PrimaryTextColor}"
                                  Background="{DynamicResource PrimaryBackground}"/>
                         </Grid>

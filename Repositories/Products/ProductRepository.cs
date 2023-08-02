@@ -160,4 +160,26 @@ public class ProductRepository : BaseRepository, IProductRepository
             await _connection.CloseAsync();
         }
     }
+
+    public async Task<IList<Product>> SearchByCategoryIdFromProductAsync(long id, string search)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM products WHERE category_id = @CategoryId AND name LIKE @SearchTerm";
+
+            var parameters = new { CategoryId = id, SearchTerm = "%" + search + "%" };
+
+            var result = (await _connection.QueryAsync<Product>(query, parameters)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<Product>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
 }

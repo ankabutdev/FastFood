@@ -1,67 +1,56 @@
 ﻿using FastFood.Components.Products;
 using FastFood.Repositories.Products;
-using FastFood.Windows.Product;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FastFood.Pages.AlItems
+namespace FastFood.Pages.AlItems;
+
+/// <summary>
+/// Interaction logic for AllItemsPage.xaml
+/// </summary>
+public partial class AllItemsPage : Page
 {
-    /// <summary>
-    /// Interaction logic for AllItemsPage.xaml
-    /// </summary>
-    public partial class AllItemsPage : Page
+    private readonly ProductRepository _productRepository;
+
+    public AllItemsPage()
     {
-        private readonly ProductRepository _productRepository;
+        InitializeComponent();
+        this._productRepository = new ProductRepository();
 
-        public AllItemsPage()
+    }
+
+    private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+        await RefreshAsync();
+    }
+
+    public async Task RefreshAsync()
+    {
+        wrpAllItems.Children.Clear();
+        var products = await _productRepository.GetAllAsync();
+
+        foreach (var product in products)
         {
-            InitializeComponent();
-            this._productRepository = new ProductRepository();
-            
+            var productViewUserControl = new ProductViewUserControl();
+            productViewUserControl.SetData(product);
+            wrpAllItems.Children.Add(productViewUserControl);
         }
+    }
 
-        private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            await RefreshAsync();
-        }
-
-        public async Task RefreshAsync()
+    private async void tbSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
         {
             wrpAllItems.Children.Clear();
-            var products = await _productRepository.GetAllAsync();
+
+            var products = await _productRepository.SearchAsync(tbSearch.Text);
 
             foreach (var product in products)
             {
-                var productViewUserControl = new ProductViewUserControl();
-                productViewUserControl.SetData(product);
-                wrpAllItems.Children.Add(productViewUserControl);
-            }
-
-
-        }
-
-        private async void btnCreate_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            ProductCreateWindoww productCreateWindow = new ProductCreateWindoww();
-            productCreateWindow.ShowDialog();
-            await RefreshAsync();
-        }
-
-        private async void tbSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                wrpAllItems.Children.Clear();
-
-                var products = await _productRepository.SearchAsync(tbSearch.Text);
-
-                foreach (var product in products)
-                {
-                    var appointmentsViewUserControl = new ProductViewUserControl();
-                    appointmentsViewUserControl.SetData(product);
-                    wrpAllItems.Children.Add(appointmentsViewUserControl);
-                }
+                var appointmentsViewUserControl = new ProductViewUserControl();
+                appointmentsViewUserControl.SetData(product);
+                wrpAllItems.Children.Add(appointmentsViewUserControl);
             }
         }
     }

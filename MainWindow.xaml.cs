@@ -92,6 +92,7 @@ public partial class MainWindow : Window
     {
         drResult.Visibility = Visibility.Visible;
         DissertsPage dissertsPage = new DissertsPage();
+        PageNavigator.Content = dissertsPage;
     }
 
     private void rbCreateProduct_Click(object sender, RoutedEventArgs e)

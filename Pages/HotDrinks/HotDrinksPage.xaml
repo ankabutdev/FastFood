@@ -6,9 +6,53 @@
       xmlns:local="clr-namespace:FastFood.Pages.HotDrinks"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HotDrinksPage">
+      Title="HotDrinksPage"
+      Loaded="Page_Loaded">
 
     <Grid>
-        
+        <Border Margin="10">
+            <Grid Margin="0 5 0 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                    <Border CornerRadius="10" 
+                        Background="{DynamicResource PrimaryBackground}"
+                        Width="400">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="43"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" 
+                              Margin="3 0 0 0"
+                              Width="20" Height="20" Stretch="Uniform"
+                              Fill="{DynamicResource PrimaryTextColor}"
+                              Data="{DynamicResource search}"/>
+                            <TextBox x:Name="tbSearch"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Center"
+                                 FontSize="16"
+                                 Margin="5 0 5 0"
+                                 FontFamily="Jetbrains Mono"
+                                 BorderThickness="0"
+                                     Keyboard.KeyUp="tbSearch_KeyUp"
+                                 Foreground="{DynamicResource PrimaryTextColor}"
+                                 Background="{DynamicResource PrimaryBackground}"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <ScrollViewer Margin="5 5 0 5"
+                          Grid.Row="1">
+                    <WrapPanel x:Name="wrpHotDrinks" >
+
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
