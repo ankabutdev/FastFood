@@ -28,7 +28,5 @@ public class Order : Auditable
 
     public bool IsPaid { get; set; }
 
-    public bool IsContracted { get; set; }
-
     public string Description { get; set; } = string.Empty;
 }

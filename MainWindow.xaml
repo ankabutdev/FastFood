@@ -32,7 +32,7 @@
                         MouseDown="brDragable_MouseDown" 
                         Grid.Column="0" 
                         Background="{DynamicResource PrimaryBackground}"
-                        Cursor="ScrollAll">
+                        Cursor="Hand">
                 </Border>
                 <StackPanel Grid.Column="1" 
                             Orientation="Horizontal">
@@ -111,13 +111,35 @@
                             x:Name="PageNavigator"
                             NavigationUIVisibility="Hidden"/>
 
-                    <Border x:Name="drResult" 
-                        Grid.Column="1">
-                        <Frame  Margin="5 5 0 5" Grid.Column="0"
-                            x:Name="PageResultNavigator"
-                            NavigationUIVisibility="Hidden"/>
+                    <Border Grid.Column="1" x:Name="drResult">
 
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border CornerRadius="10" Grid.Row="0" Margin="0 15 5 0">
+                                <Frame x:Name="PageResultNavigator"
+                            NavigationUIVisibility="Hidden"/>
+                            </Border>
+
+                            <Border Grid.Row="1"
+                                Margin="0 0 5 0"
+                                CornerRadius="5">
+                                <Button Content="PAY"
+                                    Margin="5"
+                                    Height="50"
+                                    Width="330"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource SuccessButton}">
+
+                                </Button>
+
+                            </Border>
+                        </Grid>
                     </Border>
+                    
                 </Grid>
             </Border>
         </Grid>

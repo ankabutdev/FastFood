@@ -104,8 +104,9 @@ public class ProductRepository : BaseRepository, IProductRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "SELECT * FROM products WHERE Name LIKE @SearchTerm";
-            var parameters = new { SearchTerm = "%" + search + "%" };
+            string query = "SELECT * FROM products WHERE LOWER(Name) LIKE @SearchTerm";
+            var parameters = new { SearchTerm = "%" + search.ToLower() + "%" };
+
             var result = (await _connection.QueryAsync<Product>(query, parameters)).ToList();
             return result;
         }
@@ -166,9 +167,9 @@ public class ProductRepository : BaseRepository, IProductRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "SELECT * FROM products WHERE category_id = @CategoryId AND name LIKE @SearchTerm";
+            string query = "SELECT * FROM products WHERE category_id = @CategoryId AND LOWER(name) LIKE LOWER(@SearchTerm)";
 
-            var parameters = new { CategoryId = id, SearchTerm = "%" + search + "%" };
+            var parameters = new { CategoryId = id, SearchTerm = "%" + search.ToLower() + "%" };
 
             var result = (await _connection.QueryAsync<Product>(query, parameters)).ToList();
             return result;

@@ -1,8 +1,9 @@
-﻿using FastFood.Entites.Orders;
+﻿using Dapper;
+using FastFood.Entites.Orders;
 using FastFood.Interfaces.Orders;
-using FastFood.Utils;
 using FastFood.ViewModels.Orders;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FastFood.Repositories.Orders;
@@ -24,9 +25,23 @@ public class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
-    public Task<IList<OrderViewModel>> GetAllAsync()
+    public async Task<IList<Order>> GetAllAsync()
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM orders ORDER BY id DESC";
+            var result = (await _connection.QueryAsync<Order>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<Order>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public Task<OrderViewModel> GetByIdAsync(long id)

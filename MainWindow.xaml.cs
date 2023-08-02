@@ -18,23 +18,27 @@ public partial class MainWindow : Window
 {
     public static User User { get; set; } = new User();
 
-    public MainWindow()
+    public MainWindow(IdentityRole Role)
     {
         InitializeComponent();
 
         AllItemsPage allItemsPage = new AllItemsPage();
         PageNavigator.Content = allItemsPage;
+        
         // Is_Admin
-
-        User.Role = IdentityRole.Admin;
+        User.Role = Role;
 
         if (User.Role is IdentityRole.Admin)
         {
             rbCreateProducts.Visibility = Visibility.Visible;
+            PageResultNavigator.Visibility = Visibility.Collapsed;
+            drResult.Visibility = Visibility.Collapsed;
         }
         else
         {
             rbCreateProducts.Visibility = Visibility.Collapsed;
+            PageResultNavigator.Visibility = Visibility.Visible;
+            drResult.Visibility = Visibility.Visible;
         }
     }
 
@@ -62,42 +66,37 @@ public partial class MainWindow : Window
 
     private void rbColdDrinks_Click(object sender, RoutedEventArgs e)
     {
-        drResult.Visibility = Visibility.Visible;
         ColdDrinksPage coldDrinksPage = new ColdDrinksPage();
         PageNavigator.Content = coldDrinksPage;
     }
 
     private void rbHotDrinks_Click(object sender, RoutedEventArgs e)
     {
-        drResult.Visibility = Visibility.Visible;
         HotDrinksPage hotDrinksPage = new HotDrinksPage();
         PageNavigator.Content = hotDrinksPage;
     }
 
     private void rb_Food_Click(object sender, RoutedEventArgs e)
     {
-        drResult.Visibility = Visibility.Visible;
         FoodPage foodPage = new FoodPage();
         PageNavigator.Content = foodPage;
     }
 
     private void rb_AllItems_Click(object sender, RoutedEventArgs e)
     {
-        drResult.Visibility = Visibility.Visible;
         AllItemsPage allItemsPage = new AllItemsPage();
         PageNavigator.Content = allItemsPage;
     }
 
     private void rbDisserts_Click(object sender, RoutedEventArgs e)
     {
-        drResult.Visibility = Visibility.Visible;
         DissertsPage dissertsPage = new DissertsPage();
         PageNavigator.Content = dissertsPage;
     }
 
     private void rbCreateProduct_Click(object sender, RoutedEventArgs e)
     {
-        drResult.Visibility = Visibility.Collapsed;
+        PageResultNavigator.Visibility = Visibility.Collapsed;
         CreateProductPage createProductPage = new CreateProductPage();
         PageNavigator.Content = createProductPage;
     }

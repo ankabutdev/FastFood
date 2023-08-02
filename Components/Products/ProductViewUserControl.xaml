@@ -39,6 +39,7 @@
                 <Label x:Name="lblProductPrice"
                    Content="" Foreground="DarkOrange"
                    FontSize="20" Margin="10 0 0 10"
+                       
                    />
             </StackPanel>
 

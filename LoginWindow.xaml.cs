@@ -1,32 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Dapper;
+using FastFood.Constants;
+using FastFood.Entites.Users;
+using FastFood.Enums;
+using Npgsql;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace FastFood
+namespace FastFood;
+
+/// <summary>
+/// Interaction logic for LoginWindow.xaml
+/// </summary>
+public partial class LoginWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
-    public partial class LoginWindow : Window
+    private NpgsqlConnection _connection;
+
+
+    public LoginWindow()
     {
-        public LoginWindow()
+        InitializeComponent();
+        this._connection = new NpgsqlConnection(DbConstant.DB_CONNECTION_STRING);
+    }
+
+    private async void btnSubmit_Click(object sender, RoutedEventArgs e)
+    {
+        var user = new User();
+        string username = txtUsername.Text;
+        string password = txtPassword.Password.ToString();
+        
+        var result = await RegisterAsync(username, password);
+        if (result == "Admin")
         {
-            InitializeComponent();
+            MainWindow main = new MainWindow(IdentityRole.Admin);
+
+            main.Show();
+            this.Close();
         }
-
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        else if (result == "User")
         {
+            MainWindow main = new MainWindow(IdentityRole.User);
 
+            main.Show();
+            this.Close();
+        }
+        else MessageBox.Show("User NotFound");
+    }
+
+    public async Task<string> RegisterAsync(string username, string password)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+
+            string query = $"SELECT identity_role FROM users WHERE username=@UserName AND password_hash=@PasswordHash;";
+            var parameters = new { UserName = username, PasswordHash = password };
+            var count = await _connection.ExecuteScalarAsync<string>(query, parameters);
+            return count;
+        }
+        catch
+        {
+            return "";
+        }
+        finally
+        {
+            await _connection.CloseAsync();
         }
     }
 }
