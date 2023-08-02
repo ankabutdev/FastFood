@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:FastFood"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="Login" Height="466" Width="500" FontSize="15" WindowStartupLocation="CenterScreen">
 
     <Window.Background>
@@ -28,17 +30,25 @@
                 <Separator/>
                 <Label Content="Username"
                    Foreground="Black"/>
-                <TextBox x:Name="txtUsername"
-                     Foreground="Black" 
-                     FontSize="18"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="57"/>
+
+                <Border Margin="5">
+                    <TextBox x:Name="txtUsername"
+                         Foreground="Black" 
+                         FontSize="18"
+                         Height="32" Width="275"/>
+                </Border>
+
                 <Label Content="Password"
                    Foreground="Black"/>
 
-                <PasswordBox x:Name="txtPassword"
-                         Foreground="Black" 
-                         FontSize="18"
-                         Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Height="60"/>
+                <Border Margin="5">
+                    <PasswordBox x:Name="txtPassword"
+                             Foreground="Black" 
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Height="34" Width="274"/>
+                </Border>
+
 
             </StackPanel>
         </Border>

@@ -5,5 +5,5 @@ namespace FastFood.Common;
 
 public interface ISearchable<TModel>
 {
-    public Task<(int ItemCount, IList<TModel>)> SearchAsync(string search);
+    public Task<IList<TModel>> SearchAsync(string search);
 }

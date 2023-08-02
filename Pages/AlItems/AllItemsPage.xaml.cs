@@ -3,6 +3,7 @@ using FastFood.Repositories.Products;
 using FastFood.Windows.Product;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace FastFood.Pages.AlItems
 {
@@ -17,6 +18,7 @@ namespace FastFood.Pages.AlItems
         {
             InitializeComponent();
             this._productRepository = new ProductRepository();
+            
         }
 
         private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -44,6 +46,23 @@ namespace FastFood.Pages.AlItems
             ProductCreateWindoww productCreateWindow = new ProductCreateWindoww();
             productCreateWindow.ShowDialog();
             await RefreshAsync();
+        }
+
+        private async void tbSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                wrpAllItems.Children.Clear();
+
+                var products = await _productRepository.SearchAsync(tbSearch.Text);
+
+                foreach (var product in products)
+                {
+                    var appointmentsViewUserControl = new ProductViewUserControl();
+                    appointmentsViewUserControl.SetData(product);
+                    wrpAllItems.Children.Add(appointmentsViewUserControl);
+                }
+            }
         }
     }
 }

@@ -34,7 +34,7 @@ public class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
-    public Task<(int ItemCount, IList<OrderViewModel>)> SearchAsync(string search)
+    public Task<IList<OrderViewModel>> SearchAsync(string search)
     {
         throw new System.NotImplementedException();
     }

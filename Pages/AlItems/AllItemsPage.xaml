@@ -37,6 +37,7 @@
                                  FontSize="16"
                                  Margin="5 0 5 0"
                                  FontFamily="Jetbrains Mono"
+                                 Keyboard.KeyUp="tbSearch_KeyUp"
                                  BorderThickness="0"
                                  Foreground="{DynamicResource PrimaryTextColor}"
                                  Background="{DynamicResource PrimaryBackground}"/>

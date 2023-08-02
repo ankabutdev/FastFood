@@ -25,8 +25,8 @@ public class ProductRepository : BaseRepository, IProductRepository
         {
             await _connection.OpenAsync();
 
-            string query = "INSERT INTO products(name, description, image_path, unit_price, created_at, qunatity) " +
-                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CreatedAt, @Qunatity);";
+            string query = "INSERT INTO products(name, description, image_path, unit_price, created_at, qunatity, category_id) " +
+                "VALUES (@Name, @Description, @ImagePath, @UnitPrice, @CreatedAt, @Qunatity, @CategoryId);";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }
@@ -99,9 +99,24 @@ public class ProductRepository : BaseRepository, IProductRepository
     }
 
 
-    public Task<(int ItemCount, IList<Product>)> SearchAsync(string search)
+    public async Task<IList<Product>> SearchAsync(string search)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM products WHERE Name LIKE @SearchTerm";
+            var parameters = new { SearchTerm = "%" + search + "%" };
+            var result = (await _connection.QueryAsync<Product>(query, parameters)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<Product>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<int> UpdateAsync(long id, Product entity)
@@ -132,9 +147,9 @@ public class ProductRepository : BaseRepository, IProductRepository
         try
         {
             await _connection.OpenAsync();
-            string quary = $"SELECT * FROM Products WHERE CategoryId = {categoryId} order by id";
+            string quary = $"SELECT * FROM Products WHERE category_id = {categoryId} order by id";
             var result = (await _connection.QueryAsync<Product>(quary)).ToList();
-            return (IList<Product>)result;
+            return result;
         }
         catch
         {

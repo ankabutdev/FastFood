@@ -9,6 +9,7 @@ using FastFood.Windows.Product;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace FastFood.Pages.AddProducts
 {
@@ -75,6 +76,23 @@ namespace FastFood.Pages.AddProducts
             }
             
             await RefreshAsync(0);
+        }
+
+        private async void tbSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                wrpCreateProduct.Children.Clear();
+
+                var products = await _productRepository.SearchAsync(tbSearch.Text);
+
+                foreach (var product in products)
+                {
+                    var appointmentsViewUserControl = new ProductViewUserControl();
+                    appointmentsViewUserControl.SetData(product);
+                    wrpCreateProduct.Children.Add(appointmentsViewUserControl);
+                }
+            }
         }
     }
 }
