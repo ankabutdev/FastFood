@@ -44,13 +44,21 @@ public partial class ProductCreateWindoww : Window
 
     private async void btnSave_Click(object sender, RoutedEventArgs e)
     {
-        var product = GetDateFromUI();
-        var result = await _productRepository.CreateAsync(await product);
-        if (result > 0)
+        try
         {
-            MessageBox.Show("Successfully");
-            this.Close();
+            var product = GetDateFromUI();
+            var result = await _productRepository.CreateAsync(await product);
+            if (result > 0)
+            {
+                MessageBox.Show("Successfully");
+                this.Close();
+            }
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        
     }
     private async Task<FastFood.Entites.Products.Product> GetDateFromUI()
     {

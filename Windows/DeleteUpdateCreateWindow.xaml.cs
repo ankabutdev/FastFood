@@ -1,5 +1,4 @@
-﻿using FastFood.Entites.Products;
-using FastFood.Repositories.Products;
+﻿using FastFood.Repositories.Products;
 using FastFood.Windows.Product;
 using System.Windows;
 
@@ -12,7 +11,7 @@ namespace FastFood.Windows
     {
         private readonly ProductRepository _productRepository;
 
-        private Entites.Products.Product Product  { get; set; }
+        private Entites.Products.Product Product { get; set; }
 
         public DeleteUpdateCreateWindow(Entites.Products.Product product)
         {
@@ -20,6 +19,9 @@ namespace FastFood.Windows
             this._productRepository = new ProductRepository();
             this.Product = product;
         }
+
+
+
 
         private async void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -30,7 +32,9 @@ namespace FastFood.Windows
                 MessageBox.Show("Deleted successfully");
                 this.Close();
             }
+
         }
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

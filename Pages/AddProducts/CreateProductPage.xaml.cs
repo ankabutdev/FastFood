@@ -28,7 +28,8 @@ public partial class CreateProductPage : Page
         this._productRepository = new ProductRepository();
     }
 
-    private async Task RefreshAsync(long categoryId)
+
+    public async Task RefreshAsync(long categoryId)
     {
         wrpCreateProduct.Children.Clear();
         IList<Product> products;
@@ -55,7 +56,7 @@ public partial class CreateProductPage : Page
         productCreateWindow.ShowDialog();
     }
 
-    private async void Create_Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    public async void Create_Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         stpCategoriesChips.Children.Clear();
         var category = await _categoryRepository.GetAllAsync();

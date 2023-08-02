@@ -21,9 +21,6 @@ public partial class MainWindow : Window
     public MainWindow(IdentityRole Role)
     {
         InitializeComponent();
-
-        AllItemsPage allItemsPage = new AllItemsPage();
-        PageNavigator.Content = allItemsPage;
         
         // Is_Admin
         User.Role = Role;

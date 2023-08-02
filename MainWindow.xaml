@@ -56,7 +56,7 @@
 
                     <RadioButton x:Name="rbAllItems" 
                                  Style="{DynamicResource MenuButton}"
-                                 Content="All Items" 
+                                 Content="All Products" 
                                  Click="rb_AllItems_Click"
                                  Tag="{DynamicResource dashboard}"/>
 
