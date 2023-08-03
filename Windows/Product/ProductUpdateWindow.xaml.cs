@@ -33,16 +33,25 @@ public partial class ProductUpdateWindow : Window
 
     public void SetData(FastFood.Entites.Products.Product product)
     {
-        ProductDiscount productDiscount = new ProductDiscount();
+        try
+        {
+            ProductDiscount productDiscount = new ProductDiscount();
 
-        tbProductName.Text = product.Name.ToString();
-        tbProductUnitPrice.Text = product.UnitPrice.ToString();
-        tbProductQuantity.Text = product.Qunatity.ToString();
-        rbDescription.AppendText(product.Description);
-        ImgBImage.ImageSource = new BitmapImage(new Uri(product.ImagePath, UriKind.Relative));
+            tbProductName.Text = product.Name.ToString();
+            tbProductUnitPrice.Text = product.UnitPrice.ToString();
+            tbProductQuantity.Text = product.Qunatity.ToString();
+            rbDescription.AppendText(product.Description);
+            ImgBImage.ImageSource = new BitmapImage(new Uri(product.ImagePath, UriKind.Relative));
 
-        tbDiscount.Text = productDiscount.Percentage.ToString();
-        cmbCategories.SelectedValue = product.CategoryId;
+            tbDiscount.Text = productDiscount.Percentage.ToString();
+            cmbCategories.SelectedValue = product.CategoryId;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+        
 
     }
 
@@ -111,12 +120,21 @@ public partial class ProductUpdateWindow : Window
 
     private async void btnSave_Click(object sender, RoutedEventArgs e)
     {
-        var product = GetDateFromUI();
-        var result = await _productRepository.UpdateAsync(Id, await product);
-        if (result > 0)
+        try
         {
-            MessageBox.Show("Successfully");
-            this.Close();
+            var product = GetDateFromUI();
+            var result = await _productRepository.UpdateAsync(Id, await product);
+            if (result > 0)
+            {
+                MessageBox.Show("Successfully");
+                this.Close();
+            }
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+        
     }
 }

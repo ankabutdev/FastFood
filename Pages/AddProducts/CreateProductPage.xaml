@@ -49,6 +49,19 @@
                         Click="btnCreate_Click"
                         Style="{DynamicResource SuccessButton}"
                         Content="Create"/>
+                <Border CornerRadius="10"
+                        
+                        >
+                    <Button Content="Ref"
+                            Height="20"
+                            Width="30"
+                            Click="Button_Click"
+                            Background="Blue"
+                            Foreground="White"
+                            
+                        />
+                </Border>
+                
 
             </StackPanel>
             <StackPanel Grid.Row="1"

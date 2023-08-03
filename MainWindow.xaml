@@ -85,7 +85,7 @@
                                  Tag="{DynamicResource dissert}"/>
                     
                     <Label Height="50"/>
-                    
+
                     <RadioButton x:Name="rbCreateProducts"
                                  Style="{DynamicResource MenuButton}"
                                  Content="Create Products" 
@@ -93,6 +93,13 @@
                                  Click="rbCreateProduct_Click"
                                  Tag="{DynamicResource create}"/>
 
+                    <Label Height="50"/>
+                    
+                    <RadioButton x:Name="rbLogoutProducts"
+                                 Style="{DynamicResource MenuButton}"
+                                 Content="Logout" 
+                                 FontSize="15" 
+                                 Click="rbLogout_Click"/>
 
                 </StackPanel>
             </Border>

@@ -21,7 +21,7 @@ public partial class MainWindow : Window
     public MainWindow(IdentityRole Role)
     {
         InitializeComponent();
-        
+
         // Is_Admin
         User.Role = Role;
 
@@ -96,5 +96,12 @@ public partial class MainWindow : Window
         PageResultNavigator.Visibility = Visibility.Collapsed;
         CreateProductPage createProductPage = new CreateProductPage();
         PageNavigator.Content = createProductPage;
+    }
+
+    private void rbLogout_Click(object sender, RoutedEventArgs e)
+    {
+        LoginWindow loginWindow = new LoginWindow();
+        loginWindow.Show();
+        this.Close();
     }
 }

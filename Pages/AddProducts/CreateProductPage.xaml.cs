@@ -93,4 +93,9 @@ public partial class CreateProductPage : Page
             }
         }
     }
+
+    public async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        await RefreshAsync(0);
+    }
 }

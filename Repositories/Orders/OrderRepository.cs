@@ -44,9 +44,26 @@ public class OrderRepository : BaseRepository, IOrderRepository
         }
     }
 
-    public Task<OrderViewModel> GetByIdAsync(long id)
+    public async Task<OrderViewModel> GetProductByIdAsync(long id)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM Products WHERE Id = @Id";
+            var parameters = new { Id = id };
+
+            OrderViewModel product = await _connection.QueryFirstOrDefaultAsync<OrderViewModel>(query, parameters);
+            return product;
+
+        }
+        catch
+        {
+            return new OrderViewModel();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public Task<IList<OrderViewModel>> SearchAsync(string search)

@@ -183,4 +183,9 @@ public class ProductRepository : BaseRepository, IProductRepository
             await _connection.CloseAsync();
         }
     }
+
+    public Task<Product> GetProductByIdAsync(long id)
+    {
+        throw new System.NotImplementedException();
+    }
 }

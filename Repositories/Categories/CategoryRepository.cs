@@ -81,6 +81,11 @@ public class CategoryRepository : BaseRepository, ICategoryRepository
         throw new System.NotImplementedException();
     }
 
+    public Task<Category> GetProductByIdAsync(long id)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<int> UpdateAsync(long id, Category entity)
     {
         throw new System.NotImplementedException();
