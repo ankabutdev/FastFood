@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Images\IMG_2f0377fe-4a9f-445a-a222-81f01ef2a59a.jpg" />
-    <None Remove="Assets\Images\IMG_63cf19d7-c19c-4c50-870f-1f654c579bbd.jpg" />
-    <None Remove="Assets\Images\IMG_cafd0ca2-4536-4f89-b963-b06202c0d9f3.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Assets\Logos\" />
     <Folder Include="Interfaces\Users\" />
   </ItemGroup>
@@ -28,18 +22,6 @@
 	
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Resource Include="Assets\Images\IMG_2f0377fe-4a9f-445a-a222-81f01ef2a59a.jpg">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Resource>
-	  <Resource Include="Assets\Images\IMG_63cf19d7-c19c-4c50-870f-1f654c579bbd.jpg">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Resource>
-	  <Resource Include="Assets\Images\IMG_cafd0ca2-4536-4f89-b963-b06202c0d9f3.jpg">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Resource>
 	</ItemGroup>
 	
 </Project>
