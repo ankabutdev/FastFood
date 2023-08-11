@@ -1,12 +1,8 @@
-﻿using FastFood.Entites.Categories;
-using FastFood.Entites.Products;
+﻿using FastFood.Entites.Products;
 using FastFood.Enums;
-using FastFood.Pages.AddProducts;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -52,7 +48,7 @@ public partial class ProductViewUserControl : UserControl
         {
             DeleteUpdateCreateWindow deleteUpdateCreateWindow = new DeleteUpdateCreateWindow(Product);
             deleteUpdateCreateWindow.ShowDialog();
-           
+
         }
         else
         {
