@@ -9,6 +9,7 @@ public class Hashing
         var hash = BCrypt.Net.BCrypt.HashPassword(password + salt);
         return (hash, salt);
     }
+
     public static string GenerateSalt() => Guid.NewGuid().ToString();
 
     public static bool Verify(string password, string passwordHash, string salt)
