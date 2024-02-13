@@ -1,0 +1,42 @@
+﻿<Window x:Class="FastFood.Windows.Category.CategoryCreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastFood.Windows.Category"
+        mc:Ignorable="d"
+        Title="Category Create Window"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Height="700"
+        Width="900"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="TitleLabel" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="FontFamily" Value="Jetbrains Mono"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{DynamicResource PrimaryBackground}">
+        <StackPanel Orientation="Vertical"
+                    Margin="20 10">
+            <Grid Height="180">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <StackPanel Grid.Column="0">
+                <Label Content="">
+                    
+                </Label>
+            </StackPanel>
+            
+        </StackPanel>
+        
+    </Grid>
+
+</Window>
