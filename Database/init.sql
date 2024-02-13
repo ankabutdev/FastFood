@@ -233,3 +233,11 @@ ALTER TABLE IF EXISTS public.product_suppliers
 
 END;
 SET TIMEZONE TO 'UTC';
+
+---- Inserting a user
+--INSERT INTO public.users (first_name, last_name, phone_number, is_male, birth_date, country, region, password_hash, salt, image_path, identity_role, username)
+--VALUES ('John', 'Doe', '1234567890', true, '1990-01-01', 'USA', 'California', 'user', 'salt_here', 'path_to_image_here', 'user', 'user');
+
+---- Inserting an admin
+--INSERT INTO public.users (first_name, last_name, phone_number, is_male, birth_date, country, region, password_hash, salt, image_path, identity_role, username)
+--VALUES ('Admin', 'Admin', '0987654321', true, '1980-01-01', 'USA', 'California', 'admin', 'salt_here', 'path_to_image_here', 'admin', 'admin');

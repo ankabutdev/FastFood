@@ -7,5 +7,5 @@ public class DbConstant
         "Port=5432;" +
         "Database=FastFood-db;" +
         "User Id=postgres;" +
-        "Password=Ankabut";
+        "Password=root";
 }

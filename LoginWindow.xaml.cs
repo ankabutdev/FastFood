@@ -27,16 +27,16 @@ public partial class LoginWindow : Window
         var user = new User();
         string username = txtUsername.Text;
         string password = txtPassword.Password.ToString();
-        
+
         var result = await RegisterAsync(username, password);
-        if (result == "Admin")
+        if (result == "admin")
         {
             MainWindow main = new MainWindow(IdentityRole.Admin);
 
             main.Show();
             this.Close();
         }
-        else if (result == "User")
+        else if (result == "user")
         {
             MainWindow main = new MainWindow(IdentityRole.User);
 
