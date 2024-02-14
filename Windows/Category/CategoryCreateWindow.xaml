@@ -8,7 +8,7 @@
         Title="Category Create Window"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Height="700"
+        Height="500"
         Width="900"
         Loaded="Window_Loaded">
     <Window.Resources>
@@ -22,21 +22,88 @@
     </Window.Resources>
     <Grid Background="{DynamicResource PrimaryBackground}">
         <StackPanel Orientation="Vertical"
-                    Margin="20 10">
+                   Margin="20 10">
             <Grid Height="180">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" >
+                    <Label Content="Category Image" Style="{DynamicResource TitleLabel}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{DynamicResource SecondaryBackground}">
+                            <Border x:Name="ImgCategoryImage"
+                               Height="135" Width="135"
+                               CornerRadius="10">
+                                <Border.Background>
+                                    <ImageBrush x:Name="ImgBImage" />
+                                </Border.Background>
+                            </Border>
+
+                        </Border>
+                        <Button x:Name="btnImageSelector" 
+                               VerticalAlignment="Bottom"
+                               Content="..."
+                               FontSize="20"
+                               Click="btnImageSelector_Click"
+                               Height="30" Width="30"
+                               Margin="10 0 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <StackPanel
+                               Margin="5 50 5 0">
+                        <Label Content="Category Name" Style="{DynamicResource TitleLabel}"/>
+                        <Border CornerRadius="10" 
+                       Background="{DynamicResource SecondaryBackground}"
+                       Height="40">
+                            <TextBox x:Name="tbCategoryName"
+                           MaxLength="30"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Margin="10 0 10 0"
+                           FontFamily="Jetbrains Mono"
+                           BorderThickness="0"
+                           Foreground="{DynamicResource PrimaryTextColor}"
+                           Background="{DynamicResource SecondaryBackground}"/>
+                        </Border>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
             </Grid>
-
-            <StackPanel Grid.Column="0">
-                <Label Content="">
-                    
-                </Label>
-            </StackPanel>
-            
+            <Border Height="30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Content="Description" Style="{DynamicResource TitleLabel}"/>
+            <Border CornerRadius="10" 
+                   Background="{DynamicResource SecondaryBackground}"
+                   Height="100">
+                <RichTextBox x:Name="rbDescription"
+                        FontSize="16"
+                        Margin="10 10 10 10"
+                        FontFamily="Jetbrains Mono"
+                        BorderThickness="0"
+                        Foreground="{DynamicResource PrimaryTextColor}"
+                        Background="{DynamicResource SecondaryBackground}"/>
+            </Border>
+            <Button x:Name="btnSave" 
+                   Click="btnSave_Click"
+                   Margin="0 20 0 10"
+                   Height="50" 
+                   Style="{DynamicResource SuccessButton}" Content="Save"/>
         </StackPanel>
-        
     </Grid>
 
 </Window>
