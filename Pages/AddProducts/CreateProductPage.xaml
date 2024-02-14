@@ -48,7 +48,12 @@
                 <Button x:Name="btnCreate"
                         Click="btnCreate_Click"
                         Style="{DynamicResource SuccessButton}"
-                        Content="Create"/>
+                        Content="Create Product"/>
+                
+                <Button x:Name="btnCreateCategory"
+                    Click="btnCreateCategory_Click"
+                    Style="{DynamicResource SuccessButton}"
+                    Content="Create Category"/>
                 <Border CornerRadius="10"
                         
                         >
