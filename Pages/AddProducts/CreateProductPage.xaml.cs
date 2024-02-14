@@ -3,6 +3,7 @@ using FastFood.Entites.Categories;
 using FastFood.Entites.Products;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
+using FastFood.Windows.Category;
 using FastFood.Windows.Product;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace FastFood.Pages.AddProducts;
+
+#pragma warning disable
 
 /// <summary>
 /// Interaction logic for CreateProductPage.xaml
@@ -19,15 +22,12 @@ public partial class CreateProductPage : Page
     private CategoryRepository _categoryRepository;
     private ProductRepository _productRepository;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public CreateProductPage()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
         InitializeComponent();
         this._categoryRepository = new CategoryRepository();
         this._productRepository = new ProductRepository();
     }
-
 
     public async Task RefreshAsync(long categoryId)
     {
@@ -97,5 +97,11 @@ public partial class CreateProductPage : Page
     public async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         await RefreshAsync(0);
+    }
+
+    private void btnCreateCategory_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        CategoryCreateWindow categoryCreateWindow = new CategoryCreateWindow();
+        categoryCreateWindow.ShowDialog();
     }
 }
