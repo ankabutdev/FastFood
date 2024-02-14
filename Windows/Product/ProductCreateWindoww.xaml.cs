@@ -1,23 +1,16 @@
 ﻿using FastFood.Constants;
 using FastFood.Entites.Products;
 using FastFood.Helpers;
+using FastFood.Pages.AddProducts;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FastFood.Windows.Product;
 
@@ -51,6 +44,8 @@ public partial class ProductCreateWindoww : Window
             if (result > 0)
             {
                 MessageBox.Show("Successfully");
+                var productPage = new CreateProductPage();
+                await productPage.RefreshAsync(0);
                 this.Close();
             }
         }
@@ -58,7 +53,7 @@ public partial class ProductCreateWindoww : Window
         {
             MessageBox.Show(ex.Message);
         }
-        
+
     }
     private async Task<FastFood.Entites.Products.Product> GetDateFromUI()
     {
