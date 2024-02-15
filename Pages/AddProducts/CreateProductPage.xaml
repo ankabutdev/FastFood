@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFood.Pages.AddProducts"
       mc:Ignorable="d" 
-     d:DesignHeight="450" 
+      d:DesignHeight="450" 
       d:DesignWidth="800"
       Title="GroupsPage"
       Loaded="Create_Page_Loaded">
@@ -54,17 +54,13 @@
                     Click="btnCreateCategory_Click"
                     Style="{DynamicResource SuccessButton}"
                     Content="Create Category"/>
-                <Border CornerRadius="10"
-                        
-                        >
+                <Border CornerRadius="10">
                     <Button Content="Ref"
                             Height="20"
                             Width="30"
                             Click="Button_Click"
                             Background="Blue"
-                            Foreground="White"
-                            
-                        />
+                            Foreground="White"/>
                 </Border>
                 
 

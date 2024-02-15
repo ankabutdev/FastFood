@@ -13,9 +13,23 @@ namespace FastFood.Repositories.Categories;
 public class CategoryRepository : BaseRepository, ICategoryRepository
 {
 
-    public Task<long> CountAsync()
+    public async Task<long> CountAsync()
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT COUNT(*) FROM public.categories;";
+            var result = (await _connection.QueryAsync<long>(query)).FirstOrDefault();
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<int> CreateAsync(Category entity)
