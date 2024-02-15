@@ -66,10 +66,10 @@ public partial class CreateProductPage : Page
         allforship.SetData(new Category() { Id = 0, Name = "All" });
         allforship.Refresh = RefreshAsync;
         stpCategoriesChips.Children.Add(allforship);
+
         foreach (var cat in category)
         {
             CategoryChipUserControl categoryChipUserControl = new CategoryChipUserControl();
-            categoryChipUserControl.Refresh = RefreshAsync;
             categoryChipUserControl.SetData(cat);
             stpCategoriesChips.Children.Add(categoryChipUserControl);
         }
