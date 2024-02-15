@@ -1,5 +1,6 @@
 ﻿using FastFood.Constants;
 using FastFood.Helpers;
+using FastFood.Pages.AddProducts;
 using FastFood.Repositories.Categories;
 using Microsoft.Win32;
 using System;
@@ -49,6 +50,8 @@ public partial class CategoryCreateWindow : Window
             {
                 MessageBox.Show("Seccessfully");
                 this.Close();
+                CreateProductPage productPage = new CreateProductPage();
+                await productPage.RefreshAsync(0);
             }
         }
         catch (Exception ex)
