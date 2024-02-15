@@ -50,8 +50,6 @@ public partial class CategoryCreateWindow : Window
             {
                 MessageBox.Show("Seccessfully");
                 this.Close();
-                CreateProductPage productPage = new CreateProductPage();
-                await productPage.RefreshAsync(0);
             }
         }
         catch (Exception ex)
