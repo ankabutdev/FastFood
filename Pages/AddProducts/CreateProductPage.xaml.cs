@@ -44,7 +44,7 @@ public partial class CreateProductPage : Page
 
         foreach (var product in products)
         {
-            ProductViewUserControl viewcontrol = new ProductViewUserControl();
+            ProductViewUserControl viewcontrol = new();
             viewcontrol.SetData(product);
             wrpCreateProduct.Children.Add(viewcontrol);
         }
@@ -58,10 +58,16 @@ public partial class CreateProductPage : Page
 
     public async void Create_Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
+        await CategoriesShow();
+        await RefreshAsync(0);
+    }
+
+    private async Task CategoriesShow()
+    {
         stpCategoriesChips.Children.Clear();
         var category = await _categoryRepository.GetAllAsync();
 
-        // for all  
+        // for all
         CategoryChipUserControl allforship = new CategoryChipUserControl();
         allforship.SetData(new Category() { Id = 0, Name = "All" });
         allforship.Refresh = RefreshAsync;
@@ -71,10 +77,9 @@ public partial class CreateProductPage : Page
         {
             CategoryChipUserControl categoryChipUserControl = new CategoryChipUserControl();
             categoryChipUserControl.SetData(cat);
+            categoryChipUserControl.Refresh = RefreshAsync;
             stpCategoriesChips.Children.Add(categoryChipUserControl);
         }
-
-        await RefreshAsync(0);
     }
 
     private async void tbSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
