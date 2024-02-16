@@ -1,5 +1,4 @@
 ﻿using FastFood.Entites;
-using System;
 
 namespace FastFood.ViewModels.Products;
 
