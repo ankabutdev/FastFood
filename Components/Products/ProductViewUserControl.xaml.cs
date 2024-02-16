@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
+#pragma warning disable
+
 namespace FastFood.Components.Products;
 
 /// <summary>
@@ -18,13 +20,11 @@ public partial class ProductViewUserControl : UserControl
 
     public Product Product { get; set; }
 
-    private ProductRepository _productRepository;
+    private readonly ProductRepository _productRepository;
 
     public long Id { get; set; }
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public ProductViewUserControl()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
         InitializeComponent();
         Product = new Product();                                                   //////////////////////////////
@@ -48,7 +48,6 @@ public partial class ProductViewUserControl : UserControl
         {
             DeleteUpdateCreateWindow deleteUpdateCreateWindow = new DeleteUpdateCreateWindow(Product);
             deleteUpdateCreateWindow.ShowDialog();
-
         }
         else
         {

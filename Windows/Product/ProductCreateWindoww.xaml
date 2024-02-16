@@ -45,7 +45,7 @@
                                 VerticalAlignment="Bottom"
                                 Content="..."
                                 FontSize="20"
-                                Click="btnImageSelector_Click"
+                                Click="BtnImageSelector_Click"
                                 Height="30" Width="30"
                                 Margin="10 0 0 0"/>
                     </StackPanel>
@@ -183,7 +183,7 @@
                          Background="{DynamicResource SecondaryBackground}"/>
             </Border>
             <Button x:Name="btnSave" 
-                    Click="btnSave_Click"
+                    Click="BtnSave_Click"
                     Margin="0 20 0 10" 
                     Height="50" 
                     Style="{DynamicResource SuccessButton}" Content="Save"/>

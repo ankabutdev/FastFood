@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using FastFood.Entites.Categories;
 using FastFood.Interfaces.Categories;
-using FastFood.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

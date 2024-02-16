@@ -1,9 +1,10 @@
 ﻿using FastFood.Entites.Categories;
-using FastFood.Entites.Products;
 using FastFood.Entites.Users;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+
+#pragma warning disable
 
 namespace FastFood.Components.Products;
 
@@ -16,9 +17,7 @@ public partial class CategoryChipUserControl : UserControl
     private Category category = new Category();
     User User { get; set; } = new User();
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public CategoryChipUserControl()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
         InitializeComponent();
     }

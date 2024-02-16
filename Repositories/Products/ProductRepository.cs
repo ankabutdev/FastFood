@@ -9,11 +9,6 @@ namespace FastFood.Repositories.Products;
 
 public class ProductRepository : BaseRepository, IProductRepository
 {
-    public Task<int> CountAsync(long id)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public Task<long> CountAsync()
     {
         throw new System.NotImplementedException();
