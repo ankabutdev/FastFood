@@ -35,7 +35,7 @@ public partial class ProductUpdateWindow : Window
     {
         try
         {
-            ProductDiscount productDiscount = new ProductDiscount();
+            ProductDiscount productDiscount = new();
 
             tbProductName.Text = product.Name.ToString();
             tbProductUnitPrice.Text = product.UnitPrice.ToString();
@@ -50,12 +50,9 @@ public partial class ProductUpdateWindow : Window
         {
             MessageBox.Show(ex.Message);
         }
-
-        
-
     }
 
-    private void btnImageSelector_Click(object sender, RoutedEventArgs e)
+    private void BtnImageSelector_Click(object sender, RoutedEventArgs e)
     {
         var openFileDialog = GetImageDialog();
         if (openFileDialog.ShowDialog() == true)
@@ -67,26 +64,29 @@ public partial class ProductUpdateWindow : Window
 
     private OpenFileDialog GetImageDialog()
     {
-        OpenFileDialog openFileDialog = new OpenFileDialog();
-        openFileDialog.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
+        OpenFileDialog openFileDialog = new()
+        {
+            Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif"
+        };
         return openFileDialog;
     }
 
 
     private async Task<FastFood.Entites.Products.Product> GetDateFromUI()
     {
-        FastFood.Entites.Products.Product product = new FastFood.Entites.Products.Product();
+        FastFood.Entites.Products.Product product = new()
+        {
+            Name = tbProductName.Text,
+            CategoryId = (long)cmbCategories.SelectedValue,
+            UnitPrice = Convert.ToDouble(tbProductUnitPrice.Text),
+            Qunatity = Convert.ToInt64(tbProductQuantity.Text),
 
-        product.Name = tbProductName.Text;
-        product.CategoryId = (long)cmbCategories.SelectedValue;
-        product.UnitPrice = Convert.ToDouble(tbProductUnitPrice.Text);
-        product.Qunatity = Convert.ToInt64(tbProductQuantity.Text);
-
-        product.Description = new TextRange(rbDescription.Document.ContentStart,
-            rbDescription.Document.ContentEnd).Text;
+            Description = new TextRange(rbDescription.Document.ContentStart,
+            rbDescription.Document.ContentEnd).Text
+        };
 
         string imagepath = ImgBImage.ImageSource.ToString();
-        if (!String.IsNullOrEmpty(imagepath))
+        if (!string.IsNullOrEmpty(imagepath))
             product.ImagePath = await CopyImageAsync(imagepath,
                  ContentConstant.IMAGE_CONTENTS_PATH);
 
@@ -118,7 +118,7 @@ public partial class ProductUpdateWindow : Window
         cmbCategories.ItemsSource = category;
     }
 
-    private async void btnSave_Click(object sender, RoutedEventArgs e)
+    private async void BtnSave_Click(object sender, RoutedEventArgs e)
     {
         try
         {
@@ -135,6 +135,6 @@ public partial class ProductUpdateWindow : Window
             MessageBox.Show(ex.Message);
         }
 
-        
+
     }
 }

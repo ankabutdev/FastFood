@@ -1,7 +1,6 @@
 ﻿using FastFood.Constants;
 using FastFood.Entites.Products;
 using FastFood.Helpers;
-using FastFood.Pages.AddProducts;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Products;
 using Microsoft.Win32;
@@ -19,8 +18,8 @@ namespace FastFood.Windows.Product;
 /// </summary>
 public partial class ProductCreateWindoww : Window
 {
-    private CategoryRepository _categoryRepository;
-    private ProductRepository _productRepository;
+    private readonly CategoryRepository _categoryRepository;
+    private readonly ProductRepository _productRepository;
 
     public ProductCreateWindoww()
     {
@@ -35,17 +34,15 @@ public partial class ProductCreateWindoww : Window
         cmbCategories.ItemsSource = category;
     }
 
-    private async void btnSave_Click(object sender, RoutedEventArgs e)
+    private async void BtnSave_Click(object sender, RoutedEventArgs e)
     {
         try
         {
-            var product = GetDateFromUI();
-            var result = await _productRepository.CreateAsync(await product);
+            var product = await GetDateFromUI();
+            var result = await _productRepository.CreateAsync(product);
             if (result > 0)
             {
                 MessageBox.Show("Successfully");
-                var productPage = new CreateProductPage();
-                await productPage.RefreshAsync(0);
                 this.Close();
             }
         }
@@ -55,11 +52,11 @@ public partial class ProductCreateWindoww : Window
         }
 
     }
-    private async Task<FastFood.Entites.Products.Product> GetDateFromUI()
+    private async Task<Entites.Products.Product> GetDateFromUI()
     {
-        FastFood.Entites.Products.Product product = new FastFood.Entites.Products.Product();
-        ProductDiscount productDiscount = new ProductDiscount();
-        ProductSupplier productSupplier = new ProductSupplier();
+        Entites.Products.Product product = new();
+        ProductDiscount productDiscount = new();
+        ProductSupplier productSupplier = new();
 
         product.Name = tbProductName.Text;
         product.CategoryId = (long)cmbCategories.SelectedValue;
@@ -74,7 +71,7 @@ public partial class ProductCreateWindoww : Window
         productDiscount.Percentage = short.Parse(tbDiscount.Text);
 
         string imagepath = ImgBImage.ImageSource.ToString();
-        if (!String.IsNullOrEmpty(imagepath))
+        if (!string.IsNullOrEmpty(imagepath))
             product.ImagePath = await CopyImageAsync(imagepath,
                  ContentConstant.IMAGE_CONTENTS_PATH);
 
@@ -84,7 +81,7 @@ public partial class ProductCreateWindoww : Window
         return product;
     }
 
-    private void btnImageSelector_Click(object sender, RoutedEventArgs e)
+    private void BtnImageSelector_Click(object sender, RoutedEventArgs e)
     {
         var openFileDialog = GetImageDialog();
         if (openFileDialog.ShowDialog() == true)
@@ -96,8 +93,10 @@ public partial class ProductCreateWindoww : Window
 
     private OpenFileDialog GetImageDialog()
     {
-        OpenFileDialog openFileDialog = new OpenFileDialog();
-        openFileDialog.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
+        OpenFileDialog openFileDialog = new()
+        {
+            Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif"
+        };
         return openFileDialog;
     }
 
@@ -108,7 +107,7 @@ public partial class ProductCreateWindoww : Window
 
         var imageName = ContentNameMaker.GetImageName(imgPath);
 
-        string path = System.IO.Path.Combine(destinationDirectory, imageName);
+        string path = Path.Combine(destinationDirectory, imageName);
 
         byte[] image = await File.ReadAllBytesAsync(imgPath);
 
