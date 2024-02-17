@@ -67,7 +67,7 @@ public partial class CategoryCreateWindow : Window
         string imagePath = ImgBImage.ImageSource.ToString();
         if (!String.IsNullOrEmpty(imagePath))
             category.ImagePath = await CopyToImageAsync(imagePath,
-                ContentConstant.IMAGE_CONTENTS_PATH);
+                ContentConstant.GetImageRootPath());
 
         category.CreatedAt = category.UpdatedAt =
             TimeHelper.GetDateTime();

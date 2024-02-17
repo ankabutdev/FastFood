@@ -31,7 +31,7 @@ public partial class ProductUpdateWindow : Window
         this.Id = Id;
     }
 
-    public void SetData(FastFood.Entites.Products.Product product)
+    public void SetData(Entites.Products.Product product)
     {
         try
         {
@@ -41,7 +41,7 @@ public partial class ProductUpdateWindow : Window
             tbProductUnitPrice.Text = product.UnitPrice.ToString();
             tbProductQuantity.Text = product.Qunatity.ToString();
             rbDescription.AppendText(product.Description);
-            ImgBImage.ImageSource = new BitmapImage(new Uri(product.ImagePath, UriKind.Relative));
+            ImgBImage.ImageSource = new BitmapImage(new Uri(ContentConstant.GetImageContentsPath() + product.ImagePath, UriKind.Absolute));
 
             tbDiscount.Text = productDiscount.Percentage.ToString();
             cmbCategories.SelectedValue = product.CategoryId;
@@ -72,23 +72,30 @@ public partial class ProductUpdateWindow : Window
     }
 
 
-    private async Task<FastFood.Entites.Products.Product> GetDateFromUI()
+    private async Task<Entites.Products.Product> GetDateFromUI()
     {
-        FastFood.Entites.Products.Product product = new()
+        Entites.Products.Product product = new()
         {
             Name = tbProductName.Text,
             CategoryId = (long)cmbCategories.SelectedValue,
             UnitPrice = Convert.ToDouble(tbProductUnitPrice.Text),
             Qunatity = Convert.ToInt64(tbProductQuantity.Text),
-
             Description = new TextRange(rbDescription.Document.ContentStart,
             rbDescription.Document.ContentEnd).Text
         };
 
         string imagepath = ImgBImage.ImageSource.ToString();
         if (!string.IsNullOrEmpty(imagepath))
-            product.ImagePath = await CopyImageAsync(imagepath,
-                 ContentConstant.IMAGE_CONTENTS_PATH);
+        {
+            var existnProduct = await _productRepository.GetByIdAsync(Id);
+
+            var imageResult = await DeleteImage(existnProduct.ImagePath,
+            ContentConstant.GetImageContentsPath());
+
+            if (imageResult)
+                product.ImagePath = await CopyImageAsync(imagepath,
+                     ContentConstant.GetImageContentsPath());
+        }
 
         product.CreatedAt = product.UpdatedAt =
                 TimeHelper.GetDateTime();
@@ -103,7 +110,7 @@ public partial class ProductUpdateWindow : Window
 
         var imageName = ContentNameMaker.GetImageName(imgPath);
 
-        string path = System.IO.Path.Combine(destinationDirectory, imageName);
+        string path = Path.Combine(destinationDirectory, imageName);
 
         byte[] image = await File.ReadAllBytesAsync(imgPath);
 
@@ -122,8 +129,8 @@ public partial class ProductUpdateWindow : Window
     {
         try
         {
-            var product = GetDateFromUI();
-            var result = await _productRepository.UpdateAsync(Id, await product);
+            var product = await GetDateFromUI();
+            var result = await _productRepository.UpdateAsync(Id, product);
             if (result > 0)
             {
                 MessageBox.Show("Successfully");
@@ -135,6 +142,19 @@ public partial class ProductUpdateWindow : Window
             MessageBox.Show(ex.Message);
         }
 
+    }
 
+    private async Task<bool> DeleteImage(string imgPath, string destiantionPath = null!)
+    {
+        return await Task.Run(() =>
+        {
+            var imagePath = Path.Combine(destiantionPath, imgPath);
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+                return true;
+            }
+            return false;
+        });
     }
 }

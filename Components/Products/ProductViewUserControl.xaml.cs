@@ -1,8 +1,15 @@
-﻿using FastFood.Entites.Products;
+﻿using FastFood.Constants;
+using FastFood.Entites.Products;
 using FastFood.Enums;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
 using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,15 +26,18 @@ public partial class ProductViewUserControl : UserControl
 {
 
     public Product Product { get; set; }
+    private IWebHostEnvironment? _env;
 
     private readonly ProductRepository _productRepository;
 
     public long Id { get; set; }
+    private readonly string? ROOTHPATH;
+
 
     public ProductViewUserControl()
     {
         InitializeComponent();
-        Product = new Product();                                                   //////////////////////////////
+        Product = new Product();
         this._productRepository = new ProductRepository();
     }
 
@@ -36,7 +46,7 @@ public partial class ProductViewUserControl : UserControl
         Id = product.Id;
         ProductName.Content = product.Name;
         lblProductPrice.Content = product.UnitPrice.ToString() + " $";
-        string path = product.ImagePath;
+        string path = ContentConstant.GetImageContentsPath() + product.ImagePath;
         cmpImage.Source = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
     }
 

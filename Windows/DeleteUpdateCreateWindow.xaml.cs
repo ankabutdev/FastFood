@@ -25,11 +25,14 @@ public partial class DeleteUpdateCreateWindow : Window
 
     private async void Button_Click_2(object sender, RoutedEventArgs e)
     {
-        // var product = await _productRepository.GetByIdAsync(Product.Id);
+        var product = await _productRepository.GetByIdAsync(Product.Id);
 
         var result = await _productRepository.DeleteAsync(Product.Id);
-        //var imageResult = await DeleteImage(product.ImagePath, ContentConstant.IMAGE_CONTENTS_PATH);
-        if (result > 0)
+
+        var imageResult = await DeleteImage(product.ImagePath,
+            ContentConstant.GetImageRootPath());
+
+        if (result > 0 && imageResult)
         {
             MessageBox.Show("Deleted successfully");
             this.Close();
@@ -40,10 +43,10 @@ public partial class DeleteUpdateCreateWindow : Window
     {
         return await Task.Run(() =>
         {
-            // var imagePath = Path.Combine(destiantionPath, imgPath);
-            if (File.Exists(imgPath))
+            var imagePath = Path.Combine(destiantionPath, imgPath);
+            if (File.Exists(imagePath))
             {
-                File.Delete(imgPath);
+                File.Delete(imagePath);
                 return true;
             }
             return false;
@@ -52,7 +55,7 @@ public partial class DeleteUpdateCreateWindow : Window
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        ProductUpdateWindow productUpdateWindow = new(Product.Id);
+        ProductUpdateWindow productUpdateWindow = new ProductUpdateWindow(Product.Id);
         productUpdateWindow.SetData(Product);
         productUpdateWindow.ShowDialog();
         this.Close();
