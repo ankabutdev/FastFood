@@ -71,9 +71,10 @@ public partial class ProductCreateWindoww : Window
         productDiscount.Percentage = short.Parse(tbDiscount.Text);
 
         string imagepath = ImgBImage.ImageSource.ToString();
+
         if (!string.IsNullOrEmpty(imagepath))
             product.ImagePath = await CopyImageAsync(imagepath,
-                 ContentConstant.IMAGE_CONTENTS_PATH);
+                 ContentConstant.GetImageRootPath());
 
         product.CreatedAt = product.UpdatedAt =
                 TimeHelper.GetDateTime();
@@ -113,6 +114,8 @@ public partial class ProductCreateWindoww : Window
 
         await File.WriteAllBytesAsync(path, image);
 
-        return path;
+        var returnsPath = Path.Combine(@"Assets\Images", imageName);
+
+        return returnsPath;
     }
 }
