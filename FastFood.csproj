@@ -10,6 +10,7 @@
   <ItemGroup>
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Logos\" />
+    <Folder Include="Components\demos\" />
   </ItemGroup>
 
   <ItemGroup>
