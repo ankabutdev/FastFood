@@ -28,7 +28,7 @@ public partial class ColdDrinksPage : Page
     public async Task RefreshAsync()
     {
         wrpColdDrinks.Children.Clear();
-        var products = await _productRepository.GetAllByCategoryIdAsync(6);
+        var products = await _productRepository.GetAllByCategoryIdAsync(1);
 
         foreach (var product in products)
         {
@@ -44,7 +44,7 @@ public partial class ColdDrinksPage : Page
         {
             wrpColdDrinks.Children.Clear();
 
-            var products = await _productRepository.SearchByCategoryIdFromProductAsync(6, tbSearch.Text);
+            var products = await _productRepository.SearchByCategoryIdFromProductAsync(1, tbSearch.Text);
 
             foreach (var product in products)
             {
