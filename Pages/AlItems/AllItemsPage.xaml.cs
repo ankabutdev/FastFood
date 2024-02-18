@@ -38,7 +38,7 @@ public partial class AllItemsPage : Page
         }
     }
 
-    private async void tbSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+    private async void tbSearch_KeyUp(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Enter)
         {
