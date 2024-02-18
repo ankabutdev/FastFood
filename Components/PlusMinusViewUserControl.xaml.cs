@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
+
+//#pragma warning disable
 
 namespace FastFood.Components;
 
@@ -8,27 +11,44 @@ namespace FastFood.Components;
 /// </summary>
 public partial class PlusMinusViewUserControl : UserControl
 {
-    long count = 1;
+    private int _productCount;
 
-    public PlusMinusViewUserControl()
+    public int ProductCount
     {
-        InitializeComponent();
+        get { return _productCount; }
+        set
+        {
+            if (_productCount != value)
+            {
+                _productCount = value;
+                OnPropertyChanged(nameof(ProductCount));
+            }
+        }
     }
 
-    private void lblPlus_Click(object sender, RoutedEventArgs e)
-    {
-        if (count > 1)
-        {
-            count++;
-        }
-        else
-        {
+    public event PropertyChangedEventHandler PropertyChanged;
 
-        }
+    private void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    private void AddButton_Click(object sender, RoutedEventArgs e)
+    {
+        ProductCount++;
     }
 
     private void lblMinus_Click(object sender, RoutedEventArgs e)
     {
-
+        if (ProductCount > 0)
+        {
+            ProductCount--;
+        }
     }
+    public PlusMinusViewUserControl()
+    {
+        InitializeComponent();
+        DataContext = this;
+    }
+
+    
 }

@@ -28,7 +28,7 @@ public partial class DissertsPage : Page
     public async Task RefreshAsync()
     {
         wrpDisserts.Children.Clear();
-        var products = await _productRepository.GetAllByCategoryIdAsync(8);
+        var products = await _productRepository.GetAllByCategoryIdAsync(3);
 
         foreach (var product in products)
         {
@@ -44,7 +44,8 @@ public partial class DissertsPage : Page
         {
             wrpDisserts.Children.Clear();
 
-            var products = await _productRepository.SearchByCategoryIdFromProductAsync(8, tbSearch.Text);
+            var products = await _productRepository
+                .SearchByCategoryIdFromProductAsync(3, tbSearch.Text);
 
             foreach (var product in products)
             {
