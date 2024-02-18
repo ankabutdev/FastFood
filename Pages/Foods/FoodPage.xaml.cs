@@ -26,7 +26,7 @@ public partial class FoodPage : Page
         {
             wrpFood.Children.Clear();
 
-            var products = await _productRepository.SearchByCategoryIdFromProductAsync(5, tbSearch.Text);
+            var products = await _productRepository.SearchByCategoryIdFromProductAsync(4, tbSearch.Text);
 
             foreach (var product in products)
             {
@@ -45,7 +45,7 @@ public partial class FoodPage : Page
     public async Task RefreshAsync()
     {
         wrpFood.Children.Clear();
-        var products = await _productRepository.GetAllByCategoryIdAsync(5);
+        var products = await _productRepository.GetAllByCategoryIdAsync(4);
 
         foreach (var product in products)
         {
