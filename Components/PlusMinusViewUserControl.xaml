@@ -24,7 +24,7 @@
         <Button  x:Name="lblPlus"
                 Width="33.3"
                 Content="+"
-                Click="lblPlus_Click"
+                Click="AddButton_Click"
                 Background="{DynamicResource PrimaryBackground}"/>
 
     </StackPanel>
