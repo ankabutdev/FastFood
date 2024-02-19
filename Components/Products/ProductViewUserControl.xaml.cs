@@ -1,15 +1,16 @@
 ﻿using FastFood.Constants;
+using FastFood.Entites.Orders;
 using FastFood.Entites.Products;
+using FastFood.Entites.Users;
 using FastFood.Enums;
+using FastFood.Helpers;
+using FastFood.Pages.OrderPages;
+using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.FileProviders;
 using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -29,8 +30,11 @@ public partial class ProductViewUserControl : UserControl
     private IWebHostEnvironment? _env;
 
     private readonly ProductRepository _productRepository;
+    private readonly OrderRepository _orderRepository;
 
     public long Id { get; set; }
+    public long UserId { get; set; }
+
     private readonly string? ROOTHPATH;
 
 
@@ -39,6 +43,16 @@ public partial class ProductViewUserControl : UserControl
         InitializeComponent();
         Product = new Product();
         this._productRepository = new ProductRepository();
+        this._orderRepository = new OrderRepository();
+    }
+
+    public ProductViewUserControl(long userId)
+    {
+        InitializeComponent();
+        Product = new Product();
+        this._productRepository = new ProductRepository();
+        this._orderRepository = new OrderRepository();
+        this.UserId = userId;
     }
 
     public void SetData(Product product)
@@ -61,7 +75,37 @@ public partial class ProductViewUserControl : UserControl
         }
         else
         {
-            MessageBox.Show("User");
+            Order order = new()
+            {
+                UserId = UserId,
+                Description = Product.Description,
+                IsPaid = false,
+                Latitude = 0,
+                Longitude = 0,
+                PaymentType = PaymentType.None,
+                Status = OrderStatus.InQueue,
+                ProductsPrice = Product.UnitPrice,
+                ResultPrice = Product.UnitPrice,
+                DeliveryPrice = 0,
+                DeliveryId = 1,
+                CreatedAt = TimeHelper.GetDateTime(),
+                UpdatedAt = TimeHelper.GetDateTime(),
+            };
+
+            if (await CreateOrder(order))
+            {
+                OrderPage orderPage = new OrderPage(order);
+            }
+            else
+            {
+                MessageBox.Show("not create order");
+            }
         }
+    }
+
+    private async Task<bool> CreateOrder(Order order)
+    {
+        var result = await _orderRepository.CreateAsync(order);
+        return result > 0;
     }
 }
