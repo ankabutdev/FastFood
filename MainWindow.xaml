@@ -128,7 +128,7 @@
 
                             <Border CornerRadius="10" Grid.Row="0" Margin="0 15 5 0">
                                 <Frame x:Name="PageResultNavigator"
-                            NavigationUIVisibility="Hidden"/>
+                            NavigationUIVisibility="Hidden" HorizontalAlignment="Right" Width="345"/>
                             </Border>
 
                             <Border Grid.Row="1"

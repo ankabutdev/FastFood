@@ -12,12 +12,13 @@ namespace FastFood.Pages.AlItems;
 public partial class AllItemsPage : Page
 {
     private readonly ProductRepository _productRepository;
+    public long UserId {  get; set; }
 
-    public AllItemsPage()
+    public AllItemsPage(long UserId)
     {
         InitializeComponent();
         this._productRepository = new ProductRepository();
-
+        this.UserId = UserId;
     }
 
     private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -32,7 +33,7 @@ public partial class AllItemsPage : Page
 
         foreach (var product in products)
         {
-            var productViewUserControl = new ProductViewUserControl();
+            var productViewUserControl = new ProductViewUserControl(UserId);
             productViewUserControl.SetData(product);
             wrpAllItems.Children.Add(productViewUserControl);
         }
@@ -48,7 +49,7 @@ public partial class AllItemsPage : Page
 
             foreach (var product in products)
             {
-                var appointmentsViewUserControl = new ProductViewUserControl();
+                var appointmentsViewUserControl = new ProductViewUserControl(UserId);
                 appointmentsViewUserControl.SetData(product);
                 wrpAllItems.Children.Add(appointmentsViewUserControl);
             }

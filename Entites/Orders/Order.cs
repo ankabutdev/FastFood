@@ -6,7 +6,7 @@ public class Order : Auditable
 {
     public long UserId { get; set; }
 
-    public long DeliverId { get; set; }
+    public long DeliveryId { get; set; }
 
     public OrderStatus Status { get; set; }
 
@@ -24,7 +24,7 @@ public class Order : Auditable
 
     public double Longitude { get; set; }
 
-    public PaymentType Payment { get; set; }
+    public PaymentType PaymentType { get; set; }
 
     public bool IsPaid { get; set; }
 

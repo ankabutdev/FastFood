@@ -31,14 +31,15 @@ public partial class LoginWindow : Window
         var result = await RegisterAsync(username, password);
         if (result == "admin")
         {
-            MainWindow main = new MainWindow(IdentityRole.Admin);
+
+            MainWindow main = new MainWindow(IdentityRole.Admin, 7);
 
             main.Show();
             this.Close();
         }
         else if (result == "user")
         {
-            MainWindow main = new MainWindow(IdentityRole.User);
+            MainWindow main = new MainWindow(IdentityRole.User, 6);
 
             main.Show();
             this.Close();

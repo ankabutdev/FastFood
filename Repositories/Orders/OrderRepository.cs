@@ -15,9 +15,23 @@ public class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
-    public Task<int> CreateAsync(Order entity)
+    public async Task<int> CreateAsync(Order entity)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "INSERT INTO public.orders(user_id, delivery_id, status, products_price, delivery_price, " +
+                "result_price, latitude, longitude, payment_type, is_paid, description, created_at, updated_at) " +
+                "VALUES (@UserId, @DeliveryId, @Status, @ProductsPrice, @DeliveryPrice, @ResultPrice, @Latitude, " +
+                "@Longitude, @PaymentType, @IsPaid, @Description, @CreatedAt, @UpdatedAt);";
+
+            var result = await _connection.ExecuteAsync(query, entity);
+            return result;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public Task<int> DeleteAsync(long id)
@@ -42,6 +56,31 @@ public class OrderRepository : BaseRepository, IOrderRepository
         {
             await _connection.CloseAsync();
         }
+    }
+
+    public async Task<IList<Order>> GetAllOrderByUserIdByIsPaidFalseAsync(long userId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM orders WHERE user_id = 1 AND is_paid = 'false';";
+            var result = (await _connection.QueryAsync<Order>(query)).AsList();
+            return result;
+
+        }
+        catch
+        {
+            return new List<Order>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
+    public Task<IQueryable<Order>> GetAllOrderByUserIdByIsPaidTrueAsync(long userId)
+    {
+        throw new System.NotImplementedException();
     }
 
     public async Task<OrderViewModel> GetProductByIdAsync(long id)
