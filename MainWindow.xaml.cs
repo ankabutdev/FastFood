@@ -18,12 +18,13 @@ public partial class MainWindow : Window
 {
     public static User User { get; set; } = new User();
 
-    public MainWindow(IdentityRole Role)
+    public MainWindow(IdentityRole Role, long userId)
     {
         InitializeComponent();
 
         // Is_Admin
         User.Role = Role;
+        User.Id = userId;
 
         if (User.Role is IdentityRole.Admin)
         {
@@ -81,7 +82,7 @@ public partial class MainWindow : Window
 
     private void rb_AllItems_Click(object sender, RoutedEventArgs e)
     {
-        AllItemsPage allItemsPage = new AllItemsPage();
+        AllItemsPage allItemsPage = new AllItemsPage(User.Id);
         PageNavigator.Content = allItemsPage;
     }
 
