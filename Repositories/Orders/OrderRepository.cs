@@ -10,9 +10,23 @@ namespace FastFood.Repositories.Orders;
 
 public class OrderRepository : BaseRepository, IOrderRepository
 {
-    public Task<long> CountAsync()
+    public async Task<long> CountAsync()
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT COUNT(*) FROM public.orders;";
+            var result = (await _connection.QueryAsync<long>(query)).FirstOrDefault();
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<int> CreateAsync(Order entity)

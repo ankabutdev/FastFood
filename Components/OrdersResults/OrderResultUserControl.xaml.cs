@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
+#pragma warning disable
+
 namespace FastFood.Components.OrdersResults;
 
 /// <summary>
@@ -50,7 +52,6 @@ public partial class OrderResultUserControl : UserControl
             ProductCount--;
         }
     }
-
 
     private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
