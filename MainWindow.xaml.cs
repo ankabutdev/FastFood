@@ -6,6 +6,7 @@ using FastFood.Pages.ColdDrinks;
 using FastFood.Pages.Disserts;
 using FastFood.Pages.Foods;
 using FastFood.Pages.HotDrinks;
+using FastFood.Pages.OrderPages;
 using System.Windows;
 using System.Windows.Input;
 
@@ -84,6 +85,8 @@ public partial class MainWindow : Window
     {
         AllItemsPage allItemsPage = new AllItemsPage(User.Id);
         PageNavigator.Content = allItemsPage;
+        OrderPage orderPage = new OrderPage(null);
+        PageResultNavigator.Content = orderPage;
     }
 
     private void rbDisserts_Click(object sender, RoutedEventArgs e)
