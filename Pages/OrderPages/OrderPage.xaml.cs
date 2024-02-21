@@ -1,8 +1,9 @@
 ﻿using FastFood.Components.OrdersResults;
-using FastFood.Entites.Orders;
+using FastFood.Entites.Products;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,30 +18,33 @@ public partial class OrderPage : Page
     private readonly ProductRepository _productRepository;
     private readonly CategoryRepository _categoryRepository;
 
-    private Order Order { get; set; }
+    private Product? Product { get; set; }
 
-    public OrderPage(Order order)
+    public OrderPage(Product? product)
     {
         InitializeComponent();
         this._orderRepository = new OrderRepository();
         this._productRepository = new ProductRepository();
         this._categoryRepository = new CategoryRepository();
-        this.Order = order;
+        if (product != null)
+        {
+            this.Product = product;
+        }
     }
 
     private async void Page_Loaded(object sender, RoutedEventArgs e)
     {
-        //wrpOrder.Children.Clear();
-        //var order = await _orderRepository.GetAllAsync();
+        await RefreshAsync();
+    }
 
-        //OrderResultUserControl all = new OrderResultUserControl();
-        //wrpOrder.Children.Add(all);
-        
-        //foreach (var ord in order)
-        //{
+    public async Task RefreshAsync()
+    {
+        if (this.Product != null)
+        {
             var orderResultUserControl = new OrderResultUserControl();
-            orderResultUserControl.SetData(Order);
+            orderResultUserControl.SetData(Product);
+
             wrpOrder.Children.Add(orderResultUserControl);
-        //}
+        }
     }
 }
