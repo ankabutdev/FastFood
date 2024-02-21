@@ -91,7 +91,7 @@ public partial class ProductViewUserControl : UserControl
             //if (await _orderRepository.CreateAsync(order) > 0)
             //{
             OrderPage orderPage = new(Product);
-            orderPage.ShowsNavigationUI = true;
+            //orderPage.ShowsNavigationUI = true;
             // orderPage.ShowsNavigationUI = true;
             //}
             //else
