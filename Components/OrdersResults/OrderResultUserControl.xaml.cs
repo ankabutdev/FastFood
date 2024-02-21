@@ -1,4 +1,4 @@
-﻿using FastFood.Entites.Orders;
+﻿using FastFood.Entites.Products;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -57,11 +57,17 @@ public partial class OrderResultUserControl : UserControl
     {
         //stpOrdersChips.Children.Clear();
         //var orders = await 
+        MessageBox.Show("user control Mouse down");
     }
 
-    public void SetData(Order order)
+    public void SetData(Product? product)
     {
-        order.ProductsPrice = Convert.ToDouble(lblPrice.Content);
+        if (product is not null)
+        {
+            product.Name = lblOrderName.Content.ToString();
+            product.UnitPrice = Convert.ToDouble(lblPrice.Content ?? 0);
+        }else
+        MessageBox.Show("Product is null");
     }
 
 }

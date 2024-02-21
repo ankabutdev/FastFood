@@ -1,7 +1,6 @@
 ﻿using FastFood.Constants;
 using FastFood.Entites.Orders;
 using FastFood.Entites.Products;
-using FastFood.Entites.Users;
 using FastFood.Enums;
 using FastFood.Helpers;
 using FastFood.Pages.OrderPages;
@@ -10,8 +9,6 @@ using FastFood.Repositories.Products;
 using FastFood.Windows;
 using Microsoft.AspNetCore.Hosting;
 using System;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -36,7 +33,6 @@ public partial class ProductViewUserControl : UserControl
     public long UserId { get; set; }
 
     private readonly string? ROOTHPATH;
-
 
     public ProductViewUserControl()
     {
@@ -70,7 +66,7 @@ public partial class ProductViewUserControl : UserControl
 
         if (MainWindow.User.Role == IdentityRole.Admin)
         {
-            DeleteUpdateCreateWindow deleteUpdateCreateWindow = new DeleteUpdateCreateWindow(Product);
+            DeleteUpdateCreateWindow deleteUpdateCreateWindow = new(Product);
             deleteUpdateCreateWindow.ShowDialog();
         }
         else
@@ -92,20 +88,16 @@ public partial class ProductViewUserControl : UserControl
                 UpdatedAt = TimeHelper.GetDateTime(),
             };
 
-            if (await CreateOrder(order))
-            {
-                OrderPage orderPage = new OrderPage(order);
-            }
-            else
-            {
-                MessageBox.Show("not create order");
-            }
+            //if (await _orderRepository.CreateAsync(order) > 0)
+            //{
+            OrderPage orderPage = new(Product);
+            //orderPage.ShowsNavigationUI = true;
+            // orderPage.ShowsNavigationUI = true;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("not create order");
+            //}
         }
-    }
-
-    private async Task<bool> CreateOrder(Order order)
-    {
-        var result = await _orderRepository.CreateAsync(order);
-        return result > 0;
     }
 }

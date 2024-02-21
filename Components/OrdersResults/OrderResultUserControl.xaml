@@ -22,7 +22,7 @@
                    HorizontalAlignment="Center"
                    Width="60"
                    Height="30"
-                   Content="Milk"
+                   Content=""
                    FontWeight="Bold"
                    FontSize="14"/>
 
@@ -46,7 +46,7 @@
                     <Label  x:Name="lblCount"
                             HorizontalAlignment="Center"
                             Width="22"
-                            Content="1"
+                            Content=""
                             FontSize="14"
                             Background="{DynamicResource PrimaryBackground}"/>
 
@@ -64,7 +64,7 @@
                    HorizontalAlignment="Center"
                    Width="60"
                    Height="30"
-                   Content="13 $"
+                   Content="0"
                    FontWeight="Bold"
                    FontSize="14"/>
 
