@@ -1,5 +1,4 @@
 ﻿using FastFood.Components.OrdersResults;
-using FastFood.Entites.Products;
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
@@ -18,18 +17,17 @@ public partial class OrderPage : Page
     private readonly ProductRepository _productRepository;
     private readonly CategoryRepository _categoryRepository;
 
-    private Product? Product { get; set; }
+    //private Order Order { get; set; }
+    private long UserId { get; set; }
 
-    public OrderPage(Product? product)
+    public OrderPage(/*Order order,*/ long userId)
     {
         InitializeComponent();
         this._orderRepository = new OrderRepository();
         this._productRepository = new ProductRepository();
         this._categoryRepository = new CategoryRepository();
-        if (product != null)
-        {
-            this.Product = product;
-        }
+        //this.Order = order;
+        UserId = userId;
     }
 
     private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -39,11 +37,15 @@ public partial class OrderPage : Page
 
     public async Task RefreshAsync()
     {
-        if (this.Product != null)
+        wrpOrder.Children.Clear();
+
+        var orders = await _orderRepository
+            .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
+
+        foreach (var order in orders)
         {
             var orderResultUserControl = new OrderResultUserControl();
-            orderResultUserControl.SetData(Product);
-
+            orderResultUserControl.SetData(order);
             wrpOrder.Children.Add(orderResultUserControl);
         }
     }
