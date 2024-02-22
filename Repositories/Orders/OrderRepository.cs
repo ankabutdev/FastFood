@@ -77,7 +77,7 @@ public class OrderRepository : BaseRepository, IOrderRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "SELECT * FROM orders WHERE user_id = 1 AND is_paid = 'false';";
+            string query = $"SELECT * FROM orders WHERE user_id = {userId} AND is_paid = 'false';";
             var result = (await _connection.QueryAsync<Order>(query)).AsList();
             return result;
 
