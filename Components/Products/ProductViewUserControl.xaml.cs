@@ -8,7 +8,9 @@ using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -88,16 +90,15 @@ public partial class ProductViewUserControl : UserControl
                 UpdatedAt = TimeHelper.GetDateTime(),
             };
 
-            //if (await _orderRepository.CreateAsync(order) > 0)
-            //{
-            OrderPage orderPage = new(Product);
-            //orderPage.ShowsNavigationUI = true;
-            // orderPage.ShowsNavigationUI = true;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("not create order");
-            //}
+            if (await _orderRepository.CreateAsync(order) > 0)
+            {
+                OrderPage orderPage = new(UserId);
+                orderPage.RefreshAsync();
+            }
+            else
+            {
+                MessageBox.Show("not create order");
+            }
         }
     }
 }

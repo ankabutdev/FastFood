@@ -1,4 +1,4 @@
-﻿using FastFood.Entites.Products;
+﻿using FastFood.Entites.Orders;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -16,7 +16,7 @@ public partial class OrderResultUserControl : UserControl
     public OrderResultUserControl()
     {
         InitializeComponent();
-        DataContext = this;
+        //DataContext = this;
     }
 
     private int _productCount;
@@ -60,14 +60,15 @@ public partial class OrderResultUserControl : UserControl
         MessageBox.Show("user control Mouse down");
     }
 
-    public void SetData(Product? product)
+    public void SetData(Order? order)
     {
-        if (product is not null)
+        if (order is not null)
         {
-            product.Name = lblOrderName.Content.ToString();
-            product.UnitPrice = Convert.ToDouble(lblPrice.Content ?? 0);
-        }else
-        MessageBox.Show("Product is null");
+            order.Description = lblOrderName.Content.ToString();
+            order.ResultPrice = Convert.ToDouble(lblPrice.Content ?? 0);
+        }
+        else
+            MessageBox.Show("Order is null");
     }
 
 }
