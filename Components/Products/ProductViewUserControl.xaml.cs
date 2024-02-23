@@ -92,8 +92,10 @@ public partial class ProductViewUserControl : UserControl
 
             if (await _orderRepository.CreateAsync(order) > 0)
             {
+                MainWindow mainWindow = new(IdentityRole.None, 0);
                 OrderPage orderPage = new(UserId);
                 orderPage.RefreshAsync();
+                mainWindow.PageResultNavigator.Content = orderPage;
             }
             else
             {

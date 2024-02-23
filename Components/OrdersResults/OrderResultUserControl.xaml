@@ -64,7 +64,7 @@
                    HorizontalAlignment="Center"
                    Width="60"
                    Height="30"
-                   Content="0"
+                   Content=""
                    FontWeight="Bold"
                    FontSize="14"/>
 
