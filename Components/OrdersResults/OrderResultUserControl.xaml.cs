@@ -1,5 +1,4 @@
 ﻿using FastFood.Entites.Orders;
-using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +39,7 @@ public partial class OrderResultUserControl : UserControl
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
         ProductCount++;
@@ -56,16 +56,17 @@ public partial class OrderResultUserControl : UserControl
     private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         //stpOrdersChips.Children.Clear();
-        //var orders = await 
-        MessageBox.Show("user control Mouse down");
+        //var orders = await
+        MessageBox.Show("User control Mouse down");
     }
 
     public void SetData(Order? order)
     {
         if (order is not null)
         {
-            order.Description = lblOrderName.Content.ToString();
-            order.ResultPrice = Convert.ToDouble(lblPrice.Content ?? 0);
+            lblOrderName.Content = order.Description;
+            lblPrice.Content = order.ResultPrice.ToString();
+            lblCount.Content = 0;
         }
         else
             MessageBox.Show("Order is null");
