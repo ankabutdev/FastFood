@@ -3,6 +3,7 @@ using FastFood.Entites.Orders;
 using FastFood.Entites.Products;
 using FastFood.Enums;
 using FastFood.Helpers;
+using FastFood.Pages.AlItems;
 using FastFood.Pages.OrderPages;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
@@ -92,15 +93,17 @@ public partial class ProductViewUserControl : UserControl
 
             if (await _orderRepository.CreateAsync(order) > 0)
             {
-                MainWindow mainWindow = new(IdentityRole.None, 0);
+                //MainWindow mainWindow = new(IdentityRole.None, 0);
                 OrderPage orderPage = new(UserId);
-                orderPage.RefreshAsync();
-                mainWindow.PageResultNavigator.Content = orderPage;
+                //orderPage.RefreshAsync();
+                //mainWindow.PageResultNavigator.Content = orderPage;
             }
             else
             {
                 MessageBox.Show("not create order");
             }
         }
+        AllItemsPage allItemsPage = new(UserId);
+        allItemsPage.RefreshAsync();
     }
 }
