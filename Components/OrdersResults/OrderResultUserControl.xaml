@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FastFood.Components.OrdersResults"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="270"
+             d:DesignHeight="150" d:DesignWidth="350"
              MouseDown="UserControl_MouseDown">
     
-    <Border CornerRadius="5" Background="{StaticResource PrimaryBackground}">
+    <Border CornerRadius="5" Margin="10" Background="{StaticResource PrimaryBackground}">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -69,9 +69,7 @@
                    FontSize="14"/>
 
             <Button Grid.Column="3"
-                   HorizontalAlignment="Center"
-                   Height="30"
-                   Style="{StaticResource DeleteButton}" />
+                    Style="{StaticResource DeleteOrderButton}" />
             
         </Grid>
     </Border>

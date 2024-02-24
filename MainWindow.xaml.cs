@@ -85,7 +85,7 @@ public partial class MainWindow : Window
     {
         AllItemsPage allItemsPage = new AllItemsPage(User.Id);
         PageNavigator.Content = allItemsPage;
-        OrderPage orderPage = new(new());
+        OrderPage orderPage = new(User.Id);
         PageResultNavigator.Content = orderPage;
     }
 

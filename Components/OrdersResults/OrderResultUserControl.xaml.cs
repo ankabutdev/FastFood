@@ -65,7 +65,7 @@ public partial class OrderResultUserControl : UserControl
         if (order is not null)
         {
             lblOrderName.Content = order.Description;
-            lblPrice.Content = order.ResultPrice.ToString();
+            lblPrice.Content = order.ResultPrice.ToString() + " $";
             lblCount.Content = 0;
         }
         else

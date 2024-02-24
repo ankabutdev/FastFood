@@ -240,4 +240,37 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="DeleteOrderButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="B" 
+                        Background="#F05954"
+                        CornerRadius="5">
+                        <Path Fill="#fff" 
+                          Data="{DynamicResource delete}" Height="12" Width="10" Stretch="UniformToFill"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#D8504B"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="B" Property="Background" Value="#F05954"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#C14843"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>
