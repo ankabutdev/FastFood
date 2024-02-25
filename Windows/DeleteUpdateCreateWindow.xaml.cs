@@ -55,7 +55,7 @@ public partial class DeleteUpdateCreateWindow : Window
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        ProductUpdateWindow productUpdateWindow = new ProductUpdateWindow(Product.Id);
+        ProductUpdateWindow productUpdateWindow = new(Product.Id);
         productUpdateWindow.SetData(Product);
         productUpdateWindow.ShowDialog();
         this.Close();
