@@ -1,5 +1,8 @@
 ﻿using FastFood.Entites.Orders;
+using FastFood.Repositories.Orders;
+using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,13 +15,17 @@ namespace FastFood.Components.OrdersResults;
 /// </summary>
 public partial class OrderResultUserControl : UserControl
 {
+    public Func<long, Task> Refresh { get; set; }
+    private Order Order = new();
+    private readonly OrderRepository _orderRepository;
+
     public OrderResultUserControl()
     {
         InitializeComponent();
-        //DataContext = this;
+        this._orderRepository = new();
     }
 
-    private int _productCount;
+    private int _productCount = 1;
 
     public int ProductCount
     {
@@ -42,34 +49,37 @@ public partial class OrderResultUserControl : UserControl
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        ProductCount++;
+        ProductCount += 1;
+        lblCount.Content = ProductCount;
     }
 
     private void lblMinus_Click(object sender, RoutedEventArgs e)
     {
-        if (ProductCount > 0)
+        if (ProductCount > 1)
         {
-            ProductCount--;
+            ProductCount -= 1;
+        }
+        lblCount.Content = ProductCount;
+    }
+
+    private async void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        // 
+    }
+
+    public void SetData(Order order)
+    {
+        this.Order = order;
+        lblOrderName.Content = order.Description;
+        lblPrice.Content = order.ResultPrice.ToString() + " $";
+        lblCount.Content = 1;
+    }
+
+    private async void Delete_Button_Click(object sender, RoutedEventArgs e)
+    {
+        if (await _orderRepository.DeleteAsync(Order.Id) > 0)
+        {
+            MessageBox.Show("Successfully");
         }
     }
-
-    private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        //stpOrdersChips.Children.Clear();
-        //var orders = await
-        MessageBox.Show("User control Mouse down");
-    }
-
-    public void SetData(Order? order)
-    {
-        if (order is not null)
-        {
-            lblOrderName.Content = order.Description;
-            lblPrice.Content = order.ResultPrice.ToString() + " $";
-            lblCount.Content = 0;
-        }
-        else
-            MessageBox.Show("Order is null");
-    }
-
 }

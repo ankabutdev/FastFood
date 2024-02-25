@@ -2,5 +2,5 @@
 
 public enum OrderStatus
 {
-    InQueue, InProcess, InDelivering, Successful
+    InQueue, InProcess, InDelivering, Successfully
 }

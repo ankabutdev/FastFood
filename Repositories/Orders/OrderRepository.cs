@@ -48,9 +48,46 @@ public class OrderRepository : BaseRepository, IOrderRepository
         }
     }
 
-    public Task<int> DeleteAsync(long id)
+    public async Task<int> CreateOrderWithIsPaidTrueAsync(Order order, long orderId)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "UPDATE public.orders " +
+                $"SET status=?, payment_type=@PaymentType, is_paid=@IsPaid, updated_at=@UpdatedAt " +
+                $"WHERE id={orderId};";
+
+            var result = await _connection.ExecuteAsync(query, order);
+
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
+    public async Task<int> DeleteAsync(long id)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"DELETE FROM orders WHERE id={id}";
+            var result = await _connection.ExecuteAsync(query);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<IList<Order>> GetAllAsync()
