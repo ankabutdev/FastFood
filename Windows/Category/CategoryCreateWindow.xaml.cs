@@ -65,7 +65,7 @@ public partial class CategoryCreateWindow : Window
             rbDescription.Document.ContentEnd).Text;
 
         string imagePath = ImgBImage.ImageSource.ToString();
-        if (!String.IsNullOrEmpty(imagePath))
+        if (!string.IsNullOrEmpty(imagePath))
             category.ImagePath = await CopyToImageAsync(imagePath,
                 ContentConstant.GetImageRootPath());
 
