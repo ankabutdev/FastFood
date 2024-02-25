@@ -60,5 +60,4 @@ public partial class DeleteUpdateCreateWindow : Window
         productUpdateWindow.ShowDialog();
         this.Close();
     }
-
 }
