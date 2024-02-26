@@ -1,5 +1,8 @@
-﻿using FastFood.Components.Products;
+﻿using FastFood.Components.OrdersResults;
+using FastFood.Components.Products;
+using FastFood.Pages.OrderPages;
 using FastFood.Repositories.Products;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;

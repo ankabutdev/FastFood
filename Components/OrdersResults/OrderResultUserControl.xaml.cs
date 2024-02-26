@@ -1,4 +1,5 @@
 ﻿using FastFood.Entites.Orders;
+using FastFood.Pages.AlItems;
 using FastFood.Repositories.Orders;
 using System;
 using System.ComponentModel;
@@ -18,6 +19,12 @@ public partial class OrderResultUserControl : UserControl
     public Func<long, Task> Refresh { get; set; }
     private Order Order = new();
     private readonly OrderRepository _orderRepository;
+    public event EventHandler OrderChanged;
+
+    private void NotifyOrderChanged()
+    {
+        OrderChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     public OrderResultUserControl()
     {
@@ -79,7 +86,10 @@ public partial class OrderResultUserControl : UserControl
     {
         if (await _orderRepository.DeleteAsync(Order.Id) > 0)
         {
-            MessageBox.Show("Successfully");
+            //MessageBox.Show("Successfully");
+            //NotifyOrderChanged();
+            
+
         }
     }
 }

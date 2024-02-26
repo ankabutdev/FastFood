@@ -22,7 +22,11 @@ public partial class MainWindow : Window
     public MainWindow(IdentityRole Role, long userId)
     {
         InitializeComponent();
+        Check(Role, userId);
+    }
 
+    private void Check(IdentityRole Role, long userId)
+    {
         // Is_Admin
         User.Role = Role;
         User.Id = userId;
@@ -67,32 +71,35 @@ public partial class MainWindow : Window
     {
         ColdDrinksPage coldDrinksPage = new ColdDrinksPage();
         PageNavigator.Content = coldDrinksPage;
+        ConnectOrderPage();
     }
 
     private void rbHotDrinks_Click(object sender, RoutedEventArgs e)
     {
         HotDrinksPage hotDrinksPage = new HotDrinksPage();
         PageNavigator.Content = hotDrinksPage;
+        ConnectOrderPage();
     }
 
     private void rb_Food_Click(object sender, RoutedEventArgs e)
     {
         FoodPage foodPage = new FoodPage();
         PageNavigator.Content = foodPage;
+        ConnectOrderPage();
     }
 
     private void rb_AllItems_Click(object sender, RoutedEventArgs e)
     {
         AllItemsPage allItemsPage = new AllItemsPage(User.Id);
         PageNavigator.Content = allItemsPage;
-        OrderPage orderPage = new(User.Id);
-        PageResultNavigator.Content = orderPage;
+        ConnectOrderPage();
     }
 
     private void rbDisserts_Click(object sender, RoutedEventArgs e)
     {
         DissertsPage dissertsPage = new DissertsPage();
         PageNavigator.Content = dissertsPage;
+        ConnectOrderPage();
     }
 
     private void rbCreateProduct_Click(object sender, RoutedEventArgs e)
@@ -107,5 +114,20 @@ public partial class MainWindow : Window
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.Show();
         this.Close();
+    }
+
+    private void ConnectOrderPage()
+    {
+        OrderPage orderPage = new OrderPage(User.Id);
+        PageResultNavigator.Content = orderPage;
+    }
+
+    private async void PayForOrders_Click(object sender, RoutedEventArgs e)
+    {
+        OrderPage orderPage = new(User.Id);
+        foreach (var item in orderPage.wrpOrder.Children)
+        {
+            MessageBox.Show(item.ToString());
+        }
     }
 }
