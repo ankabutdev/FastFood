@@ -26,13 +26,6 @@
                    FontWeight="Bold"
                    FontSize="14"/>
 
-            <!--<StackPanel Grid.Column="1"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal"
-                        x:Name="stpOrdersChips"
-                        Margin="10 0 0 0">
-
-            </StackPanel>-->
             <Border Grid.Column="1"
                     Height="22"
                     Width="67">
