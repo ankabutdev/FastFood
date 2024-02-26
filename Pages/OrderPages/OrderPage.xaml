@@ -10,11 +10,30 @@
       Loaded="Page_Loaded">
 
     <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
         <ScrollViewer Margin="5 5 10 5"
-                          Grid.Row="1">
+                          Grid.Row="0">
             <WrapPanel x:Name="wrpOrder">
 
             </WrapPanel>
         </ScrollViewer>
+
+        <Border Grid.Row="1" 
+                CornerRadius="100">
+            
+            <Button Content="PAY"
+                    Margin="5"
+                    Height="50"
+                    Width="330"
+                    HorizontalAlignment="Center"
+                    Click="PayForOrders_Click"
+                    Style="{StaticResource SuccessButton}">
+
+            </Button>
+        </Border>
     </Grid>
 </Page>
