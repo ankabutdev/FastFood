@@ -119,32 +119,10 @@
                             NavigationUIVisibility="Hidden"/>
 
                     <Border Grid.Column="1" x:Name="drResult">
-
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="7*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <Border CornerRadius="10" Grid.Row="0" Margin="0 15 5 0">
-                                <Frame x:Name="PageResultNavigator"
+                        <Border CornerRadius="10" Grid.Row="0" Margin="0 15 5 0">
+                            <Frame x:Name="PageResultNavigator"
                             NavigationUIVisibility="Hidden" HorizontalAlignment="Right" Width="345"/>
-                            </Border>
-
-                            <Border Grid.Row="1"
-                                Margin="0 0 5 0"
-                                CornerRadius="5">
-                                <Button Content="PAY"
-                                    Margin="5"
-                                    Height="50"
-                                    Width="330"
-                                   HorizontalAlignment="Center"
-                                   Style="{StaticResource SuccessButton}">
-
-                                </Button>
-
-                            </Border>
-                        </Grid>
+                        </Border>
                     </Border>
                     
                 </Grid>
