@@ -2,6 +2,7 @@
 using FastFood.Repositories.Categories;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
+using FastFood.Windows.Payment;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -65,8 +66,13 @@ public partial class OrderPage : Page
         }
     }
 
-    private void PayForOrders_Click(object sender, RoutedEventArgs e)
+    private async void PayForOrders_Click(object sender, RoutedEventArgs e)
     {
+        var result = await _orderRepository
+            .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
 
+        PaymentWindow paymentWindow = new PaymentWindow();
+        paymentWindow.ShowDialog();
+        
     }
 }
