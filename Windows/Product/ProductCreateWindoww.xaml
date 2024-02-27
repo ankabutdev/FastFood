@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastFood.Windows.Product"
         mc:Ignorable="d"
- Title="Product Create Window" 
+        Title="Product Create Window" 
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Height="700"
@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" >
+                <StackPanel Grid.Column="0">
                     <Label Content="Product Image" Style="{DynamicResource TitleLabel}"/>
                     <StackPanel Orientation="Horizontal">
                         <Border Background="{DynamicResource SecondaryBackground}">
