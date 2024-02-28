@@ -24,8 +24,15 @@ public partial class PaymentWindow : Window
         InitializeComponent();
     }
 
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+    private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        await RefreshAsync();
+    }
+
+    public async Task RefreshAsync()
+    {
+        wrpBasket.Children.Clear();
+
 
     }
 }

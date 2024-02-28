@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FastFood.Repositories.Orders;
 
-public class OrderRepository : BaseRepository, IOrderRepository
+public partial class OrderRepository : BaseRepository, IOrderRepository
 {
     public async Task<long> CountAsync()
     {

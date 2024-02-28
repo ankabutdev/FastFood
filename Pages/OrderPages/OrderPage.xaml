@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <ScrollViewer Margin="5 5 10 5"
+        <ScrollViewer Margin="5"
                           Grid.Row="0">
             <WrapPanel x:Name="wrpOrder">
 
