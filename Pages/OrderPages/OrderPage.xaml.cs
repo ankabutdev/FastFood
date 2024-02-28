@@ -71,8 +71,9 @@ public partial class OrderPage : Page
         var result = await _orderRepository
             .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
 
+
+
         PaymentWindow paymentWindow = new PaymentWindow();
         paymentWindow.ShowDialog();
-        
     }
 }
