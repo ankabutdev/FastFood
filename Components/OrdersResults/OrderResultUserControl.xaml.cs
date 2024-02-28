@@ -82,6 +82,11 @@ public partial class OrderResultUserControl : UserControl
         lblCount.Content = 1;
     }
 
+    public Order ReturnThisData()
+    {
+        return this.Order;
+    }
+
     private async void Delete_Button_Click(object sender, RoutedEventArgs e)
     {
         if (await _orderRepository.DeleteAsync(Order.Id) > 0)
