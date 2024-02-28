@@ -185,7 +185,7 @@
             <Button x:Name="btnSave" 
                     Click="BtnSave_Click"
                     Margin="0 20 0 10" 
-                    Height="50" 
+                    Height="50"
                     Style="{DynamicResource SuccessButton}" Content="Save"/>
         </StackPanel>
     </Grid>
