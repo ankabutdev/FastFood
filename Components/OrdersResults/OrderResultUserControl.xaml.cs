@@ -1,5 +1,4 @@
 ﻿using FastFood.Entites.Orders;
-using FastFood.Pages.AlItems;
 using FastFood.Repositories.Orders;
 using System;
 using System.ComponentModel;
@@ -19,6 +18,8 @@ public partial class OrderResultUserControl : UserControl
     public Func<long, Task> Refresh { get; set; }
     private Order Order = new();
     private readonly OrderRepository _orderRepository;
+    private readonly OrderDetailsRepository _orderDetailRepository;
+
     public event EventHandler OrderChanged;
 
     private void NotifyOrderChanged()
@@ -30,6 +31,7 @@ public partial class OrderResultUserControl : UserControl
     {
         InitializeComponent();
         this._orderRepository = new();
+        this._orderDetailRepository = new();
     }
 
     private int _productCount = 1;
@@ -54,19 +56,22 @@ public partial class OrderResultUserControl : UserControl
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private void AddButton_Click(object sender, RoutedEventArgs e)
+    private async void AddButton_Click(object sender, RoutedEventArgs e)
     {
         ProductCount += 1;
         lblCount.Content = ProductCount;
+        await _orderDetailRepository.UpdateQuantityAsync(Order.Id, ProductCount);
     }
 
-    private void lblMinus_Click(object sender, RoutedEventArgs e)
+    private async void lblMinus_Click(object sender, RoutedEventArgs e)
     {
         if (ProductCount > 1)
         {
             ProductCount -= 1;
         }
         lblCount.Content = ProductCount;
+        await _orderDetailRepository.UpdateQuantityAsync(Order.Id, ProductCount);
+
     }
 
     private async void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -93,7 +98,7 @@ public partial class OrderResultUserControl : UserControl
         {
             //MessageBox.Show("Successfully");
             //NotifyOrderChanged();
-            
+
 
         }
     }

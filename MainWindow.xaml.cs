@@ -122,12 +122,8 @@ public partial class MainWindow : Window
         PageResultNavigator.Content = orderPage;
     }
 
-    private async void PayForOrders_Click(object sender, RoutedEventArgs e)
+    private void PayForOrders_Click(object sender, RoutedEventArgs e)
     {
         OrderPage orderPage = new(User.Id);
-        foreach (var item in orderPage.wrpOrder.Children)
-        {
-            MessageBox.Show(item.ToString());
-        }
     }
 }

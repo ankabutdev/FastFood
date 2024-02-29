@@ -66,14 +66,9 @@ public partial class OrderPage : Page
         }
     }
 
-    private async void PayForOrders_Click(object sender, RoutedEventArgs e)
+    private void PayForOrders_Click(object sender, RoutedEventArgs e)
     {
-        var result = await _orderRepository
-            .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
-
-
-
-        PaymentWindow paymentWindow = new PaymentWindow();
+        PaymentWindow paymentWindow = new(UserId);
         paymentWindow.ShowDialog();
     }
 }

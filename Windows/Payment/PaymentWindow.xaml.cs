@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using FastFood.Components.OrdersResults;
+using FastFood.Repositories.Orders;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FastFood.Windows.Payment;
 
@@ -19,9 +10,14 @@ namespace FastFood.Windows.Payment;
 /// </summary>
 public partial class PaymentWindow : Window
 {
-    public PaymentWindow()
+    private readonly long UserId;
+    private readonly OrderRepository _orderRepository;
+
+    public PaymentWindow(long userId)
     {
         InitializeComponent();
+        this.UserId = userId;
+        this._orderRepository = new OrderRepository();
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -33,6 +29,14 @@ public partial class PaymentWindow : Window
     {
         wrpBasket.Children.Clear();
 
+        var orders = await _orderRepository
+            .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
 
+        foreach (var order in orders)
+        {
+            var orderResultUserControl = new OrderResultUserControl();
+            orderResultUserControl.SetData(order);
+            wrpBasket.Children.Add(orderResultUserControl);
+        }
     }
 }
