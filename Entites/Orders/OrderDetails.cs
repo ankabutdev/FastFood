@@ -6,7 +6,7 @@ public class OrderDetail : Auditable
 
     public long ProductId { get; set; }
 
-    public int Quantity { get; set; }
+    public long Quantity { get; set; }
 
     // Price prices of the products
     // Product price * quantity
