@@ -124,7 +124,6 @@ public class ProductRepository : BaseRepository, IProductRepository
                 "image_path=@ImagePath, unit_price=@UnitPrice, " +
                 $" updated_at=@UpdatedAt, qunatity=@Qunatity WHERE id = {id} ;";
 
-
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }
