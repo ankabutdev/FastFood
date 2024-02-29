@@ -8,8 +8,6 @@ using FastFood.Pages.OrderPages;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,17 +23,13 @@ namespace FastFood.Components.Products;
 /// </summary>
 public partial class ProductViewUserControl : UserControl
 {
-
     public Product Product { get; set; }
-    private IWebHostEnvironment? _env;
-
     private readonly ProductRepository _productRepository;
     private readonly OrderRepository _orderRepository;
+    private readonly OrderDetailsRepository _orderDetailsRepository;
 
     public long Id { get; set; }
     public long UserId { get; set; }
-
-    private readonly string? ROOTHPATH;
 
     public ProductViewUserControl()
     {
@@ -43,6 +37,7 @@ public partial class ProductViewUserControl : UserControl
         Product = new Product();
         this._productRepository = new ProductRepository();
         this._orderRepository = new OrderRepository();
+        this._orderDetailsRepository = new();
     }
 
     public ProductViewUserControl(long userId)
@@ -93,10 +88,21 @@ public partial class ProductViewUserControl : UserControl
 
             if (await _orderRepository.CreateAsync(order) > 0)
             {
-                //MainWindow mainWindow = new(IdentityRole.None, 0);
                 OrderPage orderPage = new(UserId);
-                //orderPage.RefreshAsync();
-                //mainWindow.PageResultNavigator.Content = orderPage;
+
+                OrderDetail orderDetail = new()
+                {
+                    OrderId = order.Id,
+                    ProductId = Product.Id,
+                    Quantity = Product.Qunatity,
+                    TotalPrice = Product.UnitPrice * Product.Qunatity,
+                    ResultPrice = (Product.UnitPrice * Product.Qunatity) - 0, /* Product.Discount */
+                    DiscountPrice = 0,
+                    CreatedAt = TimeHelper.GetDateTime(),
+                    UpdatedAt= TimeHelper.GetDateTime(),
+                };
+
+                await _orderDetailsRepository.CreateAsync(orderDetail);
             }
             else
             {
