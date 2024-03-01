@@ -1,5 +1,5 @@
-﻿using FastFood.Components.OrdersResults;
-using FastFood.Repositories.Orders;
+﻿using FastFood.Repositories.Orders;
+using FastFood.Repositories.Products;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -12,12 +12,14 @@ public partial class PaymentWindow : Window
 {
     private readonly long UserId;
     private readonly OrderRepository _orderRepository;
+    private readonly ProductRepository _productRepository;
 
     public PaymentWindow(long userId)
     {
         InitializeComponent();
         this.UserId = userId;
         this._orderRepository = new OrderRepository();
+        this._productRepository = new ProductRepository();
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,11 +34,12 @@ public partial class PaymentWindow : Window
         var orders = await _orderRepository
             .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
 
-        foreach (var order in orders)
-        {
-            var orderResultUserControl = new OrderResultUserControl();
-            orderResultUserControl.SetData(order);
-            wrpBasket.Children.Add(orderResultUserControl);
-        }
+        //foreach (var order in orders)
+        //{
+        //    var productViewUserControl = new ProductViewUserControl();
+        //    productViewUserControl.SetData(order);
+        //    wrpBasket.Children.Add(productViewUserControl);
+        //}
+
     }
 }
