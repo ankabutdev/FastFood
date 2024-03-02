@@ -34,24 +34,24 @@ public partial class ProductViewUserControl : UserControl
     public ProductViewUserControl()
     {
         InitializeComponent();
-        Product = new Product();
         this._productRepository = new ProductRepository();
         this._orderRepository = new OrderRepository();
-        this._orderDetailsRepository = new();
+        this._orderDetailsRepository = new OrderDetailsRepository();
     }
 
     public ProductViewUserControl(long userId)
     {
         InitializeComponent();
-        Product = new Product();
         this._productRepository = new ProductRepository();
         this._orderRepository = new OrderRepository();
+        this._orderDetailsRepository = new OrderDetailsRepository();
         this.UserId = userId;
     }
 
     public void SetData(Product product)
     {
         Id = product.Id;
+        this.Product = product;
         ProductName.Content = product.Name;
         lblProductPrice.Content = product.UnitPrice.ToString() + " $";
         string path = ContentConstant.GetImageContentsPath() + product.ImagePath;
@@ -82,6 +82,7 @@ public partial class ProductViewUserControl : UserControl
                 ResultPrice = Product.UnitPrice,
                 DeliveryPrice = 0,
                 DeliveryId = 1,
+                ProductId = Product.Id,
                 CreatedAt = TimeHelper.GetDateTime(),
                 UpdatedAt = TimeHelper.GetDateTime(),
             };
@@ -90,16 +91,19 @@ public partial class ProductViewUserControl : UserControl
             {
                 OrderPage orderPage = new(UserId);
 
+                var orderDetailsNeedModel = await _orderRepository
+                    .GetOrderByUserIdByProductId(UserId, Product.Id);
+
                 OrderDetail orderDetail = new()
                 {
-                    OrderId = order.Id,
+                    OrderId = orderDetailsNeedModel.Id,
                     ProductId = Product.Id,
                     Quantity = Product.Qunatity,
                     TotalPrice = Product.UnitPrice * Product.Qunatity,
                     ResultPrice = (Product.UnitPrice * Product.Qunatity) - 0, /* Product.Discount */
-                    DiscountPrice = 0,
+                    DiscountPrice = 1,
                     CreatedAt = TimeHelper.GetDateTime(),
-                    UpdatedAt= TimeHelper.GetDateTime(),
+                    UpdatedAt = TimeHelper.GetDateTime(),
                 };
 
                 await _orderDetailsRepository.CreateAsync(orderDetail);

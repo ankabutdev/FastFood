@@ -1,8 +1,5 @@
-﻿using FastFood.Components.OrdersResults;
-using FastFood.Components.Products;
-using FastFood.Pages.OrderPages;
+﻿using FastFood.Components.Products;
 using FastFood.Repositories.Products;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +12,7 @@ namespace FastFood.Pages.AlItems;
 public partial class AllItemsPage : Page
 {
     private readonly ProductRepository _productRepository;
-    public long UserId {  get; set; }
+    public long UserId { get; set; }
 
     public AllItemsPage(long UserId)
     {

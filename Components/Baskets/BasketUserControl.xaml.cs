@@ -1,11 +1,7 @@
-﻿using FastFood.Constants;
-using FastFood.Entites.Orders;
-using FastFood.Entites.Products;
-using System;
+﻿using FastFood.Entites.Orders;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace FastFood.Components.Baskets;
 
@@ -14,6 +10,8 @@ namespace FastFood.Components.Baskets;
 /// </summary>
 public partial class BasketUserControl : UserControl
 {
+    public long Id { get; set; }
+
     public BasketUserControl()
     {
         InitializeComponent();
@@ -21,15 +19,19 @@ public partial class BasketUserControl : UserControl
 
     private void Border_MouseDown(object sender, MouseButtonEventArgs e)
     {
+
     }
+
     public async Task RefreshAsync()
     {
+
     }
 
     public void SetData(Order order)
     {
-
-        string path = ContentConstant.GetImageContentsPath() + product.ImagePath;
-        cmpImage.Source = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
+        Id = order.Id;
+        orderName.Content = order.Description.ToString();
+        lblOrderPrice.Content = order.ProductsPrice.ToString() + " $";
+        //lblOrderQuantity.Content = order.
     }
 }

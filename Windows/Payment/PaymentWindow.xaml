@@ -21,20 +21,26 @@
             <Setter Property="Margin" Value="0 5"/>
         </Style>
     </Window.Resources>
-    <Grid Background="{DynamicResource PrimaryBackground}" >
+    <Grid Background="{DynamicResource SecondaryBackground}" >
         <StackPanel Orientation="Horizontal"
                     Margin="10 10">
-            <Grid Width="1000">
+            <Grid Width="980">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
                 <!-- For Fields Create Basket Labels and buttons -->
-                
-                
+                <StackPanel Grid.Column="0" 
+                            Orientation="Vertical">
+                    
+                    <Label Content=""
+                           Style="{DynamicResource TitleLabel}">
+                        
+                    </Label>
+                </StackPanel>
                 <!-- WrapPanel Section, in this fileds have OrderResultComponent -->
-                <ScrollViewer Grid.Column="1">
+                <ScrollViewer Margin="10" Grid.Column="1">
                     <WrapPanel x:Name="wrpBasket">
 
                     </WrapPanel>
