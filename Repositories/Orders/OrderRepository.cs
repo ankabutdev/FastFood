@@ -35,9 +35,9 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         {
             await _connection.OpenAsync();
             string query = "INSERT INTO public.orders(user_id, delivery_id, status, products_price, delivery_price, " +
-                "result_price, latitude, longitude, payment_type, is_paid, description, created_at, updated_at) " +
+                "result_price, latitude, longitude, payment_type, is_paid, description, created_at, updated_at, product_id) " +
                 "VALUES (@UserId, @DeliveryId, @Status, @ProductsPrice, @DeliveryPrice, @ResultPrice, @Latitude, " +
-                "@Longitude, @PaymentType, @IsPaid, @Description, @CreatedAt, @UpdatedAt);";
+                "@Longitude, @PaymentType, @IsPaid, @Description, @CreatedAt, @UpdatedAt, @ProductId);";
 
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
@@ -76,7 +76,8 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         try
         {
             await _connection.OpenAsync();
-            string query = $"DELETE FROM orders WHERE id={id}";
+            string query = $"DELETE FROM order_details WHERE order_id = {id};" +
+                $" DELETE FROM orders WHERE id={id}";
             var result = await _connection.ExecuteAsync(query);
             return result;
         }
@@ -132,6 +133,27 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
     public Task<IQueryable<Order>> GetAllOrderByUserIdByIsPaidTrueAsync(long userId)
     {
         throw new System.NotImplementedException();
+    }
+
+    public async Task<Order> GetOrderByUserIdByProductId(long userId, long productId)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM orders " +
+                $"WHERE user_id = {userId} and product_id = {productId};";
+
+            var result = (await _connection.QueryAsync<Order>(query)).FirstOrDefault();
+            return result!;
+        }
+        catch
+        {
+            return new Order();
+        }
+        finally
+        {
+            await _connection.CloseAsync() ;
+        }
     }
 
     public async Task<OrderViewModel> GetProductByIdAsync(long id)
