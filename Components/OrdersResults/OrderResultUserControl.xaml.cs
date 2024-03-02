@@ -71,7 +71,6 @@ public partial class OrderResultUserControl : UserControl
         }
         lblCount.Content = ProductCount;
         await _orderDetailRepository.UpdateQuantityAsync(Order.Id, ProductCount);
-
     }
 
     private async void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
