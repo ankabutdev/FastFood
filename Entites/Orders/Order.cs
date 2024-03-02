@@ -8,6 +8,8 @@ public class Order : Auditable
 
     public long DeliveryId { get; set; }
 
+    public long ProductId { get; set; }
+
     public OrderStatus Status { get; set; }
 
     // The summ of order details result prices
