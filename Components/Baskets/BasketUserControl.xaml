@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FastFood.Components.Baskets"
              mc:Ignorable="d" 
-             Height="150" Width="300"
+             Height="100" Width="250"
              Margin="10 10">
 
     <Border CornerRadius="20"
@@ -14,40 +14,42 @@
 
         <Grid x:Name="grMain"
               Cursor="Hand">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
-                <RowDefinition Height="143*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.60*"/>
-                <ColumnDefinition Width="0.40*"/>
-            </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0"
                         Orientation="Vertical"
                         Grid.RowSpan="2">
 
-                <Label Height="50"
+                <Label Height="40"
                        Content=""
+                       x:Name="orderName"
                        FontSize="20"
                        FontWeight="Medium"
                        Margin="5"/>
-
                 <Label/>
 
-                <Label Height="50"/>
-                <Label x:Name="lblOrderPrice"
-                       Content="" Foreground="DarkOrange"
-                       FontSize="20" Margin="10 0 0 10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0"
+                           x:Name="lblOrderPrice"
+                           Content="" Foreground="DarkOrange"
+                           FontSize="20" Margin="10 0 0 10"/>
+
+                    <Label Grid.Column="1"
+                           x:Name="lblOrderQuantity"
+                           FontSize="20"
+                           Margin="10 0 0 10"
+                           Content=""
+                           Foreground="DarkOrange"/>
+
+
+                </Grid>
+                
 
             </StackPanel>
-            <Border Margin="10" Grid.Column="1" Grid.RowSpan="2">
-                <Image x:Name="cmpImage"
-                       HorizontalAlignment="Center"
-                       Stretch="Fill"/>
-            </Border>
             
         </Grid>
-        
     </Border>
 </UserControl>
