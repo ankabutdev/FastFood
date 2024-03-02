@@ -15,4 +15,6 @@ public interface IOrderRepository : IRepository<Order, OrderViewModel>,
     public Task<IQueryable<Order>> GetAllOrderByUserIdByIsPaidTrueAsync(long userId);
 
     public Task<int> CreateOrderWithIsPaidTrueAsync(Order order, long orderId);
+
+    public Task<Order> GetOrderByUserIdByProductId(long userId, long productId);
 }
