@@ -1,7 +1,10 @@
 ﻿using FastFood.Components.Baskets;
 using FastFood.Components.Products;
+using FastFood.Entites.Orders;
+using FastFood.Helpers;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
+using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,6 +18,7 @@ public partial class PaymentWindow : Window
     private readonly long UserId;
     private readonly OrderRepository _orderRepository;
     private readonly ProductRepository _productRepository;
+    private readonly OrderDetailsRepository _orderDetailsRepository;
 
     public PaymentWindow(long userId)
     {
@@ -22,6 +26,7 @@ public partial class PaymentWindow : Window
         this.UserId = userId;
         this._orderRepository = new OrderRepository();
         this._productRepository = new ProductRepository();
+        this._orderDetailsRepository = new OrderDetailsRepository();
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
