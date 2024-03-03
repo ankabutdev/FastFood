@@ -9,7 +9,6 @@ using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
 using FastFood.Windows;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -108,10 +107,7 @@ public partial class ProductViewUserControl : UserControl
 
                 await _orderDetailsRepository.CreateAsync(orderDetail);
             }
-            else
-            {
-                MessageBox.Show("not create order");
-            }
+            //else => Error
         }
         AllItemsPage allItemsPage = new(UserId);
         allItemsPage.RefreshAsync();

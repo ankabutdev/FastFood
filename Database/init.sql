@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS public.orders
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
     user_id bigint,
     delivery_id bigint,
+    product_id bigint,
     status text COLLATE pg_catalog."default" NOT NULL,
     products_price double precision NOT NULL,
     delivery_price double precision NOT NULL,
