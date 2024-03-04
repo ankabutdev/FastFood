@@ -1,7 +1,9 @@
 ﻿using FastFood.Common;
 using FastFood.Entites.Orders;
+using FastFood.Helpers;
 using FastFood.ViewModels.Orders;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,4 +19,6 @@ public interface IOrderRepository : IRepository<Order, OrderViewModel>,
     public Task<int> CreateOrderWithIsPaidTrueAsync(Order order, long orderId);
 
     public Task<Order> GetOrderByUserIdByProductId(long userId, long productId);
+
+    public Task<bool> UpdateQuantityAsync(long id, long orderQuantity);
 }
