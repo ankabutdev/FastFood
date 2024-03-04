@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using FastFood.Entites.Orders;
+using FastFood.Helpers;
 using FastFood.Interfaces.Orders;
+using FastFood.ViewModels.Baskets;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FastFood.Repositories.Orders;
@@ -19,8 +22,8 @@ public class OrderDetailsRepository : BaseRepository, IOrderRepositoryDetails
         {
             await _connection.OpenAsync();
             string query = "INSERT INTO public.order_details(order_id, product_id, quantity, total_price, " +
-                "discount_price, result_price, created_at, updated_at) VALUES (@OrderId, @ProductId, @Quantity, " +
-                "@TotalPrice, @DiscountPrice, @ResultPrice, @CreatedAt, @UpdatedAt);";
+                "discount_price, result_price, created_at, updated_at, user_id) VALUES (@OrderId, @ProductId, @Quantity, " +
+                "@TotalPrice, @DiscountPrice, @ResultPrice, @CreatedAt, @UpdatedAt, @UserId);";
 
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
@@ -45,6 +48,29 @@ public class OrderDetailsRepository : BaseRepository, IOrderRepositoryDetails
         throw new System.NotImplementedException();
     }
 
+    public async Task<IList<BasketViewModel>> GetBasketAsync()
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"SELECT *" +
+                            $"FROM orders " +
+                            $"FULL JOIN order_details " +
+                            $"ON orders.id = order_details.id;";
+
+            var result = (await _connection.QueryAsync<BasketViewModel>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<BasketViewModel>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public Task<OrderDetail> GetProductByIdAsync(long id)
     {
         throw new System.NotImplementedException();
@@ -60,7 +86,7 @@ public class OrderDetailsRepository : BaseRepository, IOrderRepositoryDetails
         try
         {
             await _connection.OpenAsync();
-            string query = "UPDATE public.order_details SET order_id=@OrderId, product_id=@ProductId, " +
+            string query = "UPDATE public.order_details SET order_id=@OrderId, user_id=@UserId, product_id=@ProductId, " +
                 "quantity=@Quantity, total_price=@TotalPrice, discount_price=@DiscountPrice, " +
                 "result_price=@ResultPrice, created_at=@CreatedAt, updated_at=@UpdatedAt " +
                 $"WHERE id = {id};";
@@ -84,7 +110,7 @@ public class OrderDetailsRepository : BaseRepository, IOrderRepositoryDetails
         {
             await _connection.OpenAsync();
             string query = $"UPDATE public.order_details SET " +
-                $"quantity={orderQuantity}, updated_at=@UpdatedAt " +
+                $"quantity={orderQuantity} " +
                 $"WHERE id = {id};";
 
             var result = await _connection.ExecuteAsync(query);
