@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using FastFood.Entites.Orders;
+using FastFood.Helpers;
 using FastFood.Interfaces.Orders;
 using FastFood.ViewModels.Orders;
 using System.Collections.Generic;
@@ -35,9 +36,9 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         {
             await _connection.OpenAsync();
             string query = "INSERT INTO public.orders(user_id, delivery_id, status, products_price, delivery_price, " +
-                "result_price, latitude, longitude, payment_type, is_paid, description, created_at, updated_at, product_id) " +
+                "result_price, latitude, longitude, payment_type, is_paid, description, created_at, updated_at, product_id, quantity) " +
                 "VALUES (@UserId, @DeliveryId, @Status, @ProductsPrice, @DeliveryPrice, @ResultPrice, @Latitude, " +
-                "@Longitude, @PaymentType, @IsPaid, @Description, @CreatedAt, @UpdatedAt, @ProductId);";
+                "@Longitude, @PaymentType, @IsPaid, @Description, @CreatedAt, @UpdatedAt, @ProductId, @Quantity);";
 
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
@@ -186,5 +187,27 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
     public Task<int> UpdateAsync(long id, Order entity)
     {
         throw new System.NotImplementedException();
+    }
+
+    public async Task<bool> UpdateQuantityAsync(long id, long orderQuantity)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"UPDATE public.orders SET " +
+                $"quantity={orderQuantity}, updated_at='{TimeHelper.GetDateTime()}' " +
+                $"WHERE id = {id};";
+
+            var result = await _connection.ExecuteAsync(query);
+            return result > 0;
+        }
+        catch
+        {
+            return false;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 }
