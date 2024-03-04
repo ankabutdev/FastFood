@@ -1,10 +1,6 @@
 ﻿using FastFood.Components.Baskets;
-using FastFood.Components.Products;
-using FastFood.Entites.Orders;
-using FastFood.Helpers;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
-using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
 using System.Threading.Tasks;
 using System.Windows;
 

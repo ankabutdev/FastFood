@@ -82,6 +82,7 @@ public partial class ProductViewUserControl : UserControl
                 DeliveryPrice = 0,
                 DeliveryId = 1,
                 ProductId = Product.Id,
+                Quantity = 1,
                 CreatedAt = TimeHelper.GetDateTime(),
                 UpdatedAt = TimeHelper.GetDateTime(),
             };
@@ -97,10 +98,11 @@ public partial class ProductViewUserControl : UserControl
                 {
                     OrderId = orderDetailsNeedModel.Id,
                     ProductId = Product.Id,
-                    Quantity = Product.Qunatity,
+                    Quantity = 1,
                     TotalPrice = Product.UnitPrice * Product.Qunatity,
                     ResultPrice = (Product.UnitPrice * Product.Qunatity) - 0, /* Product.Discount */
                     DiscountPrice = 1,
+                    UserId = UserId,
                     CreatedAt = TimeHelper.GetDateTime(),
                     UpdatedAt = TimeHelper.GetDateTime(),
                 };

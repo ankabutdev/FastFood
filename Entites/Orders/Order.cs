@@ -12,6 +12,8 @@ public class Order : Auditable
 
     public OrderStatus Status { get; set; }
 
+    public long Quantity { get; set; }
+
     // The summ of order details result prices
     // The monay which that user must pay for products
     public double ProductsPrice { get; set; }

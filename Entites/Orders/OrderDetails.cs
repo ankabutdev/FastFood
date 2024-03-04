@@ -14,6 +14,8 @@ public class OrderDetail : Auditable
 
     public double DiscountPrice { get; set; }
 
+    public long UserId { get; set; }
+
     // Prices that user must pay for these products
     // TotalPrice - DiscountPrice
     public double ResultPrice { get; set; }
