@@ -34,7 +34,7 @@ public partial class OrderResultUserControl : UserControl
         this._orderDetailRepository = new();
     }
 
-    private int _productCount = 1;
+    private int _productCount;
 
     public int ProductCount
     {
@@ -60,7 +60,7 @@ public partial class OrderResultUserControl : UserControl
     {
         ProductCount += 1;
         lblCount.Content = ProductCount;
-        await _orderDetailRepository.UpdateQuantityAsync(Order.Id, ProductCount);
+        await _orderRepository.UpdateQuantityAsync(Order.Id, ProductCount);
     }
 
     private async void lblMinus_Click(object sender, RoutedEventArgs e)
@@ -70,7 +70,7 @@ public partial class OrderResultUserControl : UserControl
             ProductCount -= 1;
         }
         lblCount.Content = ProductCount;
-        await _orderDetailRepository.UpdateQuantityAsync(Order.Id, ProductCount);
+        await _orderRepository.UpdateQuantityAsync(Order.Id, ProductCount);
     }
 
     private async void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -83,7 +83,7 @@ public partial class OrderResultUserControl : UserControl
         this.Order = order;
         lblOrderName.Content = order.Description;
         lblPrice.Content = order.ResultPrice.ToString() + " $";
-        lblCount.Content = 1;
+        lblCount.Content = order.Quantity.ToString();
     }
 
     public Order ReturnThisData()
@@ -97,7 +97,6 @@ public partial class OrderResultUserControl : UserControl
         {
             //MessageBox.Show("Successfully");
             //NotifyOrderChanged();
-
 
         }
     }
