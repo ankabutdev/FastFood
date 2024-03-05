@@ -28,8 +28,8 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     
                     <Label Grid.Column="0"
@@ -38,17 +38,13 @@
                            FontSize="20" Margin="10 0 0 10"/>
 
                     <Label Grid.Column="1"
-                           Width="30"
                            x:Name="lblOrderQuantity"
                            FontSize="20"
-                           Margin="10 0 0 10"
                            Content=""
-                           VerticalAlignment="Center"
+                           VerticalAlignment="Stretch"
                            Foreground="DarkOrange"/>
 
-
                 </Grid>
-                
 
             </StackPanel>
             
