@@ -1,5 +1,4 @@
 ﻿using FastFood.Entites.Orders;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -22,16 +21,11 @@ public partial class BasketUserControl : UserControl
 
     }
 
-    public async Task RefreshAsync()
-    {
-        
-    }
-
     public void SetData(Order order)
     {
         Id = order.Id;
         orderName.Content = order.Description.ToString();
         lblOrderPrice.Content = order.ProductsPrice.ToString() + " $";
-        lblOrderQuantity.Content = order.Quantity.ToString();
+        lblOrderQuantity.Content = "Quantity: " + order.Quantity.ToString();
     }
 }
