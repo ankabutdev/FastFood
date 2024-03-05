@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastFood.Windows.Payment"
         mc:Ignorable="d"
-        Title="Payment" 
+        Title="Payment"
         Height="700"
-        Width="1000"
+        Width="1010"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
@@ -21,6 +21,7 @@
             <Setter Property="Margin" Value="0 5"/>
         </Style>
     </Window.Resources>
+    
     <Grid Background="{DynamicResource SecondaryBackground}" >
         <StackPanel Orientation="Horizontal"
                     Margin="10 10">
@@ -31,14 +32,130 @@
                 </Grid.ColumnDefinitions>
                 
                 <!-- For Fields Create Basket Labels and buttons -->
-                <StackPanel Grid.Column="0" 
-                            Orientation="Vertical">
-                    
-                    <Label Content=""
-                           Style="{DynamicResource TitleLabel}">
+
+                <Border CornerRadius="15"
+                        Grid.Column="0"
+                        Background="{StaticResource PrimaryBackground}">
                         
-                    </Label>
-                </StackPanel>
+                    <StackPanel Margin="10"
+                                Orientation="Vertical">
+                        <Grid Background="{DynamicResource PrimaryBackground}">
+                            <StackPanel Orientation="Vertical"
+                                        Margin="20 10">
+                                <Grid Height="180">
+
+                                    <Grid Grid.Column="1">
+                                        
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <StackPanel Grid.Row="0"
+                                                    Margin="5,0,5,0">
+                                            <Label Content="Product Quantity" Style="{DynamicResource TitleLabel}"/>
+                                            <Border CornerRadius="10"
+                                                    Background="{DynamicResource SecondaryBackground}"
+                                                    Height="40">
+                                                <TextBox x:Name="tbProductQuantity"
+                                                            MaxLength="30"
+                                                            Grid.Column="1"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="16"
+                                                            Margin="10 0 10 0"
+                                                            FontFamily="Jetbrains Mono"
+                                                            BorderThickness="0"
+                                                            Foreground="{DynamicResource PrimaryTextColor}"
+                                                            Background="{DynamicResource SecondaryBackground}"/>
+                                                </Border>
+
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1"
+            Margin="5,0,5,0">
+                                            <Label Content="Product Quantity" Style="{DynamicResource TitleLabel}"/>
+                                            <Border CornerRadius="10"
+            Background="{DynamicResource SecondaryBackground}"
+            Height="40">
+                                                <TextBox x:Name="tbProductQuantity2"
+                    MaxLength="30"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Margin="10 0 10 0"
+                    FontFamily="Jetbrains Mono"
+                    BorderThickness="0"
+                    Foreground="{DynamicResource PrimaryTextColor}"
+                    Background="{DynamicResource SecondaryBackground}"/>
+                                            </Border>
+
+                                        </StackPanel>
+
+                                    </Grid>
+                                </Grid>
+                                <Grid>
+                                    <StackPanel>
+                                        <Label Content="Product Category (Type)" Style="{DynamicResource TitleLabel}"/>
+                                        <ComboBox x:Name="cmbCategories"
+                                                    DisplayMemberPath="Name"
+                                                    SelectedValuePath="Id"
+                                                    Style="{DynamicResource FormComboBox}">
+                                            <ComboBox.Resources>
+                                                <!-- Colour of ComboBoxItem -->
+                                                <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Yellow" />
+                                                <!-- Mouse over colour of ComboBoxItem -->
+                                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red" />
+
+                                                <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
+                                                    <GradientStop Color="Blue" Offset="0.0"/>
+                                                    <GradientStop Color="Blue" Offset="1.0"/>
+                                                </LinearGradientBrush>
+                                            </ComboBox.Resources>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <Label Content="Description" Style="{DynamicResource TitleLabel}"/>
+                                <Border CornerRadius="10" 
+                Background="{DynamicResource SecondaryBackground}"
+                Height="100">
+                                    <RichTextBox x:Name="rbDescription"
+                     FontSize="16"
+                     Margin="10 10 10 10"
+                     FontFamily="Jetbrains Mono"
+                     BorderThickness="0"
+                     Foreground="{DynamicResource PrimaryTextColor}"
+                     Background="{DynamicResource SecondaryBackground}"/>
+                                </Border>
+                                <Button x:Name="btnSave" 
+                Click="btnSave_Click"
+                Margin="0 20 0 10" 
+                Height="50"
+                Style="{DynamicResource SuccessButton}" Content="Save"/>
+                            </StackPanel>
+                        </Grid>
+
+
+
+
+
+
+
+                    </StackPanel>
+                </Border>
                 <!-- WrapPanel Section, in this fileds have OrderResultComponent -->
                 <ScrollViewer Margin="10" Grid.Column="1">
                     <WrapPanel x:Name="wrpBasket">
