@@ -44,4 +44,9 @@ public partial class PaymentWindow : Window
             wrpBasket.Children.Add(basketViewUserControl);
         }
     }
+
+    private void btnSave_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }
