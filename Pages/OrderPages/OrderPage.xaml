@@ -25,7 +25,7 @@
         <Border Grid.Row="1" 
                 CornerRadius="100">
             
-            <Button Content="PAY"
+            <Button Content="Payment"
                     Margin="5"
                     Height="50"
                     Width="330"

@@ -45,7 +45,7 @@ public partial class PaymentWindow : Window
         }
     }
 
-    private void btnSave_Click(object sender, RoutedEventArgs e)
+    private void BtnSave_Click(object sender, RoutedEventArgs e)
     {
 
     }
