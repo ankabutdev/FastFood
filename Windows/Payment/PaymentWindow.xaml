@@ -133,9 +133,7 @@
                                 <Grid>
                                     <StackPanel>
                                         <Label Content="Payment Type" Style="{DynamicResource TitleLabel}"/>
-                                        <ComboBox x:Name="cmbCategories"
-                                                DisplayMemberPath="Name"
-                                                SelectedValuePath="Id"
+                                        <ComboBox x:Name="cmbPaymentTypes"
                                                 Style="{DynamicResource FormComboBox}">
                                             <ComboBox.Resources>
                                                 <!-- Colour of ComboBoxItem -->
@@ -152,11 +150,11 @@
                                     </StackPanel>
 
                                 </Grid>
-                                
+
                                 <Label Content="Description" Style="{DynamicResource TitleLabel}"/>
                                 <Border CornerRadius="10" 
                                         Background="{DynamicResource SecondaryBackground}"
-                                        Height="100">
+                                        Height="60">
                                     <RichTextBox x:Name="rbDescription"
                                                  FontSize="16"
                                                  Margin="10 10 10 10"
@@ -165,12 +163,23 @@
                                                  Foreground="{DynamicResource PrimaryTextColor}"
                                                  Background="{DynamicResource SecondaryBackground}"/>
                                 </Border>
+
+                                <Label Height="20"/>
+                                <Border x:Name="brPayment"
+                                        CornerRadius="10"
+                                        Background="{DynamicResource SecondaryBackground}"
+                                        Height="40"
+                                        Visibility="Hidden">
+
+                                </Border>
+
                                 <Button x:Name="btnSave" 
                                         Click="BtnSave_Click"
                                         Margin="0 20 0 10" 
                                         Height="50"
                                         Style="{DynamicResource SuccessButton}" Content="Pay"/>
                             </StackPanel>
+
                         </Grid>
 
                     </StackPanel>
@@ -186,4 +195,7 @@
             </Grid>
         </StackPanel>
     </Grid>
+    
+    
+    
 </Window>
