@@ -1,8 +1,11 @@
 ﻿using FastFood.Components.Baskets;
+using FastFood.Entites.Orders;
+using FastFood.Enums;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace FastFood.Windows.Payment;
 
@@ -27,6 +30,8 @@ public partial class PaymentWindow : Window
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        PaymentType[] arr = { PaymentType.ByCard, PaymentType.ByCash };
+        cmbPaymentTypes.ItemsSource = arr;
         await RefreshAsync();
     }
 
@@ -45,8 +50,36 @@ public partial class PaymentWindow : Window
         }
     }
 
-    private void BtnSave_Click(object sender, RoutedEventArgs e)
+    private async void BtnSave_Click(object sender, RoutedEventArgs e)
     {
+        //var categoryType = cmbPaymentTypes.SelectedValue;
+
+        //if ((PaymentType)categoryType is PaymentType.ByCard)
+        //{
+        //    brPayment.Visibility = Visibility.Visible;
+        //}
+
+        var data = await GetDataFromUI();
+
+        //await _orderRepository.UpdateAsync(data.Id, data);
 
     }
+
+    private async Task<Order> GetDataFromUI()
+    {
+        var order = new Order();
+
+        order.UserId = this.UserId;
+        //order.ProductId = 0;
+        order.Description = new TextRange(rbDescription.Document.ContentStart,
+            rbDescription.Document.ContentEnd).Text;
+
+        order.PaymentType = (PaymentType)cmbPaymentTypes.SelectedValue;
+
+        order.Status = OrderStatus.InProcess;
+        order.IsPaid = true;
+
+        return order;
+    }
+
 }
