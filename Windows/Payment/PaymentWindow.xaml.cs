@@ -30,7 +30,7 @@ public partial class PaymentWindow : Window
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        PaymentType[] arr = { PaymentType.ByCard, PaymentType.ByCash };
+        PaymentType[] arr = { PaymentType.ByCard/*, PaymentType.ByCash*/ };
         cmbPaymentTypes.ItemsSource = arr;
         await RefreshAsync();
     }
