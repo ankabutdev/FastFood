@@ -189,6 +189,11 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
+    public Task<bool> UpdateOrderIfIsPaidFalseToTrue(Order order, long orderId)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public async Task<bool> UpdateQuantityAsync(long id, long orderQuantity)
     {
         try
