@@ -153,7 +153,7 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         }
         finally
         {
-            await _connection.CloseAsync() ;
+            await _connection.CloseAsync();
         }
     }
 
@@ -189,9 +189,25 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
-    public Task<bool> UpdateOrderIfIsPaidFalseToTrue(Order order, long orderId)
+    public async Task<bool> UpdateOrderIfIsPaidFalseToTrue(long orderId)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"UPDATE from orders" +
+                $"SET is_paid = true" +
+                $"WHERE id = {orderId}";
+            var result = await _connection.ExecuteAsync(query);
+            return result > 0;
+        }
+        catch
+        {
+            return false;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<bool> UpdateQuantityAsync(long id, long orderQuantity)
