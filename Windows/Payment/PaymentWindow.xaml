@@ -221,13 +221,30 @@
 
                     </StackPanel>
                 </Border>
-                
-                <!-- WrapPanel Section, in this fileds have OrderResultComponent -->
-                <ScrollViewer Margin="10" Grid.Column="1">
-                    <WrapPanel x:Name="wrpBasket">
 
-                    </WrapPanel>
-                </ScrollViewer>
+                <!-- WrapPanel Section, in this fileds have OrderResultComponent -->
+                <Grid Grid.Column="1" 
+                      Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <ScrollViewer Grid.Row="0">
+                        <WrapPanel x:Name="wrpBasket">
+
+                        </WrapPanel>
+                    </ScrollViewer>
+
+                    <Border Grid.Row="1">
+                        <Label x:Name="lblTotalPrice"
+                               Content=""
+                               TextBlock.FontSize="20"
+                               HorizontalContentAlignment="Center"
+                               Style="{DynamicResource TitleLabel}"/>
+                    </Border>
+                </Grid>
 
             </Grid>
         </StackPanel>
