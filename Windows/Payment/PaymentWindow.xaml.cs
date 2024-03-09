@@ -52,16 +52,7 @@ public partial class PaymentWindow : Window
 
     private async void BtnSave_Click(object sender, RoutedEventArgs e)
     {
-        //var categoryType = cmbPaymentTypes.SelectedValue;
-
-        //if ((PaymentType)categoryType is PaymentType.ByCard)
-        //{
-        //    brPayment.Visibility = Visibility.Visible;
-        //}
-
         var data = await GetDataFromUI();
-
-        //await _orderRepository.UpdateAsync(data.Id, data);
 
     }
 
@@ -69,8 +60,11 @@ public partial class PaymentWindow : Window
     {
         var order = new Order();
 
+        var orders = await _orderRepository
+            .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
+
+
         order.UserId = this.UserId;
-        //order.ProductId = 0;
         order.Description = new TextRange(rbDescription.Document.ContentStart,
             rbDescription.Document.ContentEnd).Text;
 
