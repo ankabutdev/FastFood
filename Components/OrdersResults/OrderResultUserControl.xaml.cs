@@ -34,9 +34,9 @@ public partial class OrderResultUserControl : UserControl
         this._orderDetailRepository = new();
     }
 
-    private int _productCount;
+    private long _productCount;
 
-    public int ProductCount
+    public long ProductCount
     {
         get { return _productCount; }
         set
@@ -60,7 +60,8 @@ public partial class OrderResultUserControl : UserControl
     {
         ProductCount += 1;
         lblCount.Content = ProductCount;
-        await _orderRepository.UpdateQuantityAsync(Order.Id, ProductCount);
+        await _orderRepository.UpdateQuantityAndResultPriceAsync(
+            Order.Id, ProductCount, Order.ProductsPrice * 2);
     }
 
     private async void lblMinus_Click(object sender, RoutedEventArgs e)
@@ -70,7 +71,8 @@ public partial class OrderResultUserControl : UserControl
             ProductCount -= 1;
         }
         lblCount.Content = ProductCount;
-        await _orderRepository.UpdateQuantityAsync(Order.Id, ProductCount);
+        await _orderRepository.UpdateQuantityAndResultPriceAsync(
+            Order.Id, ProductCount, Order.ProductsPrice * 2);
     }
 
     private async void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -84,6 +86,7 @@ public partial class OrderResultUserControl : UserControl
         lblOrderName.Content = order.Description;
         lblPrice.Content = order.ResultPrice.ToString() + " $";
         lblCount.Content = order.Quantity.ToString();
+        ProductCount = order.Quantity;
     }
 
     public Order ReturnThisData()
