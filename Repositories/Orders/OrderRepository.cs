@@ -210,13 +210,14 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         }
     }
 
-    public async Task<bool> UpdateQuantityAsync(long id, long orderQuantity)
+    public async Task<bool> UpdateQuantityAndResultPriceAsync(long id, long orderQuantity, double resultPrice)
     {
         try
         {
             await _connection.OpenAsync();
             string query = $"UPDATE public.orders SET " +
-                $"quantity={orderQuantity}, updated_at='{TimeHelper.GetDateTime()}' " +
+                $"quantity={orderQuantity}, result_price={resultPrice}, " +
+                $"updated_at='{TimeHelper.GetDateTime()}' " +
                 $"WHERE id = {id};";
 
             var result = await _connection.ExecuteAsync(query);
