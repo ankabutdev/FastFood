@@ -16,4 +16,8 @@ public class OrderViewModel : Auditable
 
     public PaymentType PaymentType { get; set; }
 
+    public string CardNumber {  get; set; } = string.Empty;
+
+    public string CVV { get; set; } = string.Empty;
+
 }
