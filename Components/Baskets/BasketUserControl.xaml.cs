@@ -25,7 +25,7 @@ public partial class BasketUserControl : UserControl
     {
         Id = order.Id;
         orderName.Content = order.Description.ToString();
-        lblOrderPrice.Content = order.ProductsPrice.ToString() + " $";
+        lblOrderPrice.Content = order.ResultPrice + " $";
         lblOrderQuantity.Content = "Quantity: " + order.Quantity.ToString();
     }
 }

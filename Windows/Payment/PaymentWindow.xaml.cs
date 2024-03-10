@@ -3,6 +3,7 @@ using FastFood.Entites.Orders;
 using FastFood.Enums;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
+using FastFood.ViewModels.Orders;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -52,28 +53,26 @@ public partial class PaymentWindow : Window
 
     private async void BtnSave_Click(object sender, RoutedEventArgs e)
     {
-        var data = await GetDataFromUI();
-
-    }
-
-    private async Task<Order> GetDataFromUI()
-    {
-        var order = new Order();
-
         var orders = await _orderRepository
             .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
 
+        var data = await GetDataFromUI();
 
-        order.UserId = this.UserId;
-        order.Description = new TextRange(rbDescription.Document.ContentStart,
-            rbDescription.Document.ContentEnd).Text;
 
-        order.PaymentType = (PaymentType)cmbPaymentTypes.SelectedValue;
 
-        order.Status = OrderStatus.InProcess;
-        order.IsPaid = true;
-
-        return order;
     }
 
+    private async Task<OrderViewModel> GetDataFromUI()
+    {
+        var orderView = new OrderViewModel();
+
+        orderView.Order!.UserId = this.UserId;
+        orderView.Order.Description = new TextRange(rbDescription.Document.ContentStart,
+            rbDescription.Document.ContentEnd).Text;
+
+        orderView.Order.PaymentType = (PaymentType)cmbPaymentTypes.SelectedValue;
+        orderView.Order.Status = OrderStatus.InProcess;
+
+        return orderView;
+    }
 }
