@@ -13,11 +13,13 @@ namespace FastFood.Pages.Foods;
 public partial class FoodPage : Page
 {
     private readonly ProductRepository _productRepository;
+    public long UserId { get; set; }
 
-    public FoodPage()
+    public FoodPage(long userId)
     {
         InitializeComponent();
         this._productRepository = new ProductRepository();
+        UserId = userId;
     }
 
     private async void tbSearch_KeyUp(object sender, KeyEventArgs e)
@@ -30,7 +32,7 @@ public partial class FoodPage : Page
 
             foreach (var product in products)
             {
-                var appointmentsViewUserControl = new ProductViewUserControl();
+                var appointmentsViewUserControl = new ProductViewUserControl(UserId);
                 appointmentsViewUserControl.SetData(product);
                 wrpFood.Children.Add(appointmentsViewUserControl);
             }
@@ -49,7 +51,7 @@ public partial class FoodPage : Page
 
         foreach (var product in products)
         {
-            var productViewUserControl = new ProductViewUserControl();
+            var productViewUserControl = new ProductViewUserControl(UserId);
             productViewUserControl.SetData(product);
             wrpFood.Children.Add(productViewUserControl);
         }
