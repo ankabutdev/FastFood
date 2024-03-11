@@ -50,5 +50,5 @@ public partial class PlusMinusViewUserControl : UserControl
         DataContext = this;
     }
 
-    
+
 }
