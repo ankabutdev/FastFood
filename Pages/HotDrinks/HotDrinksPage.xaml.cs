@@ -13,11 +13,13 @@ namespace FastFood.Pages.HotDrinks;
 public partial class HotDrinksPage : Page
 {
     private readonly ProductRepository _productRepository;
+    public long UserId { get; set; }
 
-    public HotDrinksPage()
+    public HotDrinksPage(long userId)
     {
         InitializeComponent();
         this._productRepository = new ProductRepository();
+        UserId = userId;
     }
 
     private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -32,7 +34,7 @@ public partial class HotDrinksPage : Page
 
         foreach (var product in products)
         {
-            var productViewUserControl = new ProductViewUserControl();
+            var productViewUserControl = new ProductViewUserControl(UserId);
             productViewUserControl.SetData(product);
             wrpHotDrinks.Children.Add(productViewUserControl);
         }
@@ -48,7 +50,7 @@ public partial class HotDrinksPage : Page
 
             foreach (var product in products)
             {
-                var appointmentsViewUserControl = new ProductViewUserControl();
+                var appointmentsViewUserControl = new ProductViewUserControl(UserId);
                 appointmentsViewUserControl.SetData(product);
                 wrpHotDrinks.Children.Add(appointmentsViewUserControl);
             }
