@@ -189,14 +189,15 @@ public partial class OrderRepository : BaseRepository, IOrderRepository
         throw new System.NotImplementedException();
     }
 
-    public async Task<bool> UpdateOrderIfIsPaidFalseToTrue(long orderId)
+    public async Task<bool> UpdateOrderIfIsPaidFalseToTrueAsync(long orderId)
     {
         try
         {
             await _connection.OpenAsync();
-            string query = $"UPDATE from orders" +
-                $"SET is_paid = true" +
+            string query = "UPDATE orders " +
+                "SET is_paid = 'true' " +
                 $"WHERE id = {orderId}";
+
             var result = await _connection.ExecuteAsync(query);
             return result > 0;
         }
