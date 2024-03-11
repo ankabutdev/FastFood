@@ -1,12 +1,14 @@
 ﻿using FastFood.Components.Baskets;
-using FastFood.Entites.Orders;
 using FastFood.Enums;
+using FastFood.Helpers;
 using FastFood.Repositories.Orders;
 using FastFood.Repositories.Products;
 using FastFood.ViewModels.Orders;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
+
+#pragma warning disable
 
 namespace FastFood.Windows.Payment;
 
@@ -51,14 +53,35 @@ public partial class PaymentWindow : Window
         }
     }
 
+
     private async void BtnSave_Click(object sender, RoutedEventArgs e)
     {
+        // Registered orders for users
+
         var orders = await _orderRepository
             .GetAllOrderByUserIdByIsPaidFalseAsync(UserId);
 
-        var data = await GetDataFromUI();
+        foreach (var order in orders)
+        {
+            await _orderRepository
+                .UpdateOrderIfIsPaidFalseToTrueAsync(order.Id);
+        }
 
+        var orderView = await GetDataFromUI();
 
+        // Transtaction service -> 
+        // ... Pay orders price
+        //
+
+        if (orderView is not null)
+        {
+            MessageBox.Show("Successfully");
+            this.Close();
+        }
+        else
+        {
+            MessageBox.Show("You have not products");
+        }
 
     }
 
@@ -66,12 +89,19 @@ public partial class PaymentWindow : Window
     {
         var orderView = new OrderViewModel();
 
-        orderView.Order!.UserId = this.UserId;
-        orderView.Order.Description = new TextRange(rbDescription.Document.ContentStart,
+        orderView.Description = new TextRange(rbDescription.Document.ContentStart,
             rbDescription.Document.ContentEnd).Text;
 
-        orderView.Order.PaymentType = (PaymentType)cmbPaymentTypes.SelectedValue;
-        orderView.Order.Status = OrderStatus.InProcess;
+        orderView.FullName = tbFullName.Text;
+        orderView.PaymentType = (PaymentType)cmbPaymentTypes.SelectedValue;
+        orderView.Status = OrderStatus.InProcess;
+        orderView.PhoneNumber = tbPhoneNumber.Text;
+        orderView.Address = tbAddress.Text;
+        orderView.CardNumber = tbCardNumber.Text;
+        orderView.CVV = rbCardNumberSmallNumbers.Text;
+
+        orderView.CreatedAt = orderView.UpdatedAt
+            = TimeHelper.GetDateTime();
 
         return orderView;
     }

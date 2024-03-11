@@ -1,12 +1,11 @@
 ﻿using FastFood.Entites;
-using FastFood.Entites.Orders;
 using FastFood.Enums;
 
 namespace FastFood.ViewModels.Orders;
 
 public class OrderViewModel : Auditable
 {
-    public Order? Order { get; set; }
+    //public Order? Order { get; set; }
 
     public string FullName { get; set; } = string.Empty;
 
@@ -16,8 +15,12 @@ public class OrderViewModel : Auditable
 
     public PaymentType PaymentType { get; set; }
 
-    public string CardNumber {  get; set; } = string.Empty;
+    public string CardNumber { get; set; } = string.Empty;
 
     public string CVV { get; set; } = string.Empty;
+
+    public string Description { get; set; } = string.Empty;
+
+    public OrderStatus Status { get; set; }
 
 }

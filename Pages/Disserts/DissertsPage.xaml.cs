@@ -13,11 +13,13 @@ namespace FastFood.Pages.Disserts;
 public partial class DissertsPage : Page
 {
     private readonly ProductRepository _productRepository;
+    public long UserId { get; set; }
 
-    public DissertsPage()
+    public DissertsPage(long userId)
     {
         InitializeComponent();
         this._productRepository = new ProductRepository();
+        UserId = userId;
     }
 
     private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -32,7 +34,7 @@ public partial class DissertsPage : Page
 
         foreach (var product in products)
         {
-            var productViewUserControl = new ProductViewUserControl();
+            var productViewUserControl = new ProductViewUserControl(UserId);
             productViewUserControl.SetData(product);
             wrpDisserts.Children.Add(productViewUserControl);
         }
@@ -49,7 +51,7 @@ public partial class DissertsPage : Page
 
             foreach (var product in products)
             {
-                var appointmentsViewUserControl = new ProductViewUserControl();
+                var appointmentsViewUserControl = new ProductViewUserControl(UserId);
                 appointmentsViewUserControl.SetData(product);
                 wrpDisserts.Children.Add(appointmentsViewUserControl);
             }

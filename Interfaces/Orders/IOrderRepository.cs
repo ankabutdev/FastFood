@@ -20,5 +20,5 @@ public interface IOrderRepository : IRepository<Order, OrderViewModel>,
 
     public Task<bool> UpdateQuantityAndResultPriceAsync(long id, long orderQuantity, double resultPrice);
 
-    public Task<bool> UpdateOrderIfIsPaidFalseToTrue(long orderId);
+    public Task<bool> UpdateOrderIfIsPaidFalseToTrueAsync(long orderId);
 }
