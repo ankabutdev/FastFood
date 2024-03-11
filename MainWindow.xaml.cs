@@ -69,21 +69,21 @@ public partial class MainWindow : Window
 
     private void rbColdDrinks_Click(object sender, RoutedEventArgs e)
     {
-        ColdDrinksPage coldDrinksPage = new ColdDrinksPage();
+        ColdDrinksPage coldDrinksPage = new ColdDrinksPage(User.Id);
         PageNavigator.Content = coldDrinksPage;
         ConnectOrderPage();
     }
 
     private void rbHotDrinks_Click(object sender, RoutedEventArgs e)
     {
-        HotDrinksPage hotDrinksPage = new HotDrinksPage();
+        HotDrinksPage hotDrinksPage = new HotDrinksPage(User.Id);
         PageNavigator.Content = hotDrinksPage;
         ConnectOrderPage();
     }
 
     private void rb_Food_Click(object sender, RoutedEventArgs e)
     {
-        FoodPage foodPage = new FoodPage();
+        FoodPage foodPage = new FoodPage(User.Id);
         PageNavigator.Content = foodPage;
         ConnectOrderPage();
     }
@@ -97,7 +97,7 @@ public partial class MainWindow : Window
 
     private void rbDisserts_Click(object sender, RoutedEventArgs e)
     {
-        DissertsPage dissertsPage = new DissertsPage();
+        DissertsPage dissertsPage = new DissertsPage(User.Id);
         PageNavigator.Content = dissertsPage;
         ConnectOrderPage();
     }
